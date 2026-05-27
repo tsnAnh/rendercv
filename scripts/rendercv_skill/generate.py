@@ -32,6 +32,7 @@ SKILL_THEMES: list[str] = [
     "engineeringclassic",
     "sb2nov",
     "moderncv",
+    "khaitranquang",
 ]
 
 repository_root = pathlib.Path(__file__).parent.parent.parent

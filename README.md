@@ -64,6 +64,7 @@ becomes one of these PDFs. Click on the images to preview.
 | --- | --- | --- |
 | [![Moderncv Theme Example of RenderCV](https://raw.githubusercontent.com/rendercv/rendercv/main/docs/assets/images/examples/moderncv.png)](https://github.com/rendercv/rendercv/blob/main/examples/John_Doe_ModerncvTheme_CV.pdf) | [![Engineeringclassic Theme Example of RenderCV](https://raw.githubusercontent.com/rendercv/rendercv/main/docs/assets/images/examples/engineeringclassic.png)](https://github.com/rendercv/rendercv/blob/main/examples/John_Doe_EngineeringclassicTheme_CV.pdf) | [![Harvard Theme Example of RenderCV](https://raw.githubusercontent.com/rendercv/rendercv/main/docs/assets/images/examples/harvard.png)](https://github.com/rendercv/rendercv/blob/main/examples/John_Doe_HarvardTheme_CV.pdf) |
 | [![Ink Theme Example of RenderCV](https://raw.githubusercontent.com/rendercv/rendercv/main/docs/assets/images/examples/ink.png)](https://github.com/rendercv/rendercv/blob/main/examples/John_Doe_InkTheme_CV.pdf) | [![Opal Theme Example of RenderCV](https://raw.githubusercontent.com/rendercv/rendercv/main/docs/assets/images/examples/opal.png)](https://github.com/rendercv/rendercv/blob/main/examples/John_Doe_OpalTheme_CV.pdf) | [![Ember Theme Example of RenderCV](https://raw.githubusercontent.com/rendercv/rendercv/main/docs/assets/images/examples/ember.png)](https://github.com/rendercv/rendercv/blob/main/examples/John_Doe_EmberTheme_CV.pdf) |
+| [![Napa Theme Example of RenderCV](https://raw.githubusercontent.com/rendercv/rendercv/main/docs/assets/images/examples/napa.png)](https://github.com/rendercv/rendercv/blob/main/examples/John_Doe_NapaTheme_CV.pdf) | [![Khaitranquang Theme Example of RenderCV](https://raw.githubusercontent.com/rendercv/rendercv/main/docs/assets/images/examples/khaitranquang.png)](https://github.com/rendercv/rendercv/blob/main/examples/John_Doe_KhaitranquangTheme_CV.pdf) | |
 
 
 ## JSON Schema
@@ -153,6 +154,13 @@ Install RenderCV (Requires Python 3.12+):
 
 ```
 pip install "rendercv[full]"
+```
+
+If you use the `khaitranquang` theme outside Docker, install Chromium for
+Playwright once:
+
+```
+python -m playwright install chromium
 ```
 
 Create a new CV yaml file:

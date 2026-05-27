@@ -29,4 +29,3 @@ For the changelog of the RenderCV CLI and Python package, see [the RenderCV chan
 ## 0.1.0 - 2025-12-05
 
 - Initial release of RenderCV Typst package.
-

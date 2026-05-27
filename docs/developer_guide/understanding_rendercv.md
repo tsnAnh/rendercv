@@ -14,9 +14,14 @@ RenderCV does more than this (Markdown, HTML, PNG outputs, watching files, etc.)
 flowchart LR
     A[YAML file] --> B[Typst file]
     B --> C[PDF]
+    A --> D[Markdown and HTML]
+    D --> E[Chromium PDF/PNG for khaitranquang]
 ```
 
-Read a YAML file, generate a Typst file, compile it to PDF. Everything else is built on top of this foundation.
+Read a YAML file, generate a Typst file, compile it to PDF. Everything else is
+built on top of this foundation. The exception is the built-in `khaitranquang`
+theme: RenderCV still writes the Typst source file, but PDF and PNG output are
+rendered from the theme's HTML template with Chromium through Playwright.
 
 ## What is Typst?
 
@@ -24,7 +29,9 @@ Before we dive into the steps, let's understand what [Typst](https://typst.app/)
 
 Typst is a computer language. Just like Python, HTML, or JavaScript. You write Typst code to describe what a page should look like and what content it contains. You save it as a text file (`.typ` extension). When you compile a `*.typ` file with Typst compiler, you get a PDF.
 
-RenderCV generates a Typst file from your YAML and compiles it with the Typst compiler to produce your CV as a PDF.
+RenderCV generates a Typst file from your YAML and compiles it with the Typst
+compiler to produce your CV as a PDF. For `khaitranquang`, Chromium is used for
+PDF and PNG output instead because the theme is HTML-first.
 
 ## Step 1: Reading the YAML File
 

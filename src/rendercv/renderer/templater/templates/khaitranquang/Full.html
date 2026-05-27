@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="{{ locale.language_iso_639_1 }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ settings.pdf_title }}</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231e3a5f'/><text x='16' y='23' text-anchor='middle' font-family='Inter,Arial,sans-serif' font-weight='700' font-size='19' fill='%233498DB'>K</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20,400,1,0&display=swap" rel="stylesheet">
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+        background-color: #DDE3EA;
+        background-image: radial-gradient(#b8c4d0 1.5px, transparent 1.5px);
+        background-size: 28px 28px;
+        font-family: 'Inter', sans-serif;
+        padding: 40px 20px;
+        color: #1e293b;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    /* ===== SHEET WRAPPER ===== */
+    .sheet {
+        max-width: 1060px;
+        margin: 0 auto;
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.08);
+        display: flex;
+        overflow: visible;
+        position: relative;
+    }
+    /* Full-height blue stripe via pseudo-element – no JS needed */
+    .sheet::before {
+        content: '';
+        position: absolute;
+        left: 0; top: 0; bottom: 0;
+        width: 310px;
+        background: linear-gradient(175deg, #1a3352 0%, #1e3d63 60%, #162d4a 100%);
+        border-radius: 16px 0 0 16px;
+        z-index: 0;
+    }
+
+    /* ===== SIDEBAR ===== */
+    /* side-col stretches to full sheet height (align-items: stretch default) */
+    .side-col {
+        width: 310px;
+        flex-shrink: 0;
+        color: #e2e8f0;
+        z-index: 1;
+        -webkit-clip-path: inset(0 0 0 0 round 16px 0 0 16px);
+        clip-path: inset(0 0 0 0 round 16px 0 0 16px);
+    }
+    /* side-inner handled by Native CSS Sticky via JS toggling */
+    .side-inner {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .side-top {
+        padding: 40px 30px 30px;
+        background: rgba(0,0,0,0.15);
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .avatar-wrapper {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        margin: 0 auto 18px;
+        overflow: hidden;
+        border: 3px solid rgba(52,152,219,0.6);
+        box-shadow: 0 0 0 4px rgba(52,152,219,0.15);
+    }
+    .avatar-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+    .side-body { padding: 24px 28px 32px; flex: 1; }
+
+    /* ===== SIDEBAR SECTION TITLE ===== */
+    .side-section-title {
+        font-size: 9.5px;
+        font-weight: 700;
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+        color: #3498DB;
+        margin: 28px 0 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .side-section-title::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: rgba(52,152,219,0.3);
+    }
+    .side-section-title:first-child { margin-top: 0; }
+
+    /* ===== EDUCATION CARD ===== */
+    .edu-card { margin-bottom: 16px; }
+    .edu-name { font-size: 13px; font-weight: 600; color: #f1f5f9; margin-bottom: 3px; line-height: 1.4; }
+    .edu-school { font-size: 11.5px; color: #94a3b8; margin-bottom: 2px; }
+    .edu-meta { font-size: 11px; color: #64748b; }
+    .edu-grade { display: inline-block; margin-top: 5px; font-size: 11px; font-weight: 600; color: #3498DB; background: rgba(52,152,219,0.12); padding: 2px 8px; border-radius: 3px; }
+
+    /* ===== CERT ===== */
+    .cert-item { margin-bottom: 12px; }
+    .cert-name { font-size: 12.5px; font-weight: 600; color: #f1f5f9; margin-bottom: 3px; line-height: 1.35; }
+    .cert-desc { font-size: 11px; color: #94a3b8; line-height: 1.45; }
+    .cert-link { color: #3498DB; text-decoration: none; font-weight: 600; }
+
+    /* ===== SKILL TAGS ===== */
+    .skill-group { margin-bottom: 14px; }
+    .skill-group-label { font-size: 10.5px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 7px; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .skill-tag {
+        font-size: 10.5px;
+        padding: 3px 9px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 3px;
+        color: #cbd5e1;
+        line-height: 1.4;
+    }
+    .skill-tag.strong {
+        background: rgba(52,152,219,0.15);
+        border-color: rgba(52,152,219,0.35);
+        color: #e2e8f0;
+        font-weight: 500;
+    }
+
+    /* ===== LANGUAGE BARS ===== */
+    .lang-bars { display: flex; flex-direction: column; gap: 9px; }
+    .skill-bar-item {}
+    .skill-bar-label { display: flex; justify-content: space-between; font-size: 10.5px; font-weight: 500; margin-bottom: 4px; color: #cbd5e1; }
+    .skill-bar-label span:last-child { color: #64748b; }
+    .skill-bar-outer { height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; }
+    .skill-bar-inner { height: 100%; background: linear-gradient(90deg, #2980b9, #3498DB); border-radius: 2px; }
+
+    /* ===== CAREER OBJECTIVE ===== */
+    .objective-text { font-size: 11.5px; color: #94a3b8; line-height: 1.65; }
+    .objective-text p { margin-bottom: 8px; }
+    .objective-text p:last-child { margin-bottom: 0; }
+
+    /* ===== MAIN COLUMN ===== */
+    .main-col {
+        flex: 1;
+        padding: 40px 42px;
+        min-width: 0;
+        background: #fff;
+        border-radius: 0 16px 16px 0;
+    }
+
+    /* ===== NAME / TITLE HEADER ===== */
+    .cv-header { margin-bottom: 22px; border-bottom: 2px solid #f1f5f9; padding-bottom: 20px; }
+    h1.name {
+        font-size: 30px;
+        font-weight: 700;
+        color: #0f172a;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        line-height: 1.1;
+        margin-bottom: 6px;
+    }
+    h2.title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #1e3a5f;
+        margin-bottom: 5px;
+        letter-spacing: 0.2px;
+    }
+    .tagline {
+        font-size: 12px;
+        font-weight: 400;
+        color: #3498DB;
+        margin-bottom: 14px;
+        letter-spacing: 0.3px;
+    }
+
+    /* ===== CONTACT INFO ===== */
+    .contact-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 20px;
+    }
+    .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 5px;
+        font-size: 11.5px;
+        color: #475569;
+    }
+    .contact-label {
+        font-weight: 600;
+        color: #334155;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    .contact-sep { color: #cbd5e1; }
+
+    /* ===== MAIN SECTION TITLES ===== */
+    .section-title {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #3498DB;
+        margin: 28px 0 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .section-title::after {
+        content: '';
+        flex: 1;
+        height: 1.5px;
+        background: linear-gradient(90deg, #e2e8f0, transparent);
+    }
+
+    /* ===== SUMMARY ===== */
+    .summary-text { font-size: 13px; line-height: 1.75; color: #334155; margin-bottom: 14px; }
+    .summary-blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: start; }
+    .summary-block--wide { grid-column: 1 / -1; }
+    .summary-block {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-left: 3px solid #3498DB;
+        border-radius: 0 6px 6px 0;
+        padding: 10px 12px;
+    }
+    .summary-category { display: block; font-size: 9.5px; font-weight: 700; color: #3498DB; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; }
+    .summary-value { font-size: 12px; color: #334155; line-height: 1.5; }
+
+    /* ===== AI SECTION ===== */
+    .ai-section {
+        background: linear-gradient(135deg, #f0f7ff 0%, #f8fafc 100%);
+        border: 1px solid #bfdbfe;
+        border-left: 3px solid #3498DB;
+        border-radius: 0 8px 8px 0;
+        padding: 14px 16px;
+        margin-bottom: 6px;
+    }
+    .ai-intro { font-size: 12.5px; color: #1e3a5f; margin-bottom: 10px; line-height: 1.6; }
+    .ai-list { margin: 0; padding-left: 16px; }
+    .ai-list li { font-size: 12px; color: #334155; margin-bottom: 5px; line-height: 1.5; }
+    .ai-list li:last-child { margin-bottom: 0; }
+
+    /* ===== EXPERIENCE ITEMS ===== */
+    .job-item {
+        margin-bottom: 22px;
+        padding-bottom: 22px;
+        border-bottom: 1px solid #f1f5f9;
+        page-break-inside: avoid;
+    }
+    .job-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .job-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 4px;
+    }
+    .job-role {
+        font-size: 15px;
+        font-weight: 700;
+        color: #0f172a;
+        line-height: 1.3;
+    }
+    .job-date {
+        font-size: 11.5px;
+        font-weight: 500;
+        color: #fff;
+        background: #3498DB;
+        padding: 2px 10px;
+        border-radius: 20px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+    .job-meta-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+    }
+    .job-company {
+        font-size: 12.5px;
+        font-weight: 600;
+        color: #3498DB;
+    }
+    .job-meta-sep { color: #cbd5e1; font-size: 12px; }
+    .job-position {
+        font-size: 12px;
+        color: #64748b;
+        font-style: italic;
+    }
+    .job-team-size {
+        margin-left: auto;
+        font-size: 11px;
+        color: #94a3b8;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        padding: 1px 8px;
+        border-radius: 10px;
+    }
+
+    .job-desc {
+        font-size: 12px;
+        color: #475569;
+        line-height: 1.55;
+        margin-bottom: 10px;
+        padding: 8px 12px;
+        background: #f8fafc;
+        border-left: 2px solid #e2e8f0;
+        border-radius: 0 4px 4px 0;
+    }
+    .job-desc-label { font-weight: 600; color: #334155; }
+
+    .resp-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+    .resp-section { margin-bottom: 4px; }
+    .resp-title {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #64748b;
+        margin-bottom: 5px;
+        padding-bottom: 3px;
+        border-bottom: 1px solid #f1f5f9;
+    }
+    .resp-list { margin: 0; padding-left: 14px; }
+    .resp-list li {
+        font-size: 12px;
+        color: #334155;
+        margin-bottom: 4px;
+        line-height: 1.45;
+    }
+    .resp-list li:last-child { margin-bottom: 0; }
+
+    .job-tech {
+        font-size: 11.5px;
+        color: #475569;
+        margin-top: 10px;
+        line-height: 1.55;
+    }
+    .job-tech strong { color: #1e293b; font-weight: 600; font-style: normal; }
+
+    .resp-single .resp-list { columns: unset; }
+
+    b { font-weight: 600; }
+
+    /* ===== MOBILE ===== */
+    @media screen and (max-width: 768px) {
+        body { padding: 0; }
+
+        .sheet {
+            flex-direction: column;
+            border-radius: 0;
+            max-width: 100%;
+        }
+        .sheet::before { display: none; }
+
+        .side-col {
+            width: 100%;
+            flex-shrink: unset;
+            position: static;
+            height: auto;
+            background: linear-gradient(175deg, #1a3352 0%, #1e3d63 60%, #162d4a 100%);
+            -webkit-clip-path: none;
+            clip-path: none;
+        }
+
+        .side-top { padding: 28px 20px 20px; border-radius: 0; }
+
+        .side-body { padding: 16px 20px 24px; }
+
+        .main-col {
+            padding: 24px 20px;
+        }
+
+        .export-btn {
+            bottom: 16px;
+            right: 16px;
+            padding: 10px 16px;
+            font-size: 12px;
+            gap: 6px;
+        }
+
+        h1.name { font-size: 22px; }
+        h2.title { font-size: 13px; }
+        .tagline { font-size: 11px; }
+
+        .summary-blocks {
+            grid-template-columns: 1fr;
+        }
+
+        .resp-cols {
+            grid-template-columns: 1fr;
+            gap: 10px 0;
+        }
+
+        .job-header {
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .job-date { align-self: flex-start; }
+
+        .job-meta-row { flex-wrap: wrap; gap: 4px; }
+
+        .job-team-size { margin-left: 0; }
+
+        .resp-list[style*="columns"] {
+            columns: 1 !important;
+        }
+    }
+
+    /* ===== MATERIAL ICONS ===== */
+    .msi {
+        font-family: 'Material Symbols Rounded', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        font-style: normal;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        font-feature-settings: 'liga';
+        -webkit-font-feature-settings: 'liga';
+        font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+        -webkit-font-smoothing: antialiased;
+        vertical-align: -2px;
+    }
+    .contact-icon { font-size: 13px; color: #3498DB; flex-shrink: 0; }
+    .section-icon { font-size: 15px; vertical-align: -3px; margin-right: 4px; }
+    .side-icon { font-size: 12px; vertical-align: -2px; margin-right: 3px; opacity: 0.85; }
+
+    /* ===== EXPORT BUTTON ===== */
+    .export-btn {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 13px 22px;
+        background: linear-gradient(135deg, #1e3a5f 0%, #3498DB 100%);
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        font-size: 13.5px;
+        font-weight: 600;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 6px 24px rgba(52,152,219,0.45), 0 2px 8px rgba(0,0,0,0.2);
+        transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+        letter-spacing: 0.2px;
+    }
+    .export-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 32px rgba(52,152,219,0.55), 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .export-btn:active { transform: translateY(0); }
+    .export-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .export-btn.loading { opacity: 0.75; pointer-events: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .export-btn.loading svg { animation: spin 0.8s linear infinite; }
+
+    /* ===== PRINT ===== */
+    @media print {
+        @page { margin: 0; size: A4 portrait; }
+        body { 
+            background: #fff !important; 
+            margin: 0 !important; padding: 0 !important; 
+            -webkit-print-color-adjust: exact !important; 
+            print-color-adjust: exact !important; 
+        }
+        .sheet {
+            display: table !important;
+            table-layout: fixed !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important; padding: 0 !important;
+            background: #fff !important; 
+            box-shadow: none !important; border-radius: 0 !important;
+        }
+        .sheet::before, .sheet::after { display: none !important; }
+        
+        .side-col {
+            display: table-cell !important;
+            vertical-align: top !important;
+            width: 270px !important;
+            background-color: #0f172a !important;
+            background-image: none !important;
+            padding: 0 !important;
+            position: static !important;
+            box-shadow: none !important;
+            -webkit-clip-path: none !important; clip-path: none !important;
+        }
+        .side-inner {
+            position: static !important;
+            top: auto !important; bottom: auto !important; transform: none !important; margin: 0 !important;
+            height: auto !important;
+            width: 100% !important;
+        }
+        .side-top { padding: 24px 18px 18px !important; background: rgba(0,0,0,0.2) !important; border-radius: 0 !important; clip-path: none !important; }
+        .side-body { padding: 16px 18px 24px !important; }
+        .avatar-wrapper { width: 80px; height: 80px; }
+        .side-section-title { font-size: 8.5px; margin: 18px 0 10px; }
+        .edu-name { font-size: 11.5px; }
+        .edu-school { font-size: 10px; }
+        .edu-meta { font-size: 10px; }
+        .cert-name { font-size: 11px; }
+        .cert-desc { font-size: 10px; }
+        .skill-tag { font-size: 9.5px; padding: 2px 7px; }
+        .skill-group-label { font-size: 9.5px; }
+        .skill-group { margin-bottom: 10px; }
+        .objective-text { font-size: 10.5px; }
+
+        .main-col { 
+            display: table-cell !important;
+            vertical-align: top !important;
+            margin: 0 !important; 
+            padding: 24px 28px !important; 
+            background: #fff !important; 
+            width: auto !important;
+            max-width: none !important;
+        }
+
+        .job-item, .skills-section, .edu-item, .cert-item, .lang-item, .contact-row { page-break-inside: avoid !important; break-inside: avoid !important; }
+        .summary-blocks { break-inside: avoid !important; }
+        .export-btn { display: none !important; }
+    }
+</style>
+</head>
+<body>
+{% set header_section = cv | section_by_title("Header Details") %}
+{% set header_entry = header_section.entries[0] if header_section and header_section.entries else none %}
+{% set education = (cv | section_by_title("Sidebar Education")) or (cv | section_by_title("Education")) %}
+{% set skills = (cv | section_by_title("Sidebar Technical Skills")) or (cv | section_by_title("Skills")) %}
+{% set english = cv | section_by_title("Sidebar English Proficiency") %}
+{% set objective = cv | section_by_title("Sidebar Career Objective") %}
+{% set summary = (cv | section_by_title("Summary")) or (cv | section_by_title("Welcome to RenderCV")) %}
+{% set ai = cv | section_by_title("AI Strategy & Innovation") %}
+{% set experience = cv | section_by_title("Experience") %}
+{% set rendered_section_titles = [
+    "Header Details",
+    "Sidebar Education",
+    "Sidebar Technical Skills",
+    "Sidebar English Proficiency",
+    "Sidebar Career Objective",
+    "Education",
+    "Skills",
+    "Summary",
+    "Welcome to RenderCV",
+    "AI Strategy & Innovation",
+    "Experience",
+] %}
+
+<!-- Export PDF Button -->
+<button class="export-btn" id="exportBtn" onclick="exportPDF()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3v13M7 11l5 5 5-5"/>
+        <path d="M5 20h14"/>
+    </svg>
+    Export PDF
+</button>
+
+<div class="sheet">
+
+    <!-- ========== SIDEBAR ========== -->
+    <div class="side-col">
+        <div class="side-inner">
+        <div class="side-top">
+            {% if cv.photo %}
+            <div class="avatar-wrapper">
+                <img src="{{ cv.photo.name if cv.photo.name is defined else cv.photo }}" alt="Avatar">
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="side-body">
+
+            {% if education %}
+            <!-- Education -->
+            <div class="side-section-title"><span class="msi side-icon">&#xE80C;</span>{{ education.title|replace("Sidebar ", "") }}</div>
+            {% for entry in education.entries %}
+            {% if entry.url is defined %}
+            <div class="cert-item">
+                <div class="cert-name">{{ (entry.name if entry.name is defined else entry.institution)|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</div>
+                {% if entry.summary %}<div class="cert-desc">{{ entry.summary|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }} <a href="{{ entry.url }}" target="_blank" class="cert-link">[Verify]</a></div>{% endif %}
+            </div>
+            {% else %}
+            <div class="edu-card">
+                <div class="edu-name">{{ (entry.name if entry.name is defined else entry.institution)|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</div>
+                {% if entry.summary %}<div class="edu-school">{{ entry.summary|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</div>{% endif %}
+                {% if entry.date_string is defined and entry.date_string %}<div class="edu-meta">{{ entry.date_string }}</div>{% elif entry.date is defined and entry.date %}<div class="edu-meta">{{ entry.date }}</div>{% endif %}
+                {% if entry.badge is defined %}<span class="edu-grade">{{ entry.badge|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</span>{% endif %}
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+
+            {% if skills %}
+            <!-- Technical Skills -->
+            <div class="side-section-title"><span class="msi side-icon">&#xE86F;</span>{{ skills.title|replace("Sidebar ", "") }}</div>
+            {% for entry in skills.entries %}
+            <div class="skill-group">
+                <div class="skill-group-label">{{ entry.label|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</div>
+                <div class="skill-tags">
+                    {% for tag in entry.details.split(", ") %}
+                    <span class="skill-tag{% if entry.strong is defined and tag in entry.strong %} strong{% endif %}">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% if english %}
+            <!-- Languages -->
+            <div class="side-section-title"><span class="msi side-icon">&#xE8E2;</span>{{ english.title|replace("Sidebar ", "") }}</div>
+            <div class="lang-bars">
+                {% for entry in english.entries %}
+                <div class="skill-bar-item">
+                    <div class="skill-bar-label"><span>{{ entry.label }}</span><span>{{ entry.details }}</span></div>
+                    <div class="skill-bar-outer"><div class="skill-bar-inner" style="width:{{ entry.percent if entry.percent is defined else '70' }}%"></div></div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if objective %}
+            <!-- Career Objective -->
+            <div class="side-section-title"><span class="msi side-icon">&#xE8E1;</span>{{ objective.title|replace("Sidebar ", "") }}</div>
+            <div class="objective-text">
+                {% for entry in objective.entries %}<p>{{ entry|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</p>{% endfor %}
+            </div>
+            {% endif %}
+
+        </div>
+        </div><!-- /.side-inner -->
+    </div>
+
+    <!-- ========== MAIN COLUMN ========== -->
+    <div class="main-col">
+
+        <!-- Name & Contact -->
+        <div class="cv-header">
+            {% if cv.name %}<h1 class="name">{{ cv.name|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</h1>{% endif %}
+            {% if cv.headline %}<h2 class="title">{{ cv.headline|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</h2>{% endif %}
+            {% if header_entry and header_entry.tagline is defined %}<div class="tagline">{{ header_entry.tagline|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</div>{% endif %}
+            <div class="contact-row">
+                {% if header_entry and header_entry.date_of_birth is defined %}<div class="contact-item"><span class="contact-label">Date of Birth:</span><span>{{ header_entry.date_of_birth }}</span></div>{% endif %}
+                {% if cv.phone %}<div class="contact-item"><span class="contact-label">Phone:</span><span>{{ cv.phone|replace("tel:", "")|replace("-", " ") }}</span></div>{% endif %}
+                {% if cv.email %}<div class="contact-item"><span class="contact-label">Email:</span><span>{{ cv.email }}</span></div>{% endif %}
+                {% if header_entry and header_entry.experience is defined %}<div class="contact-item"><span class="contact-label">Experience:</span><span>{{ header_entry.experience }}</span></div>{% endif %}
+                {% if cv.location %}<div class="contact-item" style="flex-basis: 100%;"><span class="contact-label">Location:</span><span>{{ cv.location|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</span></div>{% endif %}
+            </div>
+        </div>
+
+        {% if summary %}
+        <!-- Summary -->
+        <div class="section-title"><span class="msi section-icon">&#xF0D3;</span>{{ summary.title }}</div>
+        {% if summary.entries and summary.entries[0] is string %}
+        {% for entry in summary.entries %}
+        <p class="summary-text">{{ entry|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</p>
+        {% endfor %}
+        {% elif summary.entries and summary.entries[0].summary is defined %}
+        <p class="summary-text">{{ summary.entries[0].summary|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</p>
+        <div class="summary-blocks">
+            {% for entry in summary.entries[1:] %}
+            <div class="summary-block{% if entry.wide is defined %} summary-block--wide{% endif %}">
+                <span class="summary-category">{{ entry.name }}</span>
+                <span class="summary-value">{{ entry.summary|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</span>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endif %}
+
+        {% if ai %}
+        <!-- AI Strategy -->
+        <div class="section-title"><span class="msi section-icon">&#xF06C;</span>{{ ai.title }}</div>
+        {% for entry in ai.entries %}
+        <div class="ai-section">
+            {% if entry.summary %}<div class="ai-intro">{{ entry.summary|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</div>{% endif %}
+            {% if entry.highlights %}
+            <ul class="ai-list">
+                {% for item in entry.highlights %}<li>{{ item|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</li>{% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% if experience %}
+        <!-- Experience -->
+        <div class="section-title"><span class="msi section-icon">&#xE943;</span>{{ experience.title }}</div>
+        {% for entry in experience.entries %}
+        {% set entry_title = entry|entry_title %}
+        <div class="job-item">
+            <div class="job-header">
+                <span class="job-role">{{ entry_title|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</span>
+                {% if entry.date_string is defined and entry.date_string %}<span class="job-date">{{ entry.date_string }}</span>{% elif entry.date is defined and entry.date %}<span class="job-date">{{ entry.date }}</span>{% endif %}
+            </div>
+            <div class="job-meta-row">
+                {% if entry.location %}<span class="job-company">{{ entry.location }}</span>{% endif %}
+                {% if entry.position is defined %}<span class="job-meta-sep">&middot;</span><span class="job-position">{{ entry.position }}</span>{% endif %}
+                {% if entry.team_size is defined %}<span class="job-team-size">&#128101; {{ entry.team_size }}</span>{% endif %}
+            </div>
+            {% if entry.summary %}<div class="job-desc"><span class="job-desc-label">Project:</span> {{ entry.summary|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</div>{% endif %}
+            {% if entry.single_column is defined and entry.highlights %}
+            <div class="resp-single">
+                <ul class="resp-list" style="columns:2; gap:20px;">
+                    {% for item in entry.highlights %}<li>{{ item|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</li>{% endfor %}
+                </ul>
+            </div>
+            {% elif entry.project_management is not defined and entry.technical is not defined and entry.highlights %}
+            <div class="resp-single">
+                <ul class="resp-list">
+                    {% for item in entry.highlights %}<li>{{ item|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</li>{% endfor %}
+                </ul>
+            </div>
+            {% else %}
+            <div class="resp-cols">
+                {% if entry.project_management is defined %}
+                <div class="resp-section">
+                    <div class="resp-title">{{ entry.project_management_title if entry.project_management_title is defined else "Project Management" }}</div>
+                    <ul class="resp-list">
+                        {% for item in entry.project_management %}<li>{{ item|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</li>{% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                {% if entry.technical is defined %}
+                <div class="resp-section">
+                    <div class="resp-title">Technical</div>
+                    <ul class="resp-list">
+                        {% for item in entry.technical %}<li>{{ item|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</li>{% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% if entry.stack is defined %}<div class="job-tech"><strong>Stack:</strong> {{ entry.stack|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</div>{% endif %}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% for section in cv.rendercv_sections %}
+        {% if section.title not in rendered_section_titles %}
+        <div class="section-title"><span class="msi section-icon">&#xE86E;</span>{{ section.title }}</div>
+            {% for entry in section.entries %}
+            {% set entry_title = entry|entry_title %}
+            {% set details = entry|entry_details %}
+            {% set highlights = entry|entry_highlights %}
+            {% if entry is string %}
+            <p class="summary-text">{{ entry|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</p>
+            {% else %}
+            <div class="job-item">
+                <div class="job-header">
+                    {% if entry_title %}<span class="job-role">{{ entry_title|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</span>{% endif %}
+                    {% if entry.date_string is defined and entry.date_string %}<span class="job-date">{{ entry.date_string }}</span>{% endif %}
+                </div>
+                {% if details %}
+                <div class="job-meta-row">
+                    <span class="job-position">{{ details|join(" · ")|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</span>
+                </div>
+                {% endif %}
+                {% if entry.summary is defined and entry.summary %}
+                <div class="job-desc">{{ entry.summary|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</div>
+                {% endif %}
+                {% if highlights %}
+                <div class="resp-single">
+                    <ul class="resp-list">
+                        {% for item in highlights %}<li>{{ item|markdown_to_html_inline|replace("<strong>", "<b>")|replace("</strong>", "</b>") }}</li>{% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% endfor %}
+
+    </div>
+</div>
+
+<script>
+function exportPDF() {
+    const btn = document.getElementById('exportBtn');
+    // Show loading state
+    btn.classList.add('loading');
+    btn.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+        </svg>
+        Preparing...
+    `;
+    // Small delay so browser renders loading state before print dialog blocks
+    setTimeout(() => {
+        window.print();
+        // Restore button after print dialog closes
+        setTimeout(() => {
+            btn.classList.remove('loading');
+            btn.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3v13M7 11l5 5 5-5"/>
+                    <path d="M5 20h14"/>
+                </svg>
+                Export PDF
+            `;
+        }, 500);
+    }, 150);
+}
+
+// Export button visible on all screen sizes
+
+// Jitter-free Smart Sticky Sidebar
+(function() {
+    var sideInner = document.querySelector('.side-inner');
+    var sideCol = document.querySelector('.side-col');
+    if (!sideInner || !sideCol) return;
+
+    var stickyTop = 24;
+    var stickyBottom = 24;
+    var lastScrollY = window.scrollY;
+    var state = ''; 
+    var currentTop = 0; 
+
+    function init() {
+        if (window.innerWidth <= 768) {
+            sideInner.style.position = '';
+            sideInner.style.top = '';
+            state = '';
+            return;
+        }
+        var vh = window.innerHeight;
+        var sh = sideInner.offsetHeight;
+
+        if (sh + stickyTop + stickyBottom <= vh) {
+            sideInner.style.position = 'sticky';
+            sideInner.style.top = stickyTop + 'px';
+            state = 'sticky-top-fixed';
+            return;
+        }
+        
+        sideInner.style.position = 'sticky';
+        sideInner.style.top = stickyTop + 'px';
+        state = 'sticky-top';
+    }
+
+    function update() {
+        if (window.innerWidth <= 768) return;
+
+        var scrollY = window.scrollY;
+        var delta = scrollY - lastScrollY;
+        lastScrollY = scrollY;
+
+        if (delta === 0 || state === 'sticky-top-fixed') return;
+
+        var vh = window.innerHeight;
+        var sh = sideInner.offsetHeight;
+
+        var colRect = sideCol.getBoundingClientRect();
+        var innerRect = sideInner.getBoundingClientRect();
+        
+        if (delta > 0) { // Scrolling DOWN
+            if (state === 'sticky-top') {
+                currentTop = innerRect.top - colRect.top;
+                sideInner.style.position = 'relative';
+                sideInner.style.top = currentTop + 'px';
+                state = 'relative';
+            } else if (state === 'relative') {
+                if (innerRect.bottom <= vh - stickyBottom) {
+                    sideInner.style.position = 'sticky';
+                    sideInner.style.top = (vh - stickyBottom - sh) + 'px';
+                    state = 'sticky-bottom';
+                }
+            }
+        } else if (delta < 0) { // Scrolling UP
+            if (state === 'sticky-bottom') {
+                currentTop = innerRect.top - colRect.top;
+                sideInner.style.position = 'relative';
+                sideInner.style.top = currentTop + 'px';
+                state = 'relative';
+            } else if (state === 'relative') {
+                if (innerRect.top >= stickyTop) {
+                    sideInner.style.position = 'sticky';
+                    sideInner.style.top = stickyTop + 'px';
+                    state = 'sticky-top';
+                }
+            }
+        }
+    }
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', function() { init(); update(); });
+    // Small timeout to ensure layout calculations are complete before init
+    setTimeout(function() { init(); update(); }, 150);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,334 @@
+# yaml-language-server: $schema=../schema.json
+cv:
+  name: Khai Tran Quang
+  headline: Technical Project Manager
+  photo: assets/khaitq.png
+  phone: "+84 967 577 849"
+  email: khaitq.cntt@gmail.com
+  location: Tower CT9, Unit CH03.07 – Bau Tram Social Housing, Hai Van Ward, Da Nang City
+  sections:
+    Header Details:
+      - name: Header
+        tagline: Engineering Lead · Fullstack (Node.js / PHP · NestJS / Laravel) · DevOps & AWS · Blockchain
+        date_of_birth: Dec 26, 1996
+        experience: 8+ years
+    Sidebar Education:
+      - name: Bachelor of Information Technology
+        summary: Vietnam-Korea University of Information and Communication Technology
+        date: Batch 17 · 2014 – 2018
+        badge: "Grade: Very good"
+      - name: AWS Certified Solutions Architect – Associate
+        summary: Certified in designing cloud architectures on AWS following the Well-Architected Framework
+        url: https://cp.certmetrics.com/amazon/en/public/verify/credential/a71cba9aba554927a0dc51658831899b
+    Sidebar Technical Skills:
+      - label: Languages & Frameworks
+        details: JavaScript, TypeScript, NodeJS, NestJS, ExpressJS, PHP, Laravel, VueJS, ReactJS
+        strong:
+          - JavaScript
+          - TypeScript
+          - NodeJS
+          - NestJS
+          - ExpressJS
+          - PHP
+          - Laravel
+          - VueJS
+          - ReactJS
+      - label: Databases
+        details: MySQL, PostgreSQL, Redis, DynamoDB, MongoDB, LevelDB
+        strong:
+          - MySQL
+          - PostgreSQL
+          - Redis
+          - DynamoDB
+          - MongoDB
+          - LevelDB
+      - label: Cloud & DevOps
+        details: AWS, GCP, Docker, Kubernetes, Terraform, Prometheus, Grafana, GitHub Actions, GitLab CI
+      - label: Blockchain
+        details: ERC-20 / BEP-20, MPC Wallets, Smart Contracts, On-chain Indexing, EVM Networks
+      - label: AI & Methodologies
+        details: Claude Code, Cursor AI, Vibe Coding, OpenAI API, Agile / Scrum, Kanban, Jira, Confluence
+    Sidebar English Proficiency:
+      - label: Reading
+        details: Advanced
+        percent: 90
+      - label: Writing
+        details: Upper-Intermediate
+        percent: 80
+      - label: Listening
+        details: Intermediate
+        percent: 70
+      - label: Speaking
+        details: Intermediate
+        percent: 70
+    Sidebar Career Objective:
+      - Lead engineering teams of **15–30 members**, building high-impact products in Enterprise SaaS, Fintech, and Logistics.
+      - Integrate AI, Cloud-native & Automation into production systems, improving operational efficiency by **3–5x**.
+      - Grow into a seasoned **Technical Project Manager** — the optimal bridge between Business & Engineering.
+    Summary:
+      - name: Overview
+        summary: "Over **8 years of experience** in software development (Fullstack, DevOps) and technical project management. Participated in and led **16+ projects** (teams of 2–20 people) across diverse domains: E-commerce, Enterprise SaaS, Fintech, Logistics, E-learning, and Blockchain. Known for **translating complex technical challenges into clear business outcomes** — combining a hands-on engineering mindset with structured leadership to consistently deliver on time and at scale."
+      - name: Career Path
+        summary: Freelance → BAP (2018–2021) → STI (2021–2022) → **Napa Global (2022–Present)**
+      - name: Core Expertise
+        summary: Agile/Scrum · Microservices · Fullstack (Node/PHP/Vue/React) · DevOps & AWS · Blockchain
+      - name: AI-Driven Impact
+        summary: Automated **~70% boilerplate** · Reduced **~90%** unit test time · Cut Concept→MVP by **~80%**
+      - name: Strategic Goal
+        summary: Advance as a **Technical Project Manager** leading **15–30+ engineers**, bridging Business & Engineering
+      - name: Known For
+        summary: **On-time delivery** across 16+ projects · **Mentoring** fresher devs (3 promoted to mid-level) · **Hands-on Project Manager** who can still architect & code · **Calm under pressure** — managed 15+ blockers/sprint · **Clear communicator** between Engineering & Business stakeholders
+        wide: true
+    AI Strategy & Innovation:
+      - name: AI Strategy
+        summary: "Proactively applying **AI to the software development lifecycle**, proficient with Claude Code, Cursor AI, and Vibe Coding methodologies:"
+        highlights:
+          - Used **Claude Code** to automate test generation → reduced unit test writing time by **~90%** per module (e.g., from 4h to 20min for a service layer)
+          - "Applied **Vibe Coding** for rapid prototyping → cut time from Concept to MVP by **~80%** (e.g., MIMO onboarding flow: estimated 2 weeks, delivered in 4 days)"
+          - Automated **~70% of CRUD boilerplate code**, reducing debug & bug-fix time by **~90%** across Napa projects
+          - Leveraged AI to analyze codebases, refactor legacy code, and optimize CI/CD pipelines → deploy time **45min → 8min** (Niko SoulBound)
+          - "**Integrated AI APIs (OpenAI, Claude API)**: user-facing chatbots, automated transaction data analysis, intelligent content generation"
+    Experience:
+      - name: MIMO – Financial App (USDT ↔ VND)
+        date: May 2025 – Present
+        location: Napa Global
+        position: Technical Project Manager / Backend Developer (PHP, Vue.js, Node.js)
+        team_size: 10 members
+        summary: A financial application enabling legal USDT ↔ VND conversion, with e-wallet integration and a full legal compliance flow (KYC/AML).
+        project_management:
+          - 2-week sprint cycles, managing backlog of **150+ user stories**
+          - "Cross-team coordination: Backend, Mobile (RN), Frontend, QA"
+          - Managed compliance risks (KYC/AML) and escalated legal issues to stakeholders
+          - Reported weekly progress to Product Owner and senior leadership
+          - Handled scope creep and change requests from business
+        technical:
+          - Architected system processing **500+ transactions/day** in fiat-crypto exchange
+          - Conducted code reviews to uphold coding standards and system security
+          - Monitored deployments, maintaining **99.5% uptime**
+        stack: PHP (Laravel), TypeScript, Node.js (NestJS), Vue.js, React Native · MySQL, Redis · Docker · AWS (SES, S3, RDS, KMS, VPC, ECS, CloudWatch, Secrets Manager, Route53…) · Blockchain
+      - name: Xwallet – MPC Wallet System
+        date: Apr 2024 – Apr 2025
+        location: Napa Global
+        position: Technical Sub Project Manager / Backend Developer (Node.js, Java) / DevOps
+        team_size: 15 members
+        summary: MPC wallet leveraging key sharding to eliminate single points of failure, enabling high-security multi-chain transactions with full scalability.
+        project_management_title: Project Management (Sub Project Manager)
+        project_management:
+          - Coordinated a sub-team of 6 (out of 15 total), reporting directly to the PM
+          - Managed backlog and task assignments for Backend/DevOps sub-team
+          - Tracked sprint progress; identified and resolved **10+ blockers per sprint**
+          - Collaborated with Frontend & Mobile sub-teams to ensure API integration
+          - Organized weekly code review sessions and knowledge sharing
+        technical:
+          - Designed MPC architecture supporting **5+ EVM-compatible chains** and key management
+          - Implemented distributed key generation and transaction signing, achieving **99.9% uptime**
+          - Integrated multi-chain support across EVM-compatible networks
+          - Managed infrastructure, monitoring, and deployments
+        stack: TypeScript, Node.js (NestJS), Java · Redis, LevelDB, DynamoDB · Docker · Prometheus, Grafana · AWS (SES, S3, DynamoDB, KMS, VPC, ECS, CloudWatch, Lambda, SNS…) · Blockchain (MPC Wallets, EVM Networks)
+      - name: Amoda – Inventory & Warehouse Management
+        date: Jun 2023 – Mar 2024
+        location: Napa Global
+        position: Technical Project Manager / Backend Developer (NestJS, React.js) / DevOps
+        team_size: 20 members
+        summary: Inventory and warehouse management system for tracking goods in/out and computing real-time stock levels across **10,000+ SKUs**.
+        project_management:
+          - Managed a team of 20 split into 3 sub-teams (Backend, Frontend, QA), 2-week sprints
+          - Delivered **4 major releases on time** within 10 months
+          - Reported progress weekly; handled **15+ change requests** and scope management
+          - Ran retrospectives, mentored **5 junior developers**, and onboarded new members
+          - Managed data consistency risks in the complex inventory system
+        technical:
+          - Architected a system handling **10,000+ SKUs** with real-time stock tracking
+          - Conducted code reviews and provided technical direction for the team
+          - Monitored deployments; optimized query response time from **3s down to 200ms**
+        stack: TypeScript, Node.js (NestJS), React.js · MySQL, Redis · Docker · GitHub Actions · AWS (SES, S3, RDS, VPC, ECS, CloudWatch, Route53, ALB…)
+      - name: Cross Value Scan – Blockchain Explorer & Scanning
+        date: Jan 2023 – May 2023
+        location: Napa Global
+        position: Technical Project Manager / Backend Developer (Node.js, Elixir) / DevOps
+        team_size: 12 members
+        summary: Blockchain explorer & scanning platform to monitor transactions, detect new blocks, and interact with deployed smart contracts — real-time on-chain data visualization with **2M+ blocks** indexed.
+        project_management:
+          - Managed a team of 12; led sprint planning and task allocation
+          - Coordinated Backend (Node.js) & Elixir (indexer) teams for seamless integration
+          - Managed performance & data integrity risks for **2M+ indexed blocks**
+          - Reported progress and demoed each sprint — **100% on-time delivery**
+        technical:
+          - Designed event-driven architecture for block and transaction processing
+          - "Directed technical solutions: block gap recovery, smart contract decoder"
+          - Optimized indexing to achieve query response **< 300ms** for on-chain data
+        stack: TypeScript, Node.js (NestJS), Elixir · Redis, PostgreSQL · Docker · AWS (EC2, ALB, VPC, S3, CloudWatch, SQS…) · Blockchain (On-chain Indexing, Smart Contracts)
+      - name: Payment Gateway Integration Platform
+        date: Nov 2022 – Mar 2023
+        location: Napa Global
+        position: Technical Project Manager / Backend Developer (NestJS)
+        team_size: 7 members
+        summary: Multi-channel payment gateway integration platform (credit card, e-wallet, bank transfer, QR) — real-time dashboard and automated reconciliation processing **1,000+ transactions/day**.
+        project_management:
+          - Sprint planning and effort estimation for gateway integrations
+          - Directly engaged 5+ merchant partners to gather requirements and support onboarding
+          - Managed security & PCI-DSS compliance risks; **0 security incidents** in production
+          - Successfully integrated 3 payment gateways (Stripe, VNPay, Momo) in 5 months
+        technical:
+          - Architected system processing **1,000+ transactions/day** with automated reconciliation
+          - Directed integration design with retry mechanisms and idempotency
+          - Reviewed code, enforced security standards, and monitored webhook systems
+        stack: TypeScript, Node.js (NestJS), React.js · PostgreSQL, Redis · Docker · AWS (EC2, S3, VPC, SQS, SNS, CloudWatch, Lambda…)
+      - name: SaaS CRM Platform – Multi-tenant
+        date: Jun 2022 – Oct 2022
+        location: Napa Global
+        position: Technical Project Manager / Backend Developer (NestJS)
+        team_size: 9 members
+        summary: Multi-tenant SaaS CRM for SMEs — customer management, sales pipeline, email marketing, and analytics dashboards with a flexible architecture supporting **50+ concurrent tenants**.
+        project_management:
+          - Managed a team of 9; tracked tasks and progress via Jira
+          - Liaised with clients; completed UAT with **0 critical bugs** before go-live
+          - Managed **10+ change requests**, prioritized by business value
+          - Facilitated weekly standups, sprint reviews, and retrospectives
+        technical:
+          - Designed multi-tenant architecture supporting **50+ simultaneous tenants**
+          - Automated email marketing delivering **10,000+ emails/day** via AWS SES
+          - Reviewed code and ensured technical quality across all modules
+        stack: TypeScript, Node.js (NestJS), React.js · PostgreSQL, Redis, MongoDB · Docker · AWS (S3, EC2, VPC, SES, CloudFront, RDS, Route53…)
+      - name: Niko SoulBound – Blockchain Community Platform
+        date: Jun 2022 – Dec 2023
+        location: Napa Global
+        position: Technical Project Manager / Backend Developer (NestJS) / DevOps
+        team_size: 9 members
+        summary: Blockchain-based community platform recognizing GitHub contributions via Soulbound Tokens (SBT) — transparent and immutable contribution history, issuing **5,000+ SBTs on-chain**.
+        project_management:
+          - Led a team of 9 over 18 months across 3 phases (MVP → Enhancement → Scale)
+          - Built release plan and long-term roadmap; delivered **6 releases on schedule**
+          - Optimized CI/CD pipelines; reduced **deploy time from 45 minutes to 8 minutes**
+          - Mentored 3 junior developers (2 promoted to mid-level)
+        technical:
+          - Architected system issuing **5,000+ SBT tokens** on-chain
+          - Provided code reviews and technical direction
+          - Optimized AWS infrastructure, achieving **99.8% uptime**
+        stack: TypeScript, Node.js (NestJS), React.js · Redis, MySQL · Docker · GitHub Actions, GitLab CI · AWS (EC2, ALB, KMS, VPC, S3, CloudWatch, SNS…) · Blockchain (SBT, EVM Networks)
+      - name: DDF – Blockchain Distribution Platform
+        date: Nov 2021 – May 2022
+        location: STI
+        position: Technical Project Manager / Backend Developer (Node.js)
+        team_size: 14 members
+        summary: Blockchain platform for cryptocurrency issuance, enabling users to purchase goods from distributors — processing **2,000+ token transactions/day** with ERC-20/BEP-20 smart contract integration.
+        project_management:
+          - Managed a team of 14; **100% on-time delivery** across 6 sprints
+          - Worked directly with clients to define requirements and prioritize features
+          - Managed smart contract security risks; **0 vulnerabilities** post-audit
+          - Coordinated Backend, Frontend, and Blockchain teams for seamless integration
+          - Delivered weekly progress reports and product demos to clients
+        technical:
+          - Led architecture design for a system processing **2,000+ token transactions/day**
+          - Designed wallet flow, transaction handling, and smart contract integration (ERC-20/BEP-20)
+          - Conducted code reviews and enforced coding standards
+        stack: Node.js (Express.js), JavaScript, React.js · Redis, PostgreSQL · Docker · AWS (EC2, ALB, KMS, VPC, S3, SQS, CloudWatch…) · Blockchain (ERC-20/BEP-20)
+      - name: Smart Logistics Platform
+        date: Jun 2021 – Oct 2021
+        location: STI
+        position: Team Leader / Backend Developer (Node.js)
+        team_size: 8 members
+        summary: "End-to-end smart logistics system: real-time tracking of **500+ orders/day** via WebSocket, warehouse management, route optimization, and delivery performance analytics."
+        project_management_title: Team Leadership
+        project_management:
+          - Led a team of 8; assigned tasks and monitored daily progress
+          - Collaborated with BAs and **3 logistics partners** to define integration requirements
+          - Mentored 2 junior developers; conducted daily code reviews
+        technical:
+          - Architected real-time tracking system for **500+ orders/day** using WebSocket
+          - Built warehouse API and route optimization, reducing **shipping costs by 20%**
+          - Integrated third-party APIs (logistics partners, Google Maps)
+        stack: Node.js (Express.js), JavaScript, React.js · MySQL, Redis · Docker · AWS (EC2, S3, VPC, SQS, CloudWatch…)
+      - name: Sheer Hotel Booking
+        date: Feb 2021 – May 2021
+        location: BAP
+        position: Backend Developer (PHP)
+        team_size: 14 members
+        summary: Full-featured hotel booking platform — room reservations, dynamic pricing management, guest data handling, and payment integration.
+        single_column: true
+        highlights:
+          - Built booking flow supporting **500+ concurrent reservations**; integrated 2 payment gateways
+          - Designed scalable DB schema for dynamic pricing across **100+ room types**
+          - Reduced booking processing time by **~40%** through query optimization and caching
+          - Took ownership of onboarding 2 new developers and conducting code reviews — first leadership responsibility
+        stack: PHP (Laravel), Vue.js · MySQL, Redis · Docker · AWS (EC2, VPC, S3…)
+      - name: Beauty Salon – Booking & Scheduling System
+        date: Jul 2020 – Jan 2021
+        location: BAP
+        position: Backend Developer (PHP)
+        team_size: 10 members
+        summary: Online appointment booking system for spas and beauty services — real-time availability viewing, appointment scheduling, and service management.
+        single_column: true
+        highlights:
+          - Built appointment booking module managing **200+ appointments/day** across multiple service branches
+          - Implemented RBAC for staff and admin roles; reduced permission-related bugs by **~60%**
+          - Built admin dashboard for real-time slot overview and conflict resolution
+          - Optimized scheduling queries; reduced page load time from **4s to under 1s**
+        stack: PHP (Laravel), React.js · PostgreSQL, Redis · Docker · AWS (EC2, VPC, S3…)
+      - name: HR Management System
+        date: Jan 2020 – Jun 2020
+        location: BAP
+        position: Backend Developer (PHP)
+        team_size: 6 members
+        summary: Internal HR management system — employee records, attendance tracking, automated payroll calculation, and comprehensive reporting dashboards.
+        single_column: true
+        highlights:
+          - Built employee management and RBAC module for **200+ staff records**
+          - Automated payroll calculation; reduced manual processing time by **~70%**
+          - Created reporting dashboards with real-time HR analytics (attendance, leave, OT)
+          - Integrated REST APIs with third-party accounting system; reduced data sync errors by **~80%**
+        stack: PHP (Laravel), Vue.js · PostgreSQL, Redis · Docker · AWS (EC2, S3, VPC…)
+      - name: E-Learning Platform
+        date: Jul 2019 – Jan 2020
+        location: BAP
+        position: Backend Developer (PHP)
+        team_size: 8 members
+        summary: Online learning platform for a Japanese client — course management, video streaming, quizzes, and learner progress tracking.
+        single_column: true
+        highlights:
+          - Built course and content management APIs serving **1,000+ learners**
+          - Built quiz system with automated grading; reduced manual grading by **100%**
+          - Integrated video streaming via AWS CloudFront; improved load time by **~50%**
+          - Optimized slow queries; reduced average API response time from **2s to 400ms**
+        stack: PHP (Laravel), Vue.js · MySQL, Redis · Docker · AWS (EC2, S3, VPC, CloudFront)
+      - name: Tokyo Harbor – Japan Travel Platform
+        date: Jun 2019 – Jun 2020
+        location: BAP
+        position: Backend Developer (PHP)
+        team_size: 6 members
+        summary: Japan tourism platform — train schedules, trip planning, booking, and itinerary management for travelers exploring Japanese destinations.
+        single_column: true
+        highlights:
+          - Built backend APIs for trip planning covering **50+ train routes** and **200+ destinations**
+          - Designed relational schema for locations, schedules, and booking relationships
+          - Integrated 3 third-party APIs (train schedules, Google Maps, payment gateway)
+          - Optimized complex queries; reduced search response time by **~60%**
+        stack: PHP (Laravel), React.js · MySQL, Redis · Docker · AWS (EC2, VPC, S3…)
+      - name: Booking Travel Platform
+        date: Jan 2018 – Jun 2018
+        location: Freelance
+        position: Fullstack Developer (PHP, Laravel, jQuery)
+        team_size: 3 members
+        summary: MVP online tour booking platform — tour search, seat reservation, payment processing, and itinerary management.
+        single_column: true
+        highlights:
+          - Built tour search and filtering system
+          - Developed seat reservation and itinerary management module
+          - Designed database for destinations, tours, and bookings
+          - Built admin interface for tour management
+        stack: PHP (Laravel), jQuery, Bootstrap · MySQL
+      - name: Online Fashion Shop – E-commerce
+        date: Mar 2017 – Dec 2017
+        location: Freelance
+        position: Fullstack Developer (PHP, Laravel)
+        team_size: 2 members
+        summary: Full-featured fashion e-commerce website — product management, shopping cart, order processing, payment integration, and inventory management.
+        single_column: true
+        highlights:
+          - Designed and developed frontend user interface
+          - Built backend APIs for product and order management
+          - Integrated payment gateway and inventory management
+          - Deployed and maintained the production system
+        stack: PHP (Laravel), HTML/CSS/JavaScript · MySQL
+design:
+  theme: khaitranquang

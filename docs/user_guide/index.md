@@ -24,6 +24,12 @@
         uv tool install "rendercv[full]"
         ```
 
+        If you use the `khaitranquang` theme, install Chromium for Playwright once:
+
+        ```
+        python -m playwright install chromium
+        ```
+
     === "Docker"
 
         Docker image is available at [ghcr.io/rendercv/rendercv](https://github.com/rendercv/rendercv/pkgs/container/rendercv).
@@ -65,6 +71,10 @@
     - `John_Doe_CV_1.png`, `..._2.png`, ...: PNG images of each page of the PDF
     - `John_Doe_CV.md`: Your CV as Markdown
     - `John_Doe_CV.html`: Your CV as HTML (generated from the Markdown)
+
+    The built-in `khaitranquang` theme still generates a Typst source file, but
+    its PDF and PNG outputs are rendered from HTML with Chromium through
+    Playwright. The Docker image includes Chromium.
 
     See the [CLI Reference](cli_reference.md#rendercv-render) for the complete list of options available for the `render` command.
 

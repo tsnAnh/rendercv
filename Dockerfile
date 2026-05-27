@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Enable bytecode compilation
 ENV UV_COMPILE_BYTECODE=1
+ENV PLAYWRIGHT_BROWSERS_PATH=/app/.playwright-browsers
 
 # Copy from the cache instead of linking since it's a mounted volume
 ENV UV_LINK_MODE=copy
@@ -22,6 +23,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 COPY . /app
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-editable --extra full --no-default-groups
+RUN /app/.venv/bin/python -m playwright install chromium
 
 # Final stage
 FROM python:3.12-slim-bookworm
@@ -33,8 +35,14 @@ RUN groupadd --system --gid 999 rendercv \
 # Set working directory
 WORKDIR /app
 
+ENV PLAYWRIGHT_BROWSERS_PATH=/app/.playwright-browsers
+
 # Copy the virtual environment from the builder stage
 COPY --from=builder --chown=rendercv:rendercv /app/.venv /app/.venv
+COPY --from=builder --chown=rendercv:rendercv /app/.playwright-browsers /app/.playwright-browsers
+
+# Install shared libraries required by Playwright's bundled Chromium.
+RUN /app/.venv/bin/python -m playwright install-deps chromium
 
 # Place executables in the environment at the front of the path
 ENV PATH="/app/.venv/bin:$PATH"

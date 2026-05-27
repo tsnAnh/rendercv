@@ -10,6 +10,14 @@ from rendercv.schema.models.rendercv_model import RenderCVModel
 from .markdown_parser import markdown_to_html
 from .model_processor import download_photo_from_url, process_model
 from .string_processor import clean_url
+from .template_helpers import (
+    get_entry_details,
+    get_entry_highlights,
+    get_entry_title,
+    get_section_by_title,
+    markdown_to_html_block,
+    markdown_to_html_inline,
+)
 
 templates_directory = pathlib.Path(__file__).parent / "templates"
 
@@ -45,7 +53,40 @@ def get_jinja2_environment(
     )
     env.filters["clean_url"] = clean_url
     env.filters["strip"] = lambda string: string.strip()
+    env.filters["section_by_title"] = get_section_by_title
+    env.filters["entry_title"] = get_entry_title
+    env.filters["entry_details"] = get_entry_details
+    env.filters["entry_highlights"] = get_entry_highlights
+    env.filters["markdown_to_html"] = markdown_to_html_block
+    env.filters["markdown_to_html_inline"] = markdown_to_html_inline
     return env
+
+
+def get_theme_template(
+    rendercv_model: RenderCVModel,
+    relative_template_path: str,
+) -> jinja2.Template | None:
+    """Return a theme-specific template when one exists.
+
+    Why:
+        Some themes need full-document control rather than the default
+        section-by-section assembly. Looking up the theme path first keeps that
+        behavior opt-in and preserves existing themes.
+
+    Args:
+        rendercv_model: CV model that provides the active theme and input path.
+        relative_template_path: Template path relative to a theme folder.
+
+    Returns:
+        The resolved template, or None when the theme does not provide it.
+    """
+    jinja2_environment = get_jinja2_environment(rendercv_model._input_file_path)
+    with contextlib.suppress(jinja2.TemplateNotFound):
+        return jinja2_environment.get_template(
+            f"{rendercv_model.design.theme}/{relative_template_path}"
+        )
+
+    return None
 
 
 def render_full_template(
@@ -81,6 +122,10 @@ def render_full_template(
 
     download_photo_from_url(rendercv_model)
     rendercv_model = process_model(rendercv_model, file_type)
+
+    full_template = get_theme_template(rendercv_model, f"Full.j2.{extension}")
+    if full_template is not None:
+        return render_template(full_template, rendercv_model)
 
     header = render_single_template(
         file_type,
@@ -151,6 +196,16 @@ def render_html(rendercv_model: RenderCVModel, markdown: str) -> str:
         Complete HTML document.
     """
     html_body = markdown_to_html(markdown)
+    full_template = get_theme_template(rendercv_model, "Full.html")
+    if full_template is not None:
+        download_photo_from_url(rendercv_model)
+        processed_model = process_model(rendercv_model, "markdown")
+        return render_template(
+            full_template,
+            processed_model,
+            html_body=html_body,
+        )
+
     return render_single_template(
         "html", "Full.html", rendercv_model, html_body=html_body
     )
@@ -193,19 +248,31 @@ def render_single_template(
         Rendered template as string.
     """
     jinja2_environment = get_jinja2_environment(rendercv_model._input_file_path)
-    template = None
-    if file_type == "typst":
-        # Try user's own Typst templates first:
-        with contextlib.suppress(jinja2.TemplateNotFound):
-            template = jinja2_environment.get_template(
-                f"{rendercv_model.design.theme}/{relative_template_path}"
-            )
+    template = get_theme_template(rendercv_model, relative_template_path)
 
     if template is None:
         template = jinja2_environment.get_template(
             f"{file_type}/{relative_template_path}"
         )
 
+    return render_template(template, rendercv_model, **kwargs)
+
+
+def render_template(
+    template: jinja2.Template,
+    rendercv_model: RenderCVModel,
+    **kwargs,
+) -> str:
+    """Render a Jinja template with RenderCV's shared context variables.
+
+    Args:
+        template: Jinja template to render.
+        rendercv_model: CV model providing template context.
+        **kwargs: Additional variables for specialized templates.
+
+    Returns:
+        Rendered template text.
+    """
     return template.render(
         cv=rendercv_model.cv,
         design=rendercv_model.design,

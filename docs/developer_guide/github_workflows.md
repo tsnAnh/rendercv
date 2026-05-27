@@ -83,7 +83,7 @@ RenderCV has 4 workflows. Each handles a specific automation task.
    - Windows (x86_64)
 2. Uploads executables as artifacts
 
-These are single-file executables that users can download and run without installing Python.
+These are single-file executables that users can download and run without installing Python. They include the Python dependencies needed for `khaitranquang`, but they do not bundle Chromium; use the Docker image or a Python installation with Playwright's Chromium installed for `khaitranquang` PDF/PNG output.
 
 ### 4. [`release.yaml`](https://github.com/rendercv/rendercv/blob/main/.github/workflows/release.yaml): Publish a Release
 

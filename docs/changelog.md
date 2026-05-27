@@ -17,6 +17,13 @@ All notable changes to this project will be documented in this file.
 ### Removed
 -->
 
+## Unreleased
+
+### Added
+
+- A new built-in `khaitranquang` CV format has been added, including full-document template overrides for Typst, Markdown, and HTML output.
+- The built-in `khaitranquang` theme now renders PDF and PNG output from HTML with Chromium through Playwright, while keeping Typst source generation for `.typ` output.
+
 ## [2.8] - March 21, 2026
 
 > **Full Changelog**: [v2.7...v2.8]

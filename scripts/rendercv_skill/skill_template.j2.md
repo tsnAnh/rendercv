@@ -3,7 +3,9 @@ name: rendercv
 description: >-
   Create professional CVs and resumes with perfect typography using RenderCV
   (v{{ version }}). Users write content in YAML, and RenderCV produces
-  publication-quality PDFs via Typst typesetting. Full control over every visual
+  publication-quality PDFs via Typst typesetting, except the built-in
+  khaitranquang theme renders PDF/PNG from HTML with Chromium through
+  Playwright. Full control over every visual
   detail: colors, fonts, margins, spacing, section title styles, entry layouts,
   and more. {{ available_themes | length }} built-in themes with unlimited
   customization. Any language supported ({{ available_locales | length }} built-in, or define your own). Outputs
@@ -21,6 +23,9 @@ These are starting points — every aspect of the design and locale can be fully
 ```bash
 # Install RenderCV
 uv tool install "rendercv[full]"
+
+# Needed once for khaitranquang PDF/PNG outside Docker
+python -m playwright install chromium
 
 # Create a starter YAML file (you can specify theme and locale)
 rendercv new "John Doe"
@@ -247,6 +252,10 @@ Generate PDF, Typst, Markdown, HTML, and PNG from a YAML file.
 | `--output-folder DIR` | `-o` | Custom output directory |
 
 Per-format controls: `--{format}-path PATH` sets custom output path, `--dont-generate-{format}` skips generation. Formats: `pdf`, `typst`, `markdown`, `html`, `png`.
+
+For `khaitranquang`, `--dont-generate-typst` still skips Typst, PDF, and PNG.
+`--dont-generate-markdown` and `--dont-generate-html` skip persisted files only;
+RenderCV may still create transient internal HTML to render browser PDF/PNG.
 
 **Override any YAML field from the CLI** using dot notation (overrides without editing the file):
 

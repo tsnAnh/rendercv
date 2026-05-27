@@ -60,6 +60,14 @@ jobs:
       - name: Install just
         uses: taiki-e/install-action@just
 
+      - name: Install Playwright Chromium on Linux
+        if: runner.os == 'Linux'
+        run: uv run --frozen --all-extras python -m playwright install --with-deps chromium
+
+      - name: Install Playwright Chromium
+        if: runner.os != 'Linux'
+        run: uv run --frozen --all-extras python -m playwright install chromium
+
       - name: Test
         run: just test-coverage
 

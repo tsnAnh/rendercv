@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=../../../../../../schema.json
+design:
+  theme: khaitranquang
+  page:
+    size: a4
+    top_margin: 0in
+    bottom_margin: 0in
+    left_margin: 0in
+    right_margin: 0in
+    show_footer: false
+    show_top_note: false
+  colors:
+    body: rgb(30, 41, 59)
+    name: rgb(15, 23, 42)
+    headline: rgb(30, 58, 95)
+    connections: rgb(71, 85, 105)
+    section_titles: rgb(52, 152, 219)
+    links: rgb(52, 152, 219)
+    footer: rgb(100, 116, 139)
+    top_note: rgb(100, 116, 139)
+  typography:
+    line_spacing: 0.48em
+    alignment: left
+    font_family:
+      body: Inter
+      name: Inter
+      headline: Inter
+      connections: Inter
+      section_titles: Inter
+    font_size:
+      body: 8.8pt
+      name: 21pt
+      headline: 10.5pt
+      connections: 8.2pt
+      section_titles: 8pt
+    small_caps:
+      name: false
+      headline: false
+      connections: false
+      section_titles: false
+    bold:
+      name: true
+      headline: true
+      connections: false
+      section_titles: true
+  header:
+    alignment: left
+    photo_width: 2.8cm
+    space_below_name: 0.12cm
+    space_below_headline: 0.08cm
+    space_below_connections: 0.35cm
+    connections:
+      separator: " "
+      show_icons: false
+      space_between_connections: 0.4cm
+  links:
+    underline: false
+    show_external_link_icon: false
+  section_titles:
+    type: with_full_line
+    line_thickness: 0.5pt
+    space_above: 0.4cm
+    space_below: 0.2cm
+  sections:
+    allow_page_break: true
+    space_between_regular_entries: 0.7em
+    space_between_text_based_entries: 0.25em
+    show_time_spans_in: []
+  entries:
+    allow_page_break: false
+    short_second_row: true
+    side_space: 0cm
+    space_between_columns: 0.2cm
+    summary:
+      space_above: 0.08cm
+      space_left: 0cm
+    highlights:
+      bullet: "•"
+      nested_bullet: "◦"
+      space_left: 0.2cm
+      space_above: 0.06cm
+      space_between_items: 0.06cm
+      space_between_bullet_and_text: 0.35em

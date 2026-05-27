@@ -625,7 +625,10 @@ class TestRemoveNotProvidedPlaceholders:
     def test_missing_placeholders_removed(self, missing_key: str) -> None:
         templates = {"main": f"PREFIX {missing_key} SUFFIX"}
         fields = {"PREFIX": "a", "SUFFIX": "b"}
-        assume(missing_key not in ("PREFIX", "SUFFIX"))
+        # Exclude keys that are substrings of the surrounding literals (e.g. "EF"
+        # inside "PREFIX"); otherwise the containment check below flags leftover
+        # text that has nothing to do with the removed placeholder.
+        assume(missing_key not in "PREFIX SUFFIX")
         result = remove_not_provided_placeholders(templates, fields)
         assert missing_key not in result["main"]
 

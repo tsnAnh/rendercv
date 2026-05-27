@@ -1,6 +1,6 @@
 A CV/resume typesetting package for academics and engineers. Part of [RenderCV](https://github.com/rendercv/rendercv).
 
-All six looks below are produced by the same package with different parameter values.
+The looks below are produced by the same package with different parameter values.
 
 <table>
 <tr>
@@ -12,6 +12,11 @@ All six looks below are produced by the same package with different parameter va
 <td><img alt="Example CV using the ModernCV theme with a sidebar layout and colored name" src="https://raw.githubusercontent.com/rendercv/rendercv/9b7830a0e1b5d731461320c10df0a9c12267e5f0/docs/assets/images/examples/moderncv.png" width="350"></td>
 <td><img alt="Example CV using the Engineering Classic theme with a traditional academic style" src="https://raw.githubusercontent.com/rendercv/rendercv/9b7830a0e1b5d731461320c10df0a9c12267e5f0/docs/assets/images/examples/engineeringclassic.png" width="350"></td>
 <td><img alt="Example CV using the Harvard theme with a clean serif font and full-width lines" src="https://raw.githubusercontent.com/rendercv/rendercv/9b7830a0e1b5d731461320c10df0a9c12267e5f0/docs/assets/images/examples/harvard.png" width="350"></td>
+</tr>
+<tr>
+<td><img alt="Example CV using the Ink theme with a compact monochrome layout" src="https://raw.githubusercontent.com/rendercv/rendercv/main/docs/assets/images/examples/ink.png" width="350"></td>
+<td><img alt="Example CV using the Opal theme with centered green accents" src="https://raw.githubusercontent.com/rendercv/rendercv/main/docs/assets/images/examples/opal.png" width="350"></td>
+<td><img alt="Example CV using the Ember theme with warm accents and structured sections" src="https://raw.githubusercontent.com/rendercv/rendercv/main/docs/assets/images/examples/ember.png" width="350"></td>
 </tr>
 </table>
 

@@ -1,6 +1,7 @@
 import re
 import textwrap
 from datetime import date as Date
+from typing import Any
 
 from rendercv.exception import RenderCVInternalError
 from rendercv.schema.models.cv.entries.publication import PublicationEntry
@@ -125,7 +126,7 @@ def render_entry_templates[EntryType: Entry](
         templates, entry.entry_type_in_snake_case
     ).model_dump(exclude_none=True)
 
-    entry_fields: dict[str, str] = {
+    entry_fields: dict[str, Any] = {
         key.upper(): value for key, value in entry.model_dump(exclude_none=True).items()
     }
 
@@ -217,11 +218,10 @@ def render_entry_templates[EntryType: Entry](
     entry_templates = remove_not_provided_placeholders(entry_templates, entry_fields)
 
     for template_name, template in (entry_templates | entry_fields).items():
-        setattr(
-            entry,
-            template_name,
-            substitute_placeholders(template, entry_fields),
-        )
+        rendered_template = template
+        if isinstance(template, str):
+            rendered_template = substitute_placeholders(template, entry_fields)
+        setattr(entry, template_name, rendered_template)
 
     return entry
 

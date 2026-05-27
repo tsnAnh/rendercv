@@ -14,8 +14,12 @@ from rendercv.renderer.typst import generate_typst
 from rendercv.schema.models.design.built_in_design import available_themes
 from rendercv.schema.models.rendercv_model import RenderCVModel
 
+typst_rendered_themes = [
+    theme for theme in available_themes if theme != "khaitranquang"
+]
 
-@pytest.mark.parametrize("theme", available_themes)
+
+@pytest.mark.parametrize("theme", typst_rendered_themes)
 @pytest.mark.parametrize("cv_variant", ["minimal", "full"])
 def test_generate_pdf(
     compare_file_with_reference,
@@ -44,7 +48,7 @@ def test_generate_pdf(
     assert compare_file_with_reference(generate_file, reference_filename)
 
 
-@pytest.mark.parametrize("theme", available_themes)
+@pytest.mark.parametrize("theme", typst_rendered_themes)
 def test_generate_png(
     compare_file_with_reference,
     theme: str,

@@ -87,6 +87,11 @@ rendercv render John_Doe_CV.yaml
 
 This creates a `rendercv_output` folder with all formats.
 
+For the built-in `khaitranquang` theme, PDF and PNG output is rendered from HTML
+with Chromium through Playwright. `rendercv[full]` installs the Python packages;
+run `python -m playwright install chromium` once unless you use the Docker image
+or another environment that already installed Chromium.
+
 ### Common Scenarios
 
 **Auto-reload while editing:**

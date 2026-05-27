@@ -227,6 +227,9 @@ def get_typst_compiler(
         root=root,
         font_paths=[
             *rendercv_fonts.paths_to_font_folders,
+            pathlib.Path(__file__).parent / "fonts",
+            pathlib.Path(__file__).parent / "fonts" / "Inter",
+            pathlib.Path(__file__).parent / "fonts" / "MaterialSymbols",
             (
                 input_file_path.parent / "fonts"
                 if input_file_path

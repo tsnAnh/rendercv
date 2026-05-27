@@ -3,9 +3,11 @@ name: rendercv
 description: >-
   Create professional CVs and resumes with perfect typography using RenderCV
   (v2.8). Users write content in YAML, and RenderCV produces
-  publication-quality PDFs via Typst typesetting. Full control over every visual
+  publication-quality PDFs via Typst typesetting, except the built-in
+  khaitranquang theme renders PDF/PNG from HTML with Chromium through
+  Playwright. Full control over every visual
   detail: colors, fonts, margins, spacing, section title styles, entry layouts,
-  and more. 6 built-in themes with unlimited
+  and more. 7 built-in themes with unlimited
   customization. Any language supported (22 built-in, or define your own). Outputs
   PDF, PNG, HTML, and Markdown. Use when the user wants to create, edit,
   customize, or render a CV or resume.
@@ -13,7 +15,7 @@ description: >-
 
 ## Quick Start
 
-**Available themes:** `classic`, `harvard`, `engineeringresumes`, `engineeringclassic`, `sb2nov`, `moderncv`
+**Available themes:** `classic`, `harvard`, `engineeringresumes`, `engineeringclassic`, `sb2nov`, `moderncv`, `khaitranquang`
 **Available locales:** `english`, `arabic`, `danish`, `dutch`, `french`, `german`, `hebrew`, `hindi`, `hungarian`, `indonesian`, `italian`, `japanese`, `korean`, `mandarin_chinese`, `norwegian_bokmål`, `norwegian_nynorsk`, `persian`, `portuguese`, `russian`, `spanish`, `turkish`, `vietnamese`
 
 These are starting points — every aspect of the design and locale can be fully customized in the YAML file.
@@ -21,6 +23,9 @@ These are starting points — every aspect of the design and locale can be fully
 ```bash
 # Install RenderCV
 uv tool install "rendercv[full]"
+
+# Needed once for khaitranquang PDF/PNG outside Docker
+python -m playwright install chromium
 
 # Create a starter YAML file (you can specify theme and locale)
 rendercv new "John Doe"
@@ -274,6 +279,10 @@ Generate PDF, Typst, Markdown, HTML, and PNG from a YAML file.
 | `--output-folder DIR` | `-o` | Custom output directory |
 
 Per-format controls: `--{format}-path PATH` sets custom output path, `--dont-generate-{format}` skips generation. Formats: `pdf`, `typst`, `markdown`, `html`, `png`.
+
+For `khaitranquang`, `--dont-generate-typst` still skips Typst, PDF, and PNG.
+`--dont-generate-markdown` and `--dont-generate-html` skip persisted files only;
+RenderCV may still create transient internal HTML to render browser PDF/PNG.
 
 **Override any YAML field from the CLI** using dot notation (overrides without editing the file):
 
@@ -801,5 +810,93 @@ design:
       space_above: 0.15cm
       space_between_items: 0.1cm
       space_between_bullet_and_text: 0.3em
+```
+
+#### khaitranquang
+
+```yaml
+# yaml-language-server: $schema=../../../../../../schema.json
+design:
+  theme: khaitranquang
+  page:
+    size: a4
+    top_margin: 0in
+    bottom_margin: 0in
+    left_margin: 0in
+    right_margin: 0in
+    show_footer: false
+    show_top_note: false
+  colors:
+    body: rgb(30, 41, 59)
+    name: rgb(15, 23, 42)
+    headline: rgb(30, 58, 95)
+    connections: rgb(71, 85, 105)
+    section_titles: rgb(52, 152, 219)
+    links: rgb(52, 152, 219)
+    footer: rgb(100, 116, 139)
+    top_note: rgb(100, 116, 139)
+  typography:
+    line_spacing: 0.48em
+    alignment: left
+    font_family:
+      body: Inter
+      name: Inter
+      headline: Inter
+      connections: Inter
+      section_titles: Inter
+    font_size:
+      body: 8.8pt
+      name: 21pt
+      headline: 10.5pt
+      connections: 8.2pt
+      section_titles: 8pt
+    small_caps:
+      name: false
+      headline: false
+      connections: false
+      section_titles: false
+    bold:
+      name: true
+      headline: true
+      connections: false
+      section_titles: true
+  header:
+    alignment: left
+    photo_width: 2.8cm
+    space_below_name: 0.12cm
+    space_below_headline: 0.08cm
+    space_below_connections: 0.35cm
+    connections:
+      separator: ' '
+      show_icons: false
+      space_between_connections: 0.4cm
+  links:
+    underline: false
+    show_external_link_icon: false
+  section_titles:
+    type: with_full_line
+    line_thickness: 0.5pt
+    space_above: 0.4cm
+    space_below: 0.2cm
+  sections:
+    allow_page_break: true
+    space_between_regular_entries: 0.7em
+    space_between_text_based_entries: 0.25em
+    show_time_spans_in: []
+  entries:
+    allow_page_break: false
+    short_second_row: true
+    side_space: 0cm
+    space_between_columns: 0.2cm
+    summary:
+      space_above: 0.08cm
+      space_left: 0cm
+    highlights:
+      bullet: •
+      nested_bullet: ◦
+      space_left: 0.2cm
+      space_above: 0.06cm
+      space_between_items: 0.06cm
+      space_between_bullet_and_text: 0.35em
 ```
 

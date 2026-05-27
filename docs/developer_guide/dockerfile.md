@@ -20,7 +20,9 @@ But Docker makes sense if you want:
 - **A reproducible environment** — the exact same setup on every machine, every time
 - **To bypass restrictions** — some systems block software installation but allow containers
 
-The RenderCV Docker image is a ready-made environment with Python and RenderCV pre-installed. Just run:
+The RenderCV Docker image is a ready-made environment with Python, RenderCV, and
+Playwright's Chromium browser pre-installed. Chromium is needed for PDF and PNG
+output when rendering the built-in `khaitranquang` theme. Just run:
 ```bash
 docker run --rm -v "$PWD":/work -u $(id -u):$(id -g) -e HOME=/tmp -w /work ghcr.io/rendercv/rendercv new "Your Name"
 ```
