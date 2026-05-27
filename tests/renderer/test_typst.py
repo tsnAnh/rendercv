@@ -1,6 +1,7 @@
 import pytest
 
 from rendercv.renderer.typst import generate_typst
+from rendercv.schema.models.cv.entries.normal import NormalEntry
 from rendercv.schema.models.design.built_in_design import available_themes
 from rendercv.schema.models.rendercv_model import RenderCVModel
 from rendercv.schema.sample_generator import create_sample_rendercv_pydantic_model
@@ -62,3 +63,33 @@ def test_generate_typst_khaitranquang_preserves_standard_content(
     assert "FlashInfer" in typst
     assert "Sparse Mixture-of-Experts" in typst
     assert "MIT Technology Review" in typst
+
+
+def test_generate_typst_ats_clean_suppresses_images_icons_and_references(
+    tmp_path,
+    full_rendercv_model,
+):
+    cv = full_rendercv_model.cv.model_copy(deep=True)
+    cv.sections = {
+        **(cv.sections or {}),
+        "Professional References": [NormalEntry(name="Referee")],
+    }
+    model = RenderCVModel(
+        cv=cv,
+        locale=full_rendercv_model.locale,
+        settings=full_rendercv_model.settings,
+    )
+    model.design.header.connections.show_icons = True
+    model.design.links.show_external_link_icon = True
+    model.settings.render_command.ats_clean = True
+    model.settings.render_command.typst_path = tmp_path / "ats-clean.typ"
+
+    generate_typst(model)
+
+    typst = model.settings.render_command.typst_path.read_text(encoding="utf-8")
+    assert "image(" not in typst
+    assert "connection-with-icon" not in typst
+    assert "links-show-external-link-icon: false" in typst
+    assert "links-show-external-link-icon: true" not in typst
+    assert "References" not in typst
+    assert "Referee" not in typst

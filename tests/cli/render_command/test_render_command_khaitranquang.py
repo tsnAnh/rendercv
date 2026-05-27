@@ -28,6 +28,7 @@ def default_arguments():
         "dont_generate_typst": False,
         "dont_generate_pdf": False,
         "dont_generate_png": False,
+        "ats_clean": None,
         "watch": False,
         "quiet": False,
         "yaml_field_override": None,

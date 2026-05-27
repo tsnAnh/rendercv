@@ -25,6 +25,10 @@ def get_example_stem(theme: str) -> str:
     return f"John_Doe_{theme.capitalize()}Theme_CV"
 
 
+def get_ats_clean_example_stem(theme: str) -> str:
+    return get_example_stem(theme).replace("_CV", "_ATS_Clean_CV")
+
+
 def run_just(recipe: str) -> None:
     """Run a just recipe and raise on failure."""
     subprocess.run(
@@ -64,6 +68,26 @@ def test_example_yaml_is_up_to_date(theme: str) -> None:
         name="John Doe",
         theme=theme,
         locale="english",
+    )
+
+    assert before == expected, (
+        f"examples/{example_stem}.yaml is stale. Run `just update-examples` to"
+        " regenerate."
+    )
+
+
+@pytest.mark.parametrize("theme", available_themes)
+def test_ats_clean_example_yaml_is_up_to_date(theme: str) -> None:
+    example_stem = get_ats_clean_example_stem(theme)
+    yaml_path = repository_root / "examples" / f"{example_stem}.yaml"
+    before = yaml_path.read_text(encoding="utf-8")
+
+    expected = create_sample_yaml_input_file(
+        file_path=None,
+        name="John Doe",
+        theme=theme,
+        locale="english",
+        ats_clean=True,
     )
 
     assert before == expected, (

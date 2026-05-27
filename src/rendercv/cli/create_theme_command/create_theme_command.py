@@ -18,7 +18,7 @@ from .create_init_file_for_theme import create_init_file_for_theme
     name="create-theme",
     help=(
         "Create a custom theme folder with Typst templates to customize. Example:"
-        " [yellow]rendercv create-theme customtheme[/yellow]. Details: [cyan]rendercv"
+        " [yellow]cvfactori create-theme customtheme[/yellow]. Details: [cyan]cvfactori"
         " create-theme --help[/cyan]"
     ),
 )

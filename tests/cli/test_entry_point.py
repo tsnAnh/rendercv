@@ -38,8 +38,8 @@ class TestEntryPoint:
 
             # Verify the error message
             captured = capsys.readouterr()
-            assert "pip install rendercv" in captured.err
-            assert 'pip install "rendercv[full]"' in captured.err
+            assert "pip install cvfactori" in captured.err
+            assert 'pip install "cvfactori[full]"' in captured.err
             assert "reinstall" in captured.err
 
         finally:

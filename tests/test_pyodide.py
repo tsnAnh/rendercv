@@ -78,7 +78,7 @@ def test_rendercv_installs_in_pyodide(tmp_path: pathlib.Path, js_runtime: str) -
         capture_output=True,
         timeout=60,
     )
-    wheel = next((tmp_path / "dist").glob("rendercv-*-py3-none-any.whl"))
+    wheel = next((tmp_path / "dist").glob("cvfactori-*-py3-none-any.whl"))
 
     # Use forward slashes so the path works on Windows too
     wheel_posix_path = wheel.resolve().as_posix()

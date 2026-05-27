@@ -23,6 +23,10 @@ def get_example_stem(theme: str) -> str:
     return f"John_Doe_{theme.capitalize()}Theme_CV"
 
 
+def get_ats_clean_example_stem(theme: str) -> str:
+    return get_example_stem(theme).replace("_CV", "_ATS_Clean_CV")
+
+
 # Check if examples directory exists. If not, create it
 if not examples_directory_path.exists():
     examples_directory_path.mkdir()
@@ -34,6 +38,13 @@ for theme in available_themes:
         name="John Doe",
         theme=theme,
         locale="english",
+    )
+    create_sample_yaml_input_file(
+        file_path=examples_directory_path / f"{get_ats_clean_example_stem(theme)}.yaml",
+        name="John Doe",
+        theme=theme,
+        locale="english",
+        ats_clean=True,
     )
 
     with tempfile.TemporaryDirectory() as temp_directory:

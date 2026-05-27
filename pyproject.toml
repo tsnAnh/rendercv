@@ -28,7 +28,7 @@ build-backend = "uv_build"  # Build-backend object for building RenderCV
 
 [project]
 # Metadata about RenderCV.
-name = "rendercv"
+name = "cvfactori"
 version = "2.8"
 description = "Resume builder for academics and engineers"
 readme = "README.md"
@@ -80,10 +80,10 @@ Source = "https://github.com/rendercv/rendercv"
 # See https://packaging.python.org/en/latest/specifications/entry-points/#entry-points
 # See https://hatch.pypa.io/latest/config/metadata/#cli
 
-# The key and value below mean: when someone installs RenderCV,
-# running `rendercv` in the terminal executes the function `entry_point` in
+# The key and value below mean: when someone installs CVFactori,
+# running `cvfactori` in the terminal executes the function `entry_point` in
 # `src/rendercv/cli/entry_point.py`.
-rendercv = "rendercv.cli.entry_point:entry_point"
+cvfactori = "rendercv.cli.entry_point:entry_point"
 
 # Virtual Environment Dependencies:
 [dependency-groups]
@@ -124,6 +124,7 @@ update-entry-figures = [
 default-groups = ["dev", "docs"]
 
 [tool.uv.build-backend]
+module-name = "rendercv"
 # The rendercv-typst Typst package lives in src/rendercv/renderer/rendercv_typst/.
 # Only lib.typ and typst.toml are needed at runtime; exclude everything else from the wheel.
 wheel-exclude = [

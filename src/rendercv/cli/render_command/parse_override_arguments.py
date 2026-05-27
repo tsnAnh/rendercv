@@ -12,7 +12,7 @@ def parse_override_arguments(extra_arguments: typer.Context) -> dict[str, str]:
 
     Example:
         ```py
-        # From: rendercv render cv.yaml --cv.name "Jane" --cv.phone "456"
+        # From: cvfactori render cv.yaml --cv.name "Jane" --cv.phone "456"
         args = parse_override_arguments(ctx)
         # Returns: {"cv.name": "Jane", "cv.phone": "456"}
         ```

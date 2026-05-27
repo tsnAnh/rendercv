@@ -68,13 +68,13 @@ class TestCreateSampleYamlInputFile:
         assert dummy_file_path.exists()
         assert yaml_contents == dummy_file_path.read_text(encoding="utf-8")
 
-    @pytest.mark.parametrize(
-        "key",
-        ["theme", "locale"],
-    )
-    def test_rejects_invalid_theme_or_locale(self, key):
+    def test_rejects_invalid_theme(self):
         with pytest.raises(RenderCVUserError):
-            create_sample_yaml_input_file(file_path=None, **{key: "invalid"})
+            create_sample_yaml_input_file(file_path=None, theme="invalid")
+
+    def test_rejects_invalid_locale(self):
+        with pytest.raises(RenderCVUserError):
+            create_sample_yaml_input_file(file_path=None, locale="invalid")
 
 
 class TestCreateSampleYamlFile:

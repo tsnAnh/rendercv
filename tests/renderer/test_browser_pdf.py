@@ -98,6 +98,30 @@ def test_create_cv_style_browser_rendering_html_uses_user_photo(
     assert (tmp_path / model.cv.photo.name).exists()
 
 
+def test_create_browser_rendering_html_ats_clean_skips_photo_and_controls(
+    tmp_path: pathlib.Path,
+    full_rendercv_model: RenderCVModel,
+):
+    model = RenderCVModel(
+        cv=full_rendercv_model.cv,
+        design={"theme": "khaitranquang"},
+        locale=full_rendercv_model.locale,
+        settings=full_rendercv_model.settings,
+    )
+    model.settings.render_command.ats_clean = True
+
+    html_path = create_browser_rendering_html(model, tmp_path)
+    html = html_path.read_text(encoding="utf-8")
+
+    assert "<img" not in html
+    assert "<svg" not in html
+    assert ".export-btn" not in html
+    assert ".btn-print" not in html
+    assert isinstance(full_rendercv_model.cv.photo, pathlib.Path)
+    assert not (tmp_path / full_rendercv_model.cv.photo.name).exists()
+    assert model.cv.photo == full_rendercv_model.cv.photo
+
+
 def test_render_html_to_pdf_reports_missing_chromium(
     tmp_path: pathlib.Path,
 ):
@@ -136,8 +160,12 @@ def test_browser_rendering_html_renders_material_symbol_glyphs(
             page.goto(html_path.as_uri(), wait_until="networkidle")
             page.evaluate("() => document.fonts.ready")
             icon = page.locator(".msi").first
-            icon_width = icon.evaluate("element => element.getBoundingClientRect().width")
-            font_family = icon.evaluate("element => getComputedStyle(element).fontFamily")
+            icon_width = icon.evaluate(
+                "element => element.getBoundingClientRect().width"
+            )
+            font_family = icon.evaluate(
+                "element => getComputedStyle(element).fontFamily"
+            )
         finally:
             browser.close()
 
@@ -164,7 +192,9 @@ def test_render_html_to_pdf_waits_for_fonts_before_printing(
         call.evaluate("() => document.fonts.ready")
     )
     pdf_call_index = next(
-        index for index, mock_call in enumerate(page.mock_calls) if mock_call[0] == "pdf"
+        index
+        for index, mock_call in enumerate(page.mock_calls)
+        if mock_call[0] == "pdf"
     )
     assert font_wait_call_index < pdf_call_index
 

@@ -33,7 +33,7 @@ PHONE_ICON = (
 )
 EMAIL_ICON = (
     '<svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 '
-    "1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z\"></path>"
+    '1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>'
     '<polyline points="22,6 12,13 2,6"></polyline></svg>'
 )
 LINKEDIN_ICON = (
@@ -89,7 +89,7 @@ SUMMARY_ICON = (
 )
 HIGHLIGHT_ICON = (
     '<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 '
-    '17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 '
+    "17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 "
     '8.26 12 2"></polygon></svg>'
 )
 EXPERIENCE_ICON = (
@@ -189,7 +189,9 @@ def render_contact_items(cv: Cv, metadata: dict[str, Any]) -> str:
         items, PHONE_ICON, metadata["phone_display"], metadata["phone_href"], False
     )
     email = scalar_text(cv.email)
-    add_contact_link(items, EMAIL_ICON, email, f"mailto:{email}" if email else None, False)
+    add_contact_link(
+        items, EMAIL_ICON, email, f"mailto:{email}" if email else None, False
+    )
     add_contact_link(
         items, LINKEDIN_ICON, metadata["linkedin_label"], metadata["linkedin_url"], True
     )
@@ -253,7 +255,9 @@ def render_education(cv: Cv) -> str:
 
 
 def render_education_item(entry: Any) -> str:
-    title = join_nonempty([entry_value(entry, "degree"), entry_value(entry, "area")], ", ")
+    title = join_nonempty(
+        [entry_value(entry, "degree"), entry_value(entry, "area")], ", "
+    )
     institution = entry_value(entry, "institution") or entry_value(entry, "name")
     location = entry_value(entry, "location")
     summary = entry_value(entry, "summary")
@@ -270,7 +274,9 @@ def render_education_item(entry: Any) -> str:
 
 
 def render_skills(cv: Cv) -> str:
-    blocks = "".join(render_skill_block(entry) for entry in section_entries(cv, "Skills"))
+    blocks = "".join(
+        render_skill_block(entry) for entry in section_entries(cv, "Skills")
+    )
     return (
         '\n        <section class="sidebar-section sidebar-skills" aria-label="Skills">\n'
         f"          {sidebar_title(SKILLS_ICON, 'Skills')}\n"
@@ -324,7 +330,9 @@ def render_references(cv: Cv) -> str:
 
 
 def render_reference(entry: Any) -> str:
-    title = join_nonempty([entry_value(entry, "title"), entry_value(entry, "role")], " · ")
+    title = join_nonempty(
+        [entry_value(entry, "title"), entry_value(entry, "role")], " · "
+    )
     phone_href = entry_value(entry, "phone_href")
     phone_display = entry_value(entry, "phone_display")
     contact = ""
@@ -350,7 +358,12 @@ def render_summary(cv: Cv) -> str:
         text = entry_value(entry, "summary") or entry_value(entry, "details") or entry
         if text:
             paragraphs.append(f"            <p>{inline_html(text)}</p>")
-    return section_card("summary", SUMMARY_ICON, "Summary", f'<div class="copy-block">\n{chr(10).join(paragraphs)}\n          </div>')
+    return section_card(
+        "summary",
+        SUMMARY_ICON,
+        "Summary",
+        f'<div class="copy-block">\n{chr(10).join(paragraphs)}\n          </div>',
+    )
 
 
 def render_highlights(cv: Cv) -> str:
@@ -371,7 +384,8 @@ def render_highlights(cv: Cv) -> str:
 
 def render_experiences(cv: Cv) -> str:
     projects = "".join(
-        render_project(entry) for entry in section_entries_any(cv, ["Experiences", "Experience"])
+        render_project(entry)
+        for entry in section_entries_any(cv, ["Experiences", "Experience"])
     )
     body = f'          <div class="project-list">\n{projects}          </div>'
     return section_card("experience", EXPERIENCE_ICON, "Experiences", body)
@@ -449,7 +463,9 @@ def meta_line(label: str, value: Any) -> str:
 def render_bullet_list(items: list[Any]) -> str:
     if not items:
         return ""
-    list_items = "\n".join(f"                  <li>{inline_html(item)}</li>" for item in items)
+    list_items = "\n".join(
+        f"                  <li>{inline_html(item)}</li>" for item in items
+    )
     return f'                <ul class="bullet-list">\n{list_items}\n                </ul>\n'
 
 

@@ -1,11 +1,13 @@
 import pathlib
 
+import pydantic_extra_types.phone_numbers as pydantic_phone_numbers
 import pytest
 
 from rendercv.renderer.browser_pdf import cv_style_browser_themes
 from rendercv.renderer.html import generate_html
 from rendercv.renderer.markdown import generate_markdown
 from rendercv.schema.models.cv.cv import Cv
+from rendercv.schema.models.cv.social_network import SocialNetwork
 from rendercv.schema.models.rendercv_model import RenderCVModel
 from rendercv.schema.sample_generator import create_sample_rendercv_pydantic_model
 
@@ -191,3 +193,113 @@ def test_generate_html_cv_style_hanh_with_sections_renders_user_content(
     assert "Software Engineer at Company X" in html
     assert "Northeastern University" not in html
     assert "carrotcake AI" not in html
+
+
+def test_generate_html_khaitranquang_ats_clean_removes_sensitive_markup(
+    tmp_path,
+    full_rendercv_model,
+):
+    cv = Cv(
+        name="John Doe",
+        headline="AI Engineer",
+        location="San Francisco, CA",
+        email="john@example.com",
+        phone=pydantic_phone_numbers.PhoneNumber("+14155552671"),
+        photo=full_rendercv_model.cv.photo,
+        sections={
+            "header_details": [
+                {
+                    "name": "Header",
+                    "date_of_birth": "Jan 1, 1990",
+                    "tagline": "Practical ML systems",
+                }
+            ],
+            "Summary": ["Builds reliable ML products."],
+            "Professional References": [{"name": "Reference Available"}],
+        },
+    )
+    model = RenderCVModel(
+        cv=cv,
+        design={"theme": "khaitranquang"},
+        locale=full_rendercv_model.locale,
+        settings=full_rendercv_model.settings,
+    )
+    model.settings.render_command.ats_clean = True
+    model.settings.render_command.markdown_path = tmp_path / "khaitranquang.md"
+    markdown_path = generate_markdown(model)
+    model.settings.render_command.html_path = tmp_path / "khaitranquang.html"
+
+    generate_html(model, markdown_path)
+
+    html = model.settings.render_command.html_path.read_text(encoding="utf-8")
+    assert "<img" not in html
+    assert "<svg" not in html
+    assert 'class="msi' not in html
+    assert "section-icon" not in html
+    assert "side-icon" not in html
+    assert "Date of Birth" not in html
+    assert "References" not in html
+    assert "Reference Available" not in html
+    assert ".export-btn" not in html
+    assert ".btn-print" not in html
+    assert "John Doe" in html
+    assert "john@example.com" in html
+    assert "San Francisco, CA" in html
+    assert "4155552671" in html.replace(" ", "")
+
+
+def test_generate_html_cv_style_ats_clean_removes_icons_and_keeps_contacts(
+    tmp_path,
+    full_rendercv_model,
+):
+    cv = Cv(
+        name="Jane Roe",
+        headline="Platform Engineer",
+        location="Austin, TX",
+        email="jane@example.com",
+        phone=pydantic_phone_numbers.PhoneNumber("+15125550123"),
+        photo=full_rendercv_model.cv.photo,
+        social_networks=[
+            SocialNetwork(network="LinkedIn", username="janeroe"),
+            SocialNetwork(network="GitHub", username="janeroe"),
+        ],
+        sections={
+            "objective": [
+                {
+                    "name": "Objective",
+                    "date_of_birth": "Feb 2, 1992",
+                    "summary": "Build stable platforms.",
+                }
+            ],
+            "Experience": ["Principal Engineer at Example Labs"],
+            "References Available": [{"name": "Reference Available"}],
+        },
+    )
+    model = RenderCVModel(
+        cv=cv,
+        design={"theme": "executive-rail"},
+        locale=full_rendercv_model.locale,
+        settings=full_rendercv_model.settings,
+    )
+    model.settings.render_command.ats_clean = True
+    model.settings.render_command.markdown_path = tmp_path / "executive-rail.md"
+    markdown_path = generate_markdown(model)
+    model.settings.render_command.html_path = tmp_path / "executive-rail.html"
+
+    generate_html(model, markdown_path)
+
+    html = model.settings.render_command.html_path.read_text(encoding="utf-8")
+    assert "<img" not in html
+    assert "<svg" not in html
+    assert 'class="icon"' not in html
+    assert "section-icon" not in html
+    assert "Date of Birth" not in html
+    assert "References" not in html
+    assert "Reference Available" not in html
+    assert ".export-btn" not in html
+    assert ".btn-print" not in html
+    assert "Jane Roe" in html
+    assert "jane@example.com" in html
+    assert "Austin, TX" in html
+    assert "linkedin.com/in/janeroe" in html
+    assert "github.com/janeroe" in html

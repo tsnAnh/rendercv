@@ -39,7 +39,7 @@ class TestCliCommandNoArgs:
         result = runner.invoke(app, ["--version"])
 
         assert result.exit_code == 0
-        assert f"RenderCV v{__version__}" in result.output
+        assert f"CVFactori v{__version__}" in result.output
         mock_warn.assert_called_once()
 
     @patch("rendercv.cli.app.warn_if_new_version_is_available")
@@ -48,7 +48,7 @@ class TestCliCommandNoArgs:
         result = runner.invoke(app, ["-v"])
 
         assert result.exit_code == 0
-        assert f"RenderCV v{__version__}" in result.output
+        assert f"CVFactori v{__version__}" in result.output
         mock_warn.assert_called_once()
 
     @patch("rendercv.cli.app.warn_if_new_version_is_available")
@@ -57,7 +57,7 @@ class TestCliCommandNoArgs:
         result = runner.invoke(app, [])
 
         assert result.exit_code == 0
-        assert "RenderCV is a command-line tool" in result.output
+        assert "CVFactori is a command-line tool" in result.output
         mock_warn.assert_called_once()
 
 
@@ -65,7 +65,7 @@ class TestGetCacheDir:
     def test_returns_platform_appropriate_path(self):
         cache_dir = get_cache_dir()
 
-        assert cache_dir.name == "rendercv"
+        assert cache_dir.name == "cvfactori"
         if sys.platform == "darwin":
             assert "Library/Caches" in str(cache_dir)
         elif sys.platform == "win32":
@@ -75,7 +75,7 @@ class TestGetCacheDir:
         monkeypatch.setattr("rendercv.cli.app.sys.platform", "linux")
         monkeypatch.setenv("XDG_CACHE_HOME", str(tmp_path))
 
-        assert get_cache_dir() == tmp_path / "rendercv"
+        assert get_cache_dir() == tmp_path / "cvfactori"
 
 
 def test_get_version_cache_file():

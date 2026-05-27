@@ -8,6 +8,7 @@ import jinja2
 
 from rendercv.schema.models.rendercv_model import RenderCVModel
 
+from ..ats_clean import prepare_ats_clean_model, sanitize_ats_clean_html
 from .cv_style_html import render_cv_style_header, render_cv_style_shell
 from .markdown_parser import markdown_to_html
 from .model_processor import download_photo_from_url, process_model
@@ -185,6 +186,7 @@ def render_full_template(
     Returns:
         Complete rendered document as string.
     """
+    rendercv_model = prepare_ats_clean_model(rendercv_model)
     extension = {
         "typst": "typ",
         "markdown": "md",
@@ -265,6 +267,7 @@ def render_html(rendercv_model: RenderCVModel, markdown: str) -> str:
     Returns:
         Complete HTML document.
     """
+    rendercv_model = prepare_ats_clean_model(rendercv_model)
     html_body = markdown_to_html(markdown)
     full_template = get_theme_template(rendercv_model, "Full.html")
     if full_template is not None:
@@ -277,14 +280,15 @@ def render_html(rendercv_model: RenderCVModel, markdown: str) -> str:
         )
         if processed_model.design.theme in cv_style_theme_names:
             html = f"{html}\n"
-            if is_cv_style_source_fixture(processed_model):
-                return html
-            return render_cv_style_user_body(processed_model, html)
-        return html
+            if not is_cv_style_source_fixture(processed_model):
+                html = render_cv_style_user_body(processed_model, html)
+            return sanitize_ats_clean_html(processed_model, html)
+        return sanitize_ats_clean_html(processed_model, html)
 
-    return render_single_template(
+    html = render_single_template(
         "html", "Full.html", rendercv_model, html_body=html_body
     )
+    return sanitize_ats_clean_html(rendercv_model, html)
 
 
 def is_cv_style_source_fixture(rendercv_model: RenderCVModel) -> bool:

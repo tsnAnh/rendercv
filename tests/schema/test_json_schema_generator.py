@@ -34,9 +34,7 @@ def test_cv_sections_include_named_cv_style_section_properties() -> None:
     schema = generate_json_schema()
     sections_object_schema = get_cv_sections_object_schema(schema)
 
-    assert sections_object_schema["additionalProperties"] == {
-        "$ref": "#/$defs/Section"
-    }
+    assert sections_object_schema["additionalProperties"] == {"$ref": "#/$defs/Section"}
     for section_name, definition_name in CV_STYLE_SECTION_REFS.items():
         assert sections_object_schema["properties"][section_name] == {
             "$ref": f"#/$defs/{definition_name}"

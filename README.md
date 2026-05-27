@@ -1,7 +1,7 @@
 <div align="center">
-<h1>RenderCV</h1>
+<h1>CVFactori</h1>
 
-_Resume builder for academics and engineers, deployed at [rendercv.com](https://rendercv.com)_
+_Resume builder for academics and engineers_
 
 [![test](https://github.com/rendercv/rendercv/actions/workflows/test.yaml/badge.svg?branch=main)](https://github.com/rendercv/rendercv/actions/workflows/test.yaml)
 [![coverage](https://coverage-badge.samuelcolvin.workers.dev/rendercv/rendercv.svg)](https://coverage-badge.samuelcolvin.workers.dev/redirect/rendercv/rendercv)
@@ -11,15 +11,15 @@ _Resume builder for academics and engineers, deployed at [rendercv.com](https://
 
 </div>
 
-Write your CV or resume as YAML, then run RenderCV,
+Write your CV or resume as YAML, then run CVFactori,
 
 ```bash
-rendercv render John_Doe_CV.yaml
+cvfactori render John_Doe_CV.yaml
 ```
 
 and get a PDF with perfect typography.
 
-With RenderCV, you can:
+With CVFactori, you can:
 
 - Version-control your CV — it's just text.
 - Focus on content — don't worry about the formatting.
@@ -39,8 +39,8 @@ cv:
     - network: GitHub
       username: rendercv
   sections:
-    Welcome to RenderCV:
-      - RenderCV reads a CV written in a YAML file, and generates a PDF with professional typography.
+    Welcome to CVFactori:
+      - CVFactori reads a CV written in a YAML file, and generates a PDF with professional typography.
       - See the [documentation](https://docs.rendercv.com) for more details.
     education:
       - institution: Princeton University
@@ -150,10 +150,10 @@ Works with any AI agent that supports the [skills standard](https://skills.sh). 
 
 ## Get Started
 
-Install RenderCV (Requires Python 3.12+):
+Install CVFactori (Requires Python 3.12+):
 
 ```
-pip install "rendercv[full]"
+pip install "cvfactori[full]"
 ```
 
 If you use an HTML-first theme outside Docker, install Chromium for Playwright
@@ -166,13 +166,13 @@ python -m playwright install chromium
 Create a new CV yaml file:
 
 ```
-rendercv new "John Doe"
+cvfactori new "John Doe"
 ```
 
 Edit the YAML, then render:
 
 ```
-rendercv render "John_Doe_CV.yaml"
+cvfactori render "John_Doe_CV.yaml"
 ```
 
 For more details, see the [user guide](https://docs.rendercv.com/user_guide/).

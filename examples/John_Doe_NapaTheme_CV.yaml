@@ -358,5 +358,6 @@ settings:
     dont_generate_typst: false
     dont_generate_pdf: false
     dont_generate_png: false
+    ats_clean: false
   bold_keywords: []
   pdf_title: NAME - CV

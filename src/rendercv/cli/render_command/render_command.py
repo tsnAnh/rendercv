@@ -18,8 +18,8 @@ from .watcher import run_function_if_files_change
 @app.command(
     name="render",
     help=(
-        "Render a YAML input file. Example: [yellow]rendercv render"
-        " John_Doe_CV.yaml[/yellow]. Details: [cyan]rendercv render --help[/cyan]"
+        "Render a YAML input file. Example: [yellow]cvfactori render"
+        " John_Doe_CV.yaml[/yellow]. Details: [cyan]cvfactori render --help[/cyan]"
     ),
     # allow extra arguments for updating the old_data model (for overriding the values of
     # the input file):
@@ -166,6 +166,16 @@ def cli_command_render(
             help="If provided, the PNG file will not be generated.",
         ),
     ] = None,
+    ats_clean: Annotated[
+        bool | None,
+        typer.Option(
+            "--ats-clean",
+            help=(
+                "Render ATS-clean outputs without photos, DOB fields, references,"
+                " SVG icons, or browser print/export buttons."
+            ),
+        ),
+    ] = None,
     watch: Annotated[
         bool | None,
         typer.Option(
@@ -224,6 +234,7 @@ def cli_command_render(
         "dont_generate_markdown": dont_generate_markdown,
         "dont_generate_pdf": dont_generate_pdf,
         "dont_generate_png": dont_generate_png,
+        "ats_clean": ats_clean,
         "overrides": parse_override_arguments(extra_data_model_override_arguments),
     }
 

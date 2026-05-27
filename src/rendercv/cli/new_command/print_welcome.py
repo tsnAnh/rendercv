@@ -11,9 +11,9 @@ def print_welcome() -> None:
     Why:
         New users need guidance on where to find documentation and support.
     """
-    print(f"\nWelcome to [dodger_blue3]RenderCV v{__version__}[/dodger_blue3]!\n")
+    print(f"\nWelcome to [dodger_blue3]CVFactori v{__version__}[/dodger_blue3]!\n")
     links = {
-        "RenderCV App": "https://rendercv.com",
+        "CVFactori App": "https://rendercv.com",
         "Documentation": "https://docs.rendercv.com",
         "Source code": "https://github.com/rendercv/rendercv/",
         "Bug reports": "https://github.com/rendercv/rendercv/issues/",

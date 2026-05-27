@@ -20,8 +20,8 @@ from .print_welcome import print_welcome
 @app.command(
     name="new",
     help=(
-        "Generate a YAML input file to get started. Example: [yellow]rendercv new"
-        ' "John Doe"[/yellow]. Details: [cyan]rendercv new --help[/cyan]'
+        "Generate a YAML input file to get started. Example: [yellow]cvfactori new"
+        ' "John Doe"[/yellow]. Details: [cyan]cvfactori new --help[/cyan]'
     ),
 )
 @handle_user_errors
@@ -161,7 +161,7 @@ def build_creation_panel(
     lines.append("")
     lines.append("Next steps:")
     lines.append("  1. Edit the YAML input file with your information")
-    lines.append(f"  2. Run: [cyan]rendercv render {input_file_path}[/cyan]")
+    lines.append(f"  2. Run: [cyan]cvfactori render {input_file_path}[/cyan]")
 
     # Templates (exclude input file from these lists)
     created_templates = [

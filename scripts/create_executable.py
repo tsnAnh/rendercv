@@ -28,8 +28,8 @@ with tempfile.TemporaryDirectory() as temp_dir:
     shutil.copytree(root_path / "src" / "rendercv", temp_path / "rendercv")
 
     # Create entry point script
-    rendercv_file = temp_path / "rendercv.py"
-    rendercv_file.write_text("import rendercv.cli.app as app; app.app()")
+    cvfactori_file = temp_path / "cvfactori.py"
+    cvfactori_file.write_text("import rendercv.cli.app as app; app.app()")
 
     # Run PyInstaller
     subprocess.run(
@@ -49,7 +49,7 @@ with tempfile.TemporaryDirectory() as temp_dir:
             "pymupdf",
             "--distpath",
             "bin",
-            str(rendercv_file),
+            str(cvfactori_file),
         ],
         check=True,
     )
@@ -61,11 +61,11 @@ with tempfile.TemporaryDirectory() as temp_dir:
     # Get original and new executable paths
     match sys.platform:
         case "win32":
-            original_name = "rendercv.exe"
-            new_name = f"rendercv-{platform_name}-{machine_name}.exe"
+            original_name = "cvfactori.exe"
+            new_name = f"cvfactori-{platform_name}-{machine_name}.exe"
         case _:
-            original_name = "rendercv"
-            new_name = f"rendercv-{platform_name}-{machine_name}"
+            original_name = "cvfactori"
+            new_name = f"cvfactori-{platform_name}-{machine_name}"
 
     original_path = root_path / "bin" / original_name
     executable_path = root_path / "bin" / new_name

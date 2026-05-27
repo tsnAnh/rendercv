@@ -18,6 +18,7 @@ settings:
     dont_generate_typst: false
     dont_generate_pdf: false
     dont_generate_png: false
+    ats_clean: false # (6)!
   bold_keywords: # (4)!
     - AWS
     - Python
@@ -29,3 +30,4 @@ settings:
 3. Available placeholders are: `NAME`, `NAME_IN_SNAKE_CASE`, `NAME_IN_LOWER_SNAKE_CASE`, `NAME_IN_UPPER_SNAKE_CASE`, `NAME_IN_KEBAB_CASE`, `NAME_IN_LOWER_KEBAB_CASE`, `NAME_IN_UPPER_KEBAB_CASE`, `MONTH_NAME`, `MONTH_ABBREVIATION`, `MONTH`, `MONTH_IN_TWO_DIGITS`, `YEAR`, `YEAR_IN_TWO_DIGITS`.
 4. These keywords will be bolded wherever they appear in your CV text (highlights, summaries, etc.).
 5. Date used for file naming (when using date placeholders), the "last updated" text in the top note, and time span calculations for ongoing events (entries with `end_date: present`)
+6. Render ATS-clean outputs by hiding photos, DOB fields, references, SVG icons, and browser print/export buttons.

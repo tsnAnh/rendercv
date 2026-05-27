@@ -18,7 +18,7 @@ VERSION_CHECK_TTL_SECONDS = 86400  # 24 hours
 
 app = typer.Typer(
     rich_markup_mode="rich",
-    # to make `rendercv --version` work:
+    # to make `cvfactori --version` work:
     invoke_without_command=True,
     context_settings={"help_option_names": ["-h", "--help"]},
 )
@@ -31,13 +31,13 @@ def cli_command_no_args(
         bool | None, typer.Option("--version", "-v", help="Show the version")
     ] = None,
 ):
-    """RenderCV is a command-line tool for rendering CVs from YAML input files. For more
+    """CVFactori is a command-line tool for rendering CVs from YAML input files. For more
     information, see https://docs.rendercv.com.
     """
     warn_if_new_version_is_available()
 
     if version_requested:
-        print(f"RenderCV v{__version__}")
+        print(f"CVFactori v{__version__}")
     elif ctx.invoked_subcommand is None:
         # No command was provided, show help
         print(ctx.get_help())
@@ -45,7 +45,7 @@ def cli_command_no_args(
 
 
 def get_cache_dir() -> pathlib.Path:
-    """Return the platform-appropriate cache directory for RenderCV."""
+    """Return the platform-appropriate cache directory for CVFactori."""
     if sys.platform == "win32":
         base = pathlib.Path(
             os.environ.get("LOCALAPPDATA", pathlib.Path.home() / "AppData" / "Local")
@@ -56,7 +56,7 @@ def get_cache_dir() -> pathlib.Path:
         base = pathlib.Path(
             os.environ.get("XDG_CACHE_HOME", pathlib.Path.home() / ".cache")
         )
-    return base / "rendercv"
+    return base / "cvfactori"
 
 
 def get_version_cache_file() -> pathlib.Path:
@@ -89,8 +89,8 @@ def write_version_cache(version_string: str) -> None:
 
 
 def fetch_latest_version_from_pypi() -> str | None:
-    """Fetch the latest RenderCV version string from PyPI, or None on failure."""
-    url = "https://pypi.org/pypi/rendercv/json"
+    """Fetch the latest CVFactori version string from PyPI, or None on failure."""
+    url = "https://pypi.org/pypi/cvfactori/json"
     try:
         with urllib.request.urlopen(url, timeout=5) as response:
             data = response.read()
@@ -109,7 +109,7 @@ def fetch_and_cache_latest_version() -> None:
 
 
 def warn_if_new_version_is_available() -> None:
-    """Check for a newer RenderCV version using a stale-while-revalidate cache.
+    """Check for a newer CVFactori version using a stale-while-revalidate cache.
 
     Why:
         Uses a disk cache with background refresh so the CLI never blocks on
@@ -128,7 +128,7 @@ def warn_if_new_version_is_available() -> None:
             current = packaging.version.Version(__version__)
             if current < latest:
                 print(
-                    "\n[bold yellow]A new version of RenderCV is available!"
+                    "\n[bold yellow]A new version of CVFactori is available!"
                     f" You are using v{__version__}, and the latest version"
                     f" is v{latest}.[/bold yellow]\n"
                 )

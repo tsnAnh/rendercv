@@ -36,6 +36,7 @@ class BuildRendercvModelArguments(TypedDict, total=False):
     dont_generate_markdown: bool | None
     dont_generate_pdf: bool | None
     dont_generate_png: bool | None
+    ats_clean: bool | None
     overrides: dict[str, str] | None
 
 
@@ -144,6 +145,7 @@ def build_rendercv_dictionary(
         "dont_generate_markdown": kwargs.get("dont_generate_markdown"),
         "dont_generate_pdf": kwargs.get("dont_generate_pdf"),
         "dont_generate_png": kwargs.get("dont_generate_png"),
+        "ats_clean": kwargs.get("ats_clean"),
     }
 
     for key, value in render_overrides.items():

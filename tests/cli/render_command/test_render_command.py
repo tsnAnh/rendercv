@@ -1,4 +1,5 @@
 import os
+from typing import Any
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -9,7 +10,7 @@ from rendercv.cli.render_command.render_command import cli_command_render
 
 class TestCliCommandRender:
     @pytest.fixture
-    def default_arguments(self):
+    def default_arguments(self) -> dict[str, Any]:
         context = MagicMock()
         context.args = []
         return {
@@ -26,6 +27,7 @@ class TestCliCommandRender:
             "dont_generate_typst": False,
             "dont_generate_pdf": False,
             "dont_generate_png": False,
+            "ats_clean": None,
             "watch": False,
             "quiet": False,
             "yaml_field_override": None,
@@ -176,6 +178,17 @@ class TestCliCommandRender:
 
         called_path = mock_run.call_args[0][0]
         assert called_path.is_absolute()
+
+    @patch("rendercv.cli.render_command.render_command.run_rendercv")
+    def test_passes_ats_clean_to_model_builder(
+        self, mock_run, input_file, default_arguments
+    ):
+        cli_command_render(
+            input_file_name=input_file,
+            **{**default_arguments, "ats_clean": True},  # ty: ignore[invalid-argument-type]
+        )
+
+        assert mock_run.call_args.kwargs["ats_clean"] is True
 
     @patch("rendercv.cli.render_command.render_command.run_function_if_files_change")
     def test_calls_watcher_when_watch_flag_is_true(

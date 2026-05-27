@@ -6,6 +6,7 @@ from hypothesis import given
 from hypothesis import settings as hypothesis_settings
 from hypothesis import strategies as st
 
+from rendercv.schema.models.settings.render_command import RenderCommand
 from rendercv.schema.models.settings.settings import Settings
 
 
@@ -32,6 +33,16 @@ class TestCurrentDate:
 
 
 class TestSettings:
+    def test_render_command_ats_clean_default(self):
+        settings = Settings()
+
+        assert settings.render_command.ats_clean is False
+
+    def test_render_command_ats_clean_accepts_true(self):
+        settings = Settings(render_command=RenderCommand(ats_clean=True))
+
+        assert settings.render_command.ats_clean is True
+
     def test_removes_duplicates(self):
         settings = Settings(bold_keywords=["Python", "Java", "Python", "C++", "Java"])
 

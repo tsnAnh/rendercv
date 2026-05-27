@@ -171,6 +171,7 @@ class TestBuildRendercvDictionary:
             ("dont_generate_markdown", True),
             ("dont_generate_pdf", True),
             ("dont_generate_png", True),
+            ("ats_clean", True),
         ],
     )
     def test_render_command_single_override(
@@ -549,6 +550,7 @@ class TestBuildRendercvModel:
                 "pdf_path": "all.pdf",
                 "typst_path": "all.typ",
                 "dont_generate_png": True,
+                "ats_clean": True,
             },
         ],
     )

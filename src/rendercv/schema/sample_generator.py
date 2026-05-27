@@ -149,6 +149,7 @@ def create_sample_yaml_input_file(
     name: str = "John Doe",
     theme: str = "classic",
     locale: str = "english",
+    ats_clean: bool = False,
 ) -> str: ...
 @overload
 def create_sample_yaml_input_file(
@@ -157,6 +158,7 @@ def create_sample_yaml_input_file(
     name: str = "John Doe",
     theme: str = "classic",
     locale: str = "english",
+    ats_clean: bool = False,
 ) -> None: ...
 def create_sample_yaml_input_file(
     *,
@@ -164,6 +166,7 @@ def create_sample_yaml_input_file(
     name: str = "John Doe",
     theme: str = "classic",
     locale: str = "english",
+    ats_clean: bool = False,
 ) -> str | None:
     """Generate formatted sample YAML with schema hint and commented design options.
 
@@ -185,6 +188,7 @@ def create_sample_yaml_input_file(
         name: Person's full name.
         theme: Design theme identifier.
         locale: Language/date format identifier.
+        ats_clean: Whether to enable ATS-clean rendering in the generated settings.
 
     Returns:
         YAML string if file_path is None, otherwise None after writing file.
@@ -207,6 +211,7 @@ def create_sample_yaml_input_file(
     data_model = create_sample_rendercv_pydantic_model(
         name=name, theme=theme, locale=locale
     )
+    data_model.settings.render_command.ats_clean = ats_clean
 
     data_model_as_dictionary = rendercv_model_to_dictionary(data_model)
 

@@ -115,3 +115,12 @@ class RenderCommand(BaseModelWithoutExtraKeys):
         title="Don't Generate PNG",
         description="Skip PNG generation. The default value is `false`.",
     )
+    ats_clean: bool = pydantic.Field(
+        default=False,
+        title="ATS Clean",
+        description=(
+            "Render ATS-clean outputs by suppressing photos, DOB fields, references,"
+            " SVG icons, and browser print/export buttons. The default value is"
+            " `false`."
+        ),
+    )

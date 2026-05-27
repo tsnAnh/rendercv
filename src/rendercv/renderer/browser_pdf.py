@@ -9,6 +9,7 @@ from types import ModuleType
 from rendercv.exception import RenderCVInternalError, RenderCVUserError
 from rendercv.schema.models.rendercv_model import RenderCVModel
 
+from .ats_clean import prepare_ats_clean_model
 from .browser_assets import (
     build_local_font_face_css,
     copy_browser_fonts,
@@ -60,6 +61,7 @@ def create_browser_rendering_html(
         The public HTML output may use web fonts, but browser-rendered PDF/PNG
         needs deterministic local assets and must work without Google Fonts.
     """
+    rendercv_model = prepare_ats_clean_model(rendercv_model)
     output_dir.mkdir(parents=True, exist_ok=True)
     markdown = render_full_template(rendercv_model, "markdown")
     html = render_html(rendercv_model, markdown)
@@ -68,7 +70,8 @@ def create_browser_rendering_html(
         html = html.replace("<style>", f"<style>\n{build_local_font_face_css()}\n", 1)
         copy_browser_fonts(output_dir)
 
-    copy_browser_photo(rendercv_model, output_dir)
+    if not rendercv_model.settings.render_command.ats_clean:
+        copy_browser_photo(rendercv_model, output_dir)
 
     html_path = output_dir / f"{rendercv_model.design.theme}-browser.html"
     html_path.write_text(html, encoding="utf-8")

@@ -39,7 +39,7 @@ def test_rendercv_renders_pdf_offline(tmp_path: pathlib.Path) -> None:
     dist_dir = tmp_path / "dist"
     run(["uv", "build", "--wheel", "--out-dir", str(dist_dir)], cwd=PROJECT_ROOT)
 
-    wheel = next(dist_dir.glob("rendercv-*.whl"))
+    wheel = next(dist_dir.glob("cvfactori-*.whl"))
     venv_dir = tmp_path / "venv"
     if sys.platform == "win32":
         venv_python = venv_dir / "Scripts" / "python.exe"

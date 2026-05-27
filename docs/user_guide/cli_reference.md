@@ -139,6 +139,7 @@ rendercv render John_Doe_CV.yaml --pdf-path ~/Desktop/MyCV.pdf
 | `--dont-generate-markdown` | `-nomd`   | Skip Markdown generation         |
 | `--dont-generate-html`     | `-nohtml` | Skip HTML generation             |
 | `--dont-generate-png`      | `-nopng`  | Skip PNG generation              |
+| `--ats-clean`              |           | Render ATS-clean outputs         |
 
 **Override any YAML value:**
 

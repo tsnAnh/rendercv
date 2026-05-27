@@ -275,7 +275,7 @@ cv:
         highlights:
           - Built employee management and RBAC module for **200+ staff records**
           - Automated payroll calculation; reduced manual processing time by **~70%**
-          - Created reporting dashboards with real-time HR analytics (attendance, leave, OT)
+          - Created reporting dashboards with real-time HR analytics (attendance, leave, overtime)
           - Integrated REST APIs with third-party accounting system; reduced data sync errors by **~80%**
         stack: PHP (Laravel), Vue.js · PostgreSQL, Redis · Docker · AWS (EC2, S3, VPC…)
       - name: E-Learning Platform

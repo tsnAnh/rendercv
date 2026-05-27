@@ -1,8 +1,8 @@
-"""Entry point for the RenderCV CLI.
+"""Entry point for the CVFactori CLI.
 
 Why:
-    Users might install RenderCV with `pip install rendercv` instead of
-    `pip install rendercv[full]`. This module catches that case and shows a helpful
+    Users might install CVFactori with `pip install cvfactori` instead of
+    `pip install cvfactori[full]`. This module catches that case and shows a helpful
     error message instead of a confusing `ImportError`.
 """
 
@@ -10,18 +10,18 @@ import sys
 
 
 def entry_point() -> None:
-    """Entry point for the RenderCV CLI."""
+    """Entry point for the CVFactori CLI."""
     try:
         from .app import app as cli_app  # NOQA: PLC0415
     except ImportError:
         error_message = """
-It looks like you installed RenderCV with:
+It looks like you installed CVFactori with:
 
-    pip install rendercv
+    pip install cvfactori
 
-But RenderCV needs to be installed with:
+But CVFactori needs to be installed with:
 
-    pip install "rendercv[full]"
+    pip install "cvfactori[full]"
 
 Please reinstall with the correct command above.
 """
