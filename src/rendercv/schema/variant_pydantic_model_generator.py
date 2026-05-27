@@ -1,3 +1,4 @@
+import re
 from collections.abc import Callable
 from typing import Any, Literal, cast
 
@@ -204,9 +205,10 @@ def generate_model_name(variant_name: str, class_name_suffix: str) -> str:
     Returns:
         PascalCase class name with suffix.
     """
-    # Convert snake_case to PascalCase: my_variant_name -> MyVariantName
-    # Instead of title(), just capitalize first letter of each word
-    pascal_case = "".join(word.capitalize() for word in variant_name.split("_"))
+    # Convert snake_case/kebab-case to PascalCase:
+    # my_variant_name -> MyVariantName, my-variant-name -> MyVariantName.
+    words = [word for word in re.split(r"[^0-9A-Za-z]+", variant_name) if word]
+    pascal_case = "".join(word.capitalize() for word in words)
     return f"{pascal_case}{class_name_suffix}"
 
 

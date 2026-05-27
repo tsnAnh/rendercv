@@ -6,10 +6,11 @@ import pydantic_core
 
 from rendercv import __description__
 
+from .cv_style_json_schema import JsonSchema, add_cv_style_section_schemas
 from .models.rendercv_model import RenderCVModel
 
 
-def generate_json_schema() -> dict:
+def generate_json_schema() -> JsonSchema:
     """Generate JSON Schema (Draft-07) from RenderCV Pydantic models.
 
     Why:
@@ -36,7 +37,11 @@ def generate_json_schema() -> dict:
             json_schema["$schema"] = "http://json-schema.org/draft-07/schema#"
             return json_schema
 
-    return RenderCVModel.model_json_schema(schema_generator=RenderCVSchemaGenerator)
+    json_schema = RenderCVModel.model_json_schema(
+        schema_generator=RenderCVSchemaGenerator
+    )
+    add_cv_style_section_schemas(json_schema)
+    return json_schema
 
 
 def generate_json_schema_file(json_schema_path: pathlib.Path) -> None:

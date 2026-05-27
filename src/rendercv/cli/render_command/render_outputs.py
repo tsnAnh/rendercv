@@ -21,7 +21,7 @@ def render_outputs(rendercv_model: RenderCVModel, progress: ProgressPanel) -> No
     """Generate all requested output files for a RenderCV model.
 
     Why:
-        Khaitranquang keeps Typst source output but uses browser HTML for PDF
+        HTML-first themes keep Typst source output but use browser HTML for PDF
         and PNG. Keeping that branch here prevents the command entry workflow
         from absorbing renderer-specific sequencing.
     """
@@ -98,7 +98,7 @@ def render_browser_theme_outputs(
     if not should_create_browser_html(rendercv_model):
         return
 
-    with tempfile.TemporaryDirectory(prefix="rendercv-khaitranquang-html-") as temp:
+    with tempfile.TemporaryDirectory(prefix="rendercv-browser-html-") as temp:
         html_path = create_browser_rendering_html(rendercv_model, pathlib.Path(temp))
         pdf_path = timed_step(
             "Generated PDF",

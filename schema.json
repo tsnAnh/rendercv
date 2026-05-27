@@ -116,20 +116,154 @@
         }
       ]
     },
+    "ArchitectMonoTheme": {
+      "additionalProperties": false,
+      "properties": {
+        "theme": {
+          "const": "architect-mono",
+          "default": "architect-mono",
+          "title": "Theme",
+          "type": "string"
+        },
+        "page": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__2"
+        },
+        "colors": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__1"
+        },
+        "typography": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Typography__1"
+        },
+        "links": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Links__1"
+        },
+        "header": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Header__1"
+        },
+        "section_titles": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__SectionTitles__1"
+        },
+        "sections": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Sections__1"
+        },
+        "entries": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Entries__1"
+        },
+        "templates": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Templates__1"
+        }
+      },
+      "title": "ArchitectMonoTheme",
+      "type": "object"
+    },
+    "ArchitectSidebarTheme": {
+      "additionalProperties": false,
+      "properties": {
+        "theme": {
+          "const": "architect-sidebar",
+          "default": "architect-sidebar",
+          "title": "Theme",
+          "type": "string"
+        },
+        "page": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__3"
+        },
+        "colors": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__1"
+        },
+        "typography": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Typography__1"
+        },
+        "links": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Links__1"
+        },
+        "header": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Header__1"
+        },
+        "section_titles": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__SectionTitles__1"
+        },
+        "sections": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Sections__1"
+        },
+        "entries": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Entries__1"
+        },
+        "templates": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Templates__1"
+        }
+      },
+      "title": "ArchitectSidebarTheme",
+      "type": "object"
+    },
+    "BlueprintCompactTheme": {
+      "additionalProperties": false,
+      "properties": {
+        "theme": {
+          "const": "blueprint-compact",
+          "default": "blueprint-compact",
+          "title": "Theme",
+          "type": "string"
+        },
+        "page": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__4"
+        },
+        "colors": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__1"
+        },
+        "typography": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Typography__1"
+        },
+        "links": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Links__1"
+        },
+        "header": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Header__1"
+        },
+        "section_titles": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__SectionTitles__1"
+        },
+        "sections": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Sections__1"
+        },
+        "entries": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Entries__1"
+        },
+        "templates": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Templates__1"
+        }
+      },
+      "title": "BlueprintCompactTheme",
+      "type": "object"
+    },
     "BuiltInDesign": {
       "discriminator": {
         "mapping": {
+          "architect-mono": "#/$defs/ArchitectMonoTheme",
+          "architect-sidebar": "#/$defs/ArchitectSidebarTheme",
+          "blueprint-compact": "#/$defs/BlueprintCompactTheme",
           "classic": "#/$defs/ClassicTheme",
+          "creative-ink": "#/$defs/CreativeInkTheme",
           "ember": "#/$defs/EmberTheme",
+          "engineering-grid": "#/$defs/EngineeringGridTheme",
           "engineeringclassic": "#/$defs/EngineeringclassicTheme",
           "engineeringresumes": "#/$defs/EngineeringresumesTheme",
+          "executive-rail": "#/$defs/ExecutiveRailTheme",
           "harvard": "#/$defs/HarvardTheme",
           "ink": "#/$defs/InkTheme",
+          "ink-wash-graphite": "#/$defs/InkWashGraphiteTheme",
+          "kami-paper": "#/$defs/KamiPaperTheme",
+          "kami-sidebar": "#/$defs/KamiSidebarTheme",
           "khaitranquang": "#/$defs/KhaitranquangTheme",
+          "linear-narrative": "#/$defs/LinearNarrativeTheme",
+          "linear-sidebar": "#/$defs/LinearSidebarTheme",
           "moderncv": "#/$defs/ModerncvTheme",
+          "monochrome-editorial": "#/$defs/MonochromeEditorialTheme",
           "napa": "#/$defs/NapaTheme",
           "opal": "#/$defs/OpalTheme",
-          "sb2nov": "#/$defs/Sb2novTheme"
+          "premium-paper": "#/$defs/PremiumPaperTheme",
+          "sb2nov": "#/$defs/Sb2novTheme",
+          "teal-systems": "#/$defs/TealSystemsTheme"
         },
         "propertyName": "theme"
       },
@@ -138,7 +272,22 @@
           "$ref": "#/$defs/ClassicTheme"
         },
         {
+          "$ref": "#/$defs/ArchitectMonoTheme"
+        },
+        {
+          "$ref": "#/$defs/ArchitectSidebarTheme"
+        },
+        {
+          "$ref": "#/$defs/BlueprintCompactTheme"
+        },
+        {
+          "$ref": "#/$defs/CreativeInkTheme"
+        },
+        {
           "$ref": "#/$defs/EmberTheme"
+        },
+        {
+          "$ref": "#/$defs/EngineeringGridTheme"
         },
         {
           "$ref": "#/$defs/EngineeringclassicTheme"
@@ -147,16 +296,37 @@
           "$ref": "#/$defs/EngineeringresumesTheme"
         },
         {
+          "$ref": "#/$defs/ExecutiveRailTheme"
+        },
+        {
           "$ref": "#/$defs/HarvardTheme"
+        },
+        {
+          "$ref": "#/$defs/InkWashGraphiteTheme"
         },
         {
           "$ref": "#/$defs/InkTheme"
         },
         {
+          "$ref": "#/$defs/KamiPaperTheme"
+        },
+        {
+          "$ref": "#/$defs/KamiSidebarTheme"
+        },
+        {
           "$ref": "#/$defs/KhaitranquangTheme"
         },
         {
+          "$ref": "#/$defs/LinearNarrativeTheme"
+        },
+        {
+          "$ref": "#/$defs/LinearSidebarTheme"
+        },
+        {
           "$ref": "#/$defs/ModerncvTheme"
+        },
+        {
+          "$ref": "#/$defs/MonochromeEditorialTheme"
         },
         {
           "$ref": "#/$defs/NapaTheme"
@@ -165,7 +335,13 @@
           "$ref": "#/$defs/OpalTheme"
         },
         {
+          "$ref": "#/$defs/PremiumPaperTheme"
+        },
+        {
           "$ref": "#/$defs/Sb2novTheme"
+        },
+        {
+          "$ref": "#/$defs/TealSystemsTheme"
         }
       ]
     },
@@ -240,6 +416,46 @@
         }
       },
       "title": "ClassicTheme",
+      "type": "object"
+    },
+    "CreativeInkTheme": {
+      "additionalProperties": false,
+      "properties": {
+        "theme": {
+          "const": "creative-ink",
+          "default": "creative-ink",
+          "title": "Theme",
+          "type": "string"
+        },
+        "page": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__5"
+        },
+        "colors": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__1"
+        },
+        "typography": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Typography__1"
+        },
+        "links": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Links__1"
+        },
+        "header": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Header__1"
+        },
+        "section_titles": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__SectionTitles__1"
+        },
+        "sections": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Sections__1"
+        },
+        "entries": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Entries__1"
+        },
+        "templates": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Templates__1"
+        }
+      },
+      "title": "CreativeInkTheme",
       "type": "object"
     },
     "CustomConnection": {
@@ -436,7 +652,36 @@
               "additionalProperties": {
                 "$ref": "#/$defs/Section"
               },
-              "type": "object"
+              "type": "object",
+              "properties": {
+                "Objective": {
+                  "$ref": "#/$defs/CVStyleObjectiveSection"
+                },
+                "Education": {
+                  "$ref": "#/$defs/CVStyleEducationSection"
+                },
+                "Skills": {
+                  "$ref": "#/$defs/CVStyleSkillsSection"
+                },
+                "Languages": {
+                  "$ref": "#/$defs/CVStyleLanguagesSection"
+                },
+                "References": {
+                  "$ref": "#/$defs/CVStyleReferencesSection"
+                },
+                "Summary": {
+                  "$ref": "#/$defs/CVStyleSummarySection"
+                },
+                "Highlights": {
+                  "$ref": "#/$defs/CVStyleHighlightsSection"
+                },
+                "Experiences": {
+                  "$ref": "#/$defs/CVStyleExperienceSection"
+                },
+                "Experience": {
+                  "$ref": "#/$defs/CVStyleExperienceSection"
+                }
+              }
             },
             {
               "type": "null"
@@ -828,7 +1073,7 @@
           "type": "string"
         },
         "page": {
-          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__2"
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__6"
         },
         "colors": {
           "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__2"
@@ -856,6 +1101,46 @@
         }
       },
       "title": "EmberTheme",
+      "type": "object"
+    },
+    "EngineeringGridTheme": {
+      "additionalProperties": false,
+      "properties": {
+        "theme": {
+          "const": "engineering-grid",
+          "default": "engineering-grid",
+          "title": "Theme",
+          "type": "string"
+        },
+        "page": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__7"
+        },
+        "colors": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__1"
+        },
+        "typography": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Typography__1"
+        },
+        "links": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Links__1"
+        },
+        "header": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Header__1"
+        },
+        "section_titles": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__SectionTitles__1"
+        },
+        "sections": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Sections__1"
+        },
+        "entries": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Entries__1"
+        },
+        "templates": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Templates__1"
+        }
+      },
+      "title": "EngineeringGridTheme",
       "type": "object"
     },
     "EngineeringclassicTheme": {
@@ -908,7 +1193,7 @@
           "type": "string"
         },
         "page": {
-          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__3"
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__8"
         },
         "colors": {
           "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__3"
@@ -1049,6 +1334,46 @@
           "type": "integer"
         }
       ]
+    },
+    "ExecutiveRailTheme": {
+      "additionalProperties": false,
+      "properties": {
+        "theme": {
+          "const": "executive-rail",
+          "default": "executive-rail",
+          "title": "Theme",
+          "type": "string"
+        },
+        "page": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__9"
+        },
+        "colors": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__1"
+        },
+        "typography": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Typography__1"
+        },
+        "links": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Links__1"
+        },
+        "header": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Header__1"
+        },
+        "section_titles": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__SectionTitles__1"
+        },
+        "sections": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Sections__1"
+        },
+        "entries": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Entries__1"
+        },
+        "templates": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Templates__1"
+        }
+      },
+      "title": "ExecutiveRailTheme",
+      "type": "object"
     },
     "ExistingPathRelativeToInput": {
       "format": "path",
@@ -1405,7 +1730,7 @@
           "type": "string"
         },
         "page": {
-          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__4"
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__10"
         },
         "colors": {
           "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__4"
@@ -1837,7 +2162,7 @@
           "type": "string"
         },
         "page": {
-          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__5"
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__12"
         },
         "colors": {
           "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__5"
@@ -1865,6 +2190,46 @@
         }
       },
       "title": "InkTheme",
+      "type": "object"
+    },
+    "InkWashGraphiteTheme": {
+      "additionalProperties": false,
+      "properties": {
+        "theme": {
+          "const": "ink-wash-graphite",
+          "default": "ink-wash-graphite",
+          "title": "Theme",
+          "type": "string"
+        },
+        "page": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__11"
+        },
+        "colors": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__1"
+        },
+        "typography": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Typography__1"
+        },
+        "links": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Links__1"
+        },
+        "header": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Header__1"
+        },
+        "section_titles": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__SectionTitles__1"
+        },
+        "sections": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Sections__1"
+        },
+        "entries": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Entries__1"
+        },
+        "templates": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Templates__1"
+        }
+      },
+      "title": "InkWashGraphiteTheme",
       "type": "object"
     },
     "ItalianLocale": {
@@ -2063,6 +2428,86 @@
       "title": "JapaneseLocale",
       "type": "object"
     },
+    "KamiPaperTheme": {
+      "additionalProperties": false,
+      "properties": {
+        "theme": {
+          "const": "kami-paper",
+          "default": "kami-paper",
+          "title": "Theme",
+          "type": "string"
+        },
+        "page": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__13"
+        },
+        "colors": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__1"
+        },
+        "typography": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Typography__1"
+        },
+        "links": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Links__1"
+        },
+        "header": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Header__1"
+        },
+        "section_titles": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__SectionTitles__1"
+        },
+        "sections": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Sections__1"
+        },
+        "entries": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Entries__1"
+        },
+        "templates": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Templates__1"
+        }
+      },
+      "title": "KamiPaperTheme",
+      "type": "object"
+    },
+    "KamiSidebarTheme": {
+      "additionalProperties": false,
+      "properties": {
+        "theme": {
+          "const": "kami-sidebar",
+          "default": "kami-sidebar",
+          "title": "Theme",
+          "type": "string"
+        },
+        "page": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__14"
+        },
+        "colors": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__1"
+        },
+        "typography": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Typography__1"
+        },
+        "links": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Links__1"
+        },
+        "header": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Header__1"
+        },
+        "section_titles": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__SectionTitles__1"
+        },
+        "sections": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Sections__1"
+        },
+        "entries": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Entries__1"
+        },
+        "templates": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Templates__1"
+        }
+      },
+      "title": "KamiSidebarTheme",
+      "type": "object"
+    },
     "KhaitranquangTheme": {
       "additionalProperties": false,
       "properties": {
@@ -2073,7 +2518,7 @@
           "type": "string"
         },
         "page": {
-          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__6"
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__15"
         },
         "colors": {
           "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__6"
@@ -2201,6 +2646,86 @@
       "title": "KoreanLocale",
       "type": "object"
     },
+    "LinearNarrativeTheme": {
+      "additionalProperties": false,
+      "properties": {
+        "theme": {
+          "const": "linear-narrative",
+          "default": "linear-narrative",
+          "title": "Theme",
+          "type": "string"
+        },
+        "page": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__16"
+        },
+        "colors": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__1"
+        },
+        "typography": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Typography__1"
+        },
+        "links": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Links__1"
+        },
+        "header": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Header__1"
+        },
+        "section_titles": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__SectionTitles__1"
+        },
+        "sections": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Sections__1"
+        },
+        "entries": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Entries__1"
+        },
+        "templates": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Templates__1"
+        }
+      },
+      "title": "LinearNarrativeTheme",
+      "type": "object"
+    },
+    "LinearSidebarTheme": {
+      "additionalProperties": false,
+      "properties": {
+        "theme": {
+          "const": "linear-sidebar",
+          "default": "linear-sidebar",
+          "title": "Theme",
+          "type": "string"
+        },
+        "page": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__17"
+        },
+        "colors": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__1"
+        },
+        "typography": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Typography__1"
+        },
+        "links": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Links__1"
+        },
+        "header": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Header__1"
+        },
+        "section_titles": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__SectionTitles__1"
+        },
+        "sections": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Sections__1"
+        },
+        "entries": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Entries__1"
+        },
+        "templates": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Templates__1"
+        }
+      },
+      "title": "LinearSidebarTheme",
+      "type": "object"
+    },
     "ListOfEntries": {
       "anyOf": [
         {
@@ -2276,7 +2801,7 @@
           "japanese": "#/$defs/JapaneseLocale",
           "korean": "#/$defs/KoreanLocale",
           "mandarin_chinese": "#/$defs/MandarinChineseLocale",
-          "norwegian_bokmål": "#/$defs/NorwegianBokm_lLocale",
+          "norwegian_bokmål": "#/$defs/NorwegianBokmLLocale",
           "norwegian_nynorsk": "#/$defs/NorwegianNynorskLocale",
           "persian": "#/$defs/PersianLocale",
           "portuguese": "#/$defs/PortugueseLocale",
@@ -2331,7 +2856,7 @@
           "$ref": "#/$defs/MandarinChineseLocale"
         },
         {
-          "$ref": "#/$defs/NorwegianBokm_lLocale"
+          "$ref": "#/$defs/NorwegianBokmLLocale"
         },
         {
           "$ref": "#/$defs/NorwegianNynorskLocale"
@@ -2494,6 +3019,46 @@
       "title": "ModerncvTheme",
       "type": "object"
     },
+    "MonochromeEditorialTheme": {
+      "additionalProperties": false,
+      "properties": {
+        "theme": {
+          "const": "monochrome-editorial",
+          "default": "monochrome-editorial",
+          "title": "Theme",
+          "type": "string"
+        },
+        "page": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__18"
+        },
+        "colors": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__1"
+        },
+        "typography": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Typography__1"
+        },
+        "links": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Links__1"
+        },
+        "header": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Header__1"
+        },
+        "section_titles": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__SectionTitles__1"
+        },
+        "sections": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Sections__1"
+        },
+        "entries": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Entries__1"
+        },
+        "templates": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Templates__1"
+        }
+      },
+      "title": "MonochromeEditorialTheme",
+      "type": "object"
+    },
     "NapaTheme": {
       "additionalProperties": false,
       "properties": {
@@ -2504,7 +3069,7 @@
           "type": "string"
         },
         "page": {
-          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__7"
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__19"
         },
         "colors": {
           "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__7"
@@ -2669,7 +3234,7 @@
       "title": "NormalEntry",
       "type": "object"
     },
-    "NorwegianBokm_lLocale": {
+    "NorwegianBokmLLocale": {
       "additionalProperties": false,
       "properties": {
         "language": {
@@ -2764,7 +3329,7 @@
           "type": "array"
         }
       },
-      "title": "NorwegianBokmålLocale",
+      "title": "NorwegianBokmLLocale",
       "type": "object"
     },
     "NorwegianNynorskLocale": {
@@ -2937,7 +3502,7 @@
           "type": "string"
         },
         "page": {
-          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__8"
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__20"
         },
         "colors": {
           "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__8"
@@ -3182,6 +3747,46 @@
         }
       },
       "title": "PortugueseLocale",
+      "type": "object"
+    },
+    "PremiumPaperTheme": {
+      "additionalProperties": false,
+      "properties": {
+        "theme": {
+          "const": "premium-paper",
+          "default": "premium-paper",
+          "title": "Theme",
+          "type": "string"
+        },
+        "page": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__21"
+        },
+        "colors": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__1"
+        },
+        "typography": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Typography__1"
+        },
+        "links": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Links__1"
+        },
+        "header": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Header__1"
+        },
+        "section_titles": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__SectionTitles__1"
+        },
+        "sections": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Sections__1"
+        },
+        "entries": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Entries__1"
+        },
+        "templates": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Templates__1"
+        }
+      },
+      "title": "PremiumPaperTheme",
       "type": "object"
     },
     "PublicationEntry": {
@@ -3772,6 +4377,46 @@
         }
       },
       "title": "SpanishLocale",
+      "type": "object"
+    },
+    "TealSystemsTheme": {
+      "additionalProperties": false,
+      "properties": {
+        "theme": {
+          "const": "teal-systems",
+          "default": "teal-systems",
+          "title": "Theme",
+          "type": "string"
+        },
+        "page": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Page__22"
+        },
+        "colors": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Colors__1"
+        },
+        "typography": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Typography__1"
+        },
+        "links": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Links__1"
+        },
+        "header": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Header__1"
+        },
+        "section_titles": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__SectionTitles__1"
+        },
+        "sections": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Sections__1"
+        },
+        "entries": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Entries__1"
+        },
+        "templates": {
+          "$ref": "#/$defs/rendercv__schema__models__design__classic_theme__Templates__1"
+        }
+      },
+      "title": "TealSystemsTheme",
       "type": "object"
     },
     "TurkishLocale": {
@@ -8059,95 +8704,7 @@
       "title": "Page",
       "type": "object"
     },
-    "rendercv__schema__models__design__classic_theme__Page__2": {
-      "additionalProperties": false,
-      "properties": {
-        "size": {
-          "$ref": "#/$defs/PageSize",
-          "default": "us-letter",
-          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `us-letter`."
-        },
-        "top_margin": {
-          "$ref": "#/$defs/TypstDimension",
-          "default": "0.6in",
-          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.6in`."
-        },
-        "bottom_margin": {
-          "$ref": "#/$defs/TypstDimension",
-          "default": "0.6in",
-          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.6in`."
-        },
-        "left_margin": {
-          "$ref": "#/$defs/TypstDimension",
-          "default": "0.6in",
-          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.6in`."
-        },
-        "right_margin": {
-          "$ref": "#/$defs/TypstDimension",
-          "default": "0.6in",
-          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.6in`."
-        },
-        "show_footer": {
-          "default": true,
-          "description": "Show the footer at the bottom of pages. The default value is `true`.",
-          "title": "Show Footer",
-          "type": "boolean"
-        },
-        "show_top_note": {
-          "default": true,
-          "description": "Show the top note at the top of the first page. The default value is `true`.",
-          "title": "Show Top Note",
-          "type": "boolean"
-        }
-      },
-      "title": "Page",
-      "type": "object"
-    },
-    "rendercv__schema__models__design__classic_theme__Page__3": {
-      "additionalProperties": false,
-      "properties": {
-        "size": {
-          "$ref": "#/$defs/PageSize",
-          "default": "us-letter",
-          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `us-letter`."
-        },
-        "top_margin": {
-          "$ref": "#/$defs/TypstDimension",
-          "default": "0.7in",
-          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.7in`."
-        },
-        "bottom_margin": {
-          "$ref": "#/$defs/TypstDimension",
-          "default": "0.7in",
-          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.7in`."
-        },
-        "left_margin": {
-          "$ref": "#/$defs/TypstDimension",
-          "default": "0.7in",
-          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.7in`."
-        },
-        "right_margin": {
-          "$ref": "#/$defs/TypstDimension",
-          "default": "0.7in",
-          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.7in`."
-        },
-        "show_footer": {
-          "default": false,
-          "description": "Show the footer at the bottom of pages. The default value is `true`.",
-          "title": "Show Footer",
-          "type": "boolean"
-        },
-        "show_top_note": {
-          "default": true,
-          "description": "Show the top note at the top of the first page. The default value is `true`.",
-          "title": "Show Top Note",
-          "type": "boolean"
-        }
-      },
-      "title": "Page",
-      "type": "object"
-    },
-    "rendercv__schema__models__design__classic_theme__Page__4": {
+    "rendercv__schema__models__design__classic_theme__Page__10": {
       "additionalProperties": false,
       "properties": {
         "size": {
@@ -8191,51 +8748,7 @@
       "title": "Page",
       "type": "object"
     },
-    "rendercv__schema__models__design__classic_theme__Page__5": {
-      "additionalProperties": false,
-      "properties": {
-        "size": {
-          "$ref": "#/$defs/PageSize",
-          "default": "us-letter",
-          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `us-letter`."
-        },
-        "top_margin": {
-          "$ref": "#/$defs/TypstDimension",
-          "default": "0.6in",
-          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.6in`."
-        },
-        "bottom_margin": {
-          "$ref": "#/$defs/TypstDimension",
-          "default": "0.6in",
-          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.6in`."
-        },
-        "left_margin": {
-          "$ref": "#/$defs/TypstDimension",
-          "default": "0.6in",
-          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.6in`."
-        },
-        "right_margin": {
-          "$ref": "#/$defs/TypstDimension",
-          "default": "0.6in",
-          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.6in`."
-        },
-        "show_footer": {
-          "default": true,
-          "description": "Show the footer at the bottom of pages. The default value is `true`.",
-          "title": "Show Footer",
-          "type": "boolean"
-        },
-        "show_top_note": {
-          "default": true,
-          "description": "Show the top note at the top of the first page. The default value is `true`.",
-          "title": "Show Top Note",
-          "type": "boolean"
-        }
-      },
-      "title": "Page",
-      "type": "object"
-    },
-    "rendercv__schema__models__design__classic_theme__Page__6": {
+    "rendercv__schema__models__design__classic_theme__Page__11": {
       "additionalProperties": false,
       "properties": {
         "size": {
@@ -8279,7 +8792,315 @@
       "title": "Page",
       "type": "object"
     },
-    "rendercv__schema__models__design__classic_theme__Page__7": {
+    "rendercv__schema__models__design__classic_theme__Page__12": {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/$defs/PageSize",
+          "default": "us-letter",
+          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `us-letter`."
+        },
+        "top_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0.6in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.6in`."
+        },
+        "bottom_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0.6in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.6in`."
+        },
+        "left_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0.6in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.6in`."
+        },
+        "right_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0.6in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.6in`."
+        },
+        "show_footer": {
+          "default": true,
+          "description": "Show the footer at the bottom of pages. The default value is `true`.",
+          "title": "Show Footer",
+          "type": "boolean"
+        },
+        "show_top_note": {
+          "default": true,
+          "description": "Show the top note at the top of the first page. The default value is `true`.",
+          "title": "Show Top Note",
+          "type": "boolean"
+        }
+      },
+      "title": "Page",
+      "type": "object"
+    },
+    "rendercv__schema__models__design__classic_theme__Page__13": {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/$defs/PageSize",
+          "default": "a4",
+          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `a4`."
+        },
+        "top_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "bottom_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "left_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "right_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "show_footer": {
+          "default": false,
+          "description": "Show the footer at the bottom of pages. The default value is `true`.",
+          "title": "Show Footer",
+          "type": "boolean"
+        },
+        "show_top_note": {
+          "default": false,
+          "description": "Show the top note at the top of the first page. The default value is `true`.",
+          "title": "Show Top Note",
+          "type": "boolean"
+        }
+      },
+      "title": "Page",
+      "type": "object"
+    },
+    "rendercv__schema__models__design__classic_theme__Page__14": {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/$defs/PageSize",
+          "default": "a4",
+          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `a4`."
+        },
+        "top_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "bottom_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "left_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "right_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "show_footer": {
+          "default": false,
+          "description": "Show the footer at the bottom of pages. The default value is `true`.",
+          "title": "Show Footer",
+          "type": "boolean"
+        },
+        "show_top_note": {
+          "default": false,
+          "description": "Show the top note at the top of the first page. The default value is `true`.",
+          "title": "Show Top Note",
+          "type": "boolean"
+        }
+      },
+      "title": "Page",
+      "type": "object"
+    },
+    "rendercv__schema__models__design__classic_theme__Page__15": {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/$defs/PageSize",
+          "default": "a4",
+          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `a4`."
+        },
+        "top_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "bottom_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "left_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "right_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "show_footer": {
+          "default": false,
+          "description": "Show the footer at the bottom of pages. The default value is `true`.",
+          "title": "Show Footer",
+          "type": "boolean"
+        },
+        "show_top_note": {
+          "default": false,
+          "description": "Show the top note at the top of the first page. The default value is `true`.",
+          "title": "Show Top Note",
+          "type": "boolean"
+        }
+      },
+      "title": "Page",
+      "type": "object"
+    },
+    "rendercv__schema__models__design__classic_theme__Page__16": {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/$defs/PageSize",
+          "default": "a4",
+          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `a4`."
+        },
+        "top_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "bottom_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "left_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "right_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "show_footer": {
+          "default": false,
+          "description": "Show the footer at the bottom of pages. The default value is `true`.",
+          "title": "Show Footer",
+          "type": "boolean"
+        },
+        "show_top_note": {
+          "default": false,
+          "description": "Show the top note at the top of the first page. The default value is `true`.",
+          "title": "Show Top Note",
+          "type": "boolean"
+        }
+      },
+      "title": "Page",
+      "type": "object"
+    },
+    "rendercv__schema__models__design__classic_theme__Page__17": {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/$defs/PageSize",
+          "default": "a4",
+          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `a4`."
+        },
+        "top_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "bottom_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "left_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "right_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "show_footer": {
+          "default": false,
+          "description": "Show the footer at the bottom of pages. The default value is `true`.",
+          "title": "Show Footer",
+          "type": "boolean"
+        },
+        "show_top_note": {
+          "default": false,
+          "description": "Show the top note at the top of the first page. The default value is `true`.",
+          "title": "Show Top Note",
+          "type": "boolean"
+        }
+      },
+      "title": "Page",
+      "type": "object"
+    },
+    "rendercv__schema__models__design__classic_theme__Page__18": {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/$defs/PageSize",
+          "default": "a4",
+          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `a4`."
+        },
+        "top_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "bottom_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "left_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "right_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "show_footer": {
+          "default": false,
+          "description": "Show the footer at the bottom of pages. The default value is `true`.",
+          "title": "Show Footer",
+          "type": "boolean"
+        },
+        "show_top_note": {
+          "default": false,
+          "description": "Show the top note at the top of the first page. The default value is `true`.",
+          "title": "Show Top Note",
+          "type": "boolean"
+        }
+      },
+      "title": "Page",
+      "type": "object"
+    },
+    "rendercv__schema__models__design__classic_theme__Page__19": {
       "additionalProperties": false,
       "properties": {
         "size": {
@@ -8323,7 +9144,51 @@
       "title": "Page",
       "type": "object"
     },
-    "rendercv__schema__models__design__classic_theme__Page__8": {
+    "rendercv__schema__models__design__classic_theme__Page__2": {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/$defs/PageSize",
+          "default": "a4",
+          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `a4`."
+        },
+        "top_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "bottom_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "left_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "right_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "show_footer": {
+          "default": false,
+          "description": "Show the footer at the bottom of pages. The default value is `true`.",
+          "title": "Show Footer",
+          "type": "boolean"
+        },
+        "show_top_note": {
+          "default": false,
+          "description": "Show the top note at the top of the first page. The default value is `true`.",
+          "title": "Show Top Note",
+          "type": "boolean"
+        }
+      },
+      "title": "Page",
+      "type": "object"
+    },
+    "rendercv__schema__models__design__classic_theme__Page__20": {
       "additionalProperties": false,
       "properties": {
         "size": {
@@ -8350,6 +9215,402 @@
           "$ref": "#/$defs/TypstDimension",
           "default": "0.65in",
           "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.65in`."
+        },
+        "show_footer": {
+          "default": false,
+          "description": "Show the footer at the bottom of pages. The default value is `true`.",
+          "title": "Show Footer",
+          "type": "boolean"
+        },
+        "show_top_note": {
+          "default": false,
+          "description": "Show the top note at the top of the first page. The default value is `true`.",
+          "title": "Show Top Note",
+          "type": "boolean"
+        }
+      },
+      "title": "Page",
+      "type": "object"
+    },
+    "rendercv__schema__models__design__classic_theme__Page__21": {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/$defs/PageSize",
+          "default": "a4",
+          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `a4`."
+        },
+        "top_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "bottom_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "left_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "right_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "show_footer": {
+          "default": false,
+          "description": "Show the footer at the bottom of pages. The default value is `true`.",
+          "title": "Show Footer",
+          "type": "boolean"
+        },
+        "show_top_note": {
+          "default": false,
+          "description": "Show the top note at the top of the first page. The default value is `true`.",
+          "title": "Show Top Note",
+          "type": "boolean"
+        }
+      },
+      "title": "Page",
+      "type": "object"
+    },
+    "rendercv__schema__models__design__classic_theme__Page__22": {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/$defs/PageSize",
+          "default": "a4",
+          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `a4`."
+        },
+        "top_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "bottom_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "left_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "right_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "show_footer": {
+          "default": false,
+          "description": "Show the footer at the bottom of pages. The default value is `true`.",
+          "title": "Show Footer",
+          "type": "boolean"
+        },
+        "show_top_note": {
+          "default": false,
+          "description": "Show the top note at the top of the first page. The default value is `true`.",
+          "title": "Show Top Note",
+          "type": "boolean"
+        }
+      },
+      "title": "Page",
+      "type": "object"
+    },
+    "rendercv__schema__models__design__classic_theme__Page__3": {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/$defs/PageSize",
+          "default": "a4",
+          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `a4`."
+        },
+        "top_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "bottom_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "left_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "right_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "show_footer": {
+          "default": false,
+          "description": "Show the footer at the bottom of pages. The default value is `true`.",
+          "title": "Show Footer",
+          "type": "boolean"
+        },
+        "show_top_note": {
+          "default": false,
+          "description": "Show the top note at the top of the first page. The default value is `true`.",
+          "title": "Show Top Note",
+          "type": "boolean"
+        }
+      },
+      "title": "Page",
+      "type": "object"
+    },
+    "rendercv__schema__models__design__classic_theme__Page__4": {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/$defs/PageSize",
+          "default": "a4",
+          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `a4`."
+        },
+        "top_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "bottom_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "left_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "right_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "show_footer": {
+          "default": false,
+          "description": "Show the footer at the bottom of pages. The default value is `true`.",
+          "title": "Show Footer",
+          "type": "boolean"
+        },
+        "show_top_note": {
+          "default": false,
+          "description": "Show the top note at the top of the first page. The default value is `true`.",
+          "title": "Show Top Note",
+          "type": "boolean"
+        }
+      },
+      "title": "Page",
+      "type": "object"
+    },
+    "rendercv__schema__models__design__classic_theme__Page__5": {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/$defs/PageSize",
+          "default": "a4",
+          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `a4`."
+        },
+        "top_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "bottom_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "left_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "right_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "show_footer": {
+          "default": false,
+          "description": "Show the footer at the bottom of pages. The default value is `true`.",
+          "title": "Show Footer",
+          "type": "boolean"
+        },
+        "show_top_note": {
+          "default": false,
+          "description": "Show the top note at the top of the first page. The default value is `true`.",
+          "title": "Show Top Note",
+          "type": "boolean"
+        }
+      },
+      "title": "Page",
+      "type": "object"
+    },
+    "rendercv__schema__models__design__classic_theme__Page__6": {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/$defs/PageSize",
+          "default": "us-letter",
+          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `us-letter`."
+        },
+        "top_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0.6in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.6in`."
+        },
+        "bottom_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0.6in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.6in`."
+        },
+        "left_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0.6in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.6in`."
+        },
+        "right_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0.6in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.6in`."
+        },
+        "show_footer": {
+          "default": true,
+          "description": "Show the footer at the bottom of pages. The default value is `true`.",
+          "title": "Show Footer",
+          "type": "boolean"
+        },
+        "show_top_note": {
+          "default": true,
+          "description": "Show the top note at the top of the first page. The default value is `true`.",
+          "title": "Show Top Note",
+          "type": "boolean"
+        }
+      },
+      "title": "Page",
+      "type": "object"
+    },
+    "rendercv__schema__models__design__classic_theme__Page__7": {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/$defs/PageSize",
+          "default": "a4",
+          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `a4`."
+        },
+        "top_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "bottom_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "left_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "right_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "show_footer": {
+          "default": false,
+          "description": "Show the footer at the bottom of pages. The default value is `true`.",
+          "title": "Show Footer",
+          "type": "boolean"
+        },
+        "show_top_note": {
+          "default": false,
+          "description": "Show the top note at the top of the first page. The default value is `true`.",
+          "title": "Show Top Note",
+          "type": "boolean"
+        }
+      },
+      "title": "Page",
+      "type": "object"
+    },
+    "rendercv__schema__models__design__classic_theme__Page__8": {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/$defs/PageSize",
+          "default": "us-letter",
+          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `us-letter`."
+        },
+        "top_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0.7in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.7in`."
+        },
+        "bottom_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0.7in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.7in`."
+        },
+        "left_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0.7in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.7in`."
+        },
+        "right_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0.7in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0.7in`."
+        },
+        "show_footer": {
+          "default": false,
+          "description": "Show the footer at the bottom of pages. The default value is `true`.",
+          "title": "Show Footer",
+          "type": "boolean"
+        },
+        "show_top_note": {
+          "default": true,
+          "description": "Show the top note at the top of the first page. The default value is `true`.",
+          "title": "Show Top Note",
+          "type": "boolean"
+        }
+      },
+      "title": "Page",
+      "type": "object"
+    },
+    "rendercv__schema__models__design__classic_theme__Page__9": {
+      "additionalProperties": false,
+      "properties": {
+        "size": {
+          "$ref": "#/$defs/PageSize",
+          "default": "a4",
+          "description": "The page size. Use 'a4' (international standard) or 'us-letter' (US standard). The default value is `a4`."
+        },
+        "top_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "bottom_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "left_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
+        },
+        "right_margin": {
+          "$ref": "#/$defs/TypstDimension",
+          "default": "0in",
+          "description": "It can be specified with units (cm, in, pt, mm, em). For example, `0.1cm`. The default value is `0in`."
         },
         "show_footer": {
           "default": false,
@@ -10815,6 +12076,1538 @@
       },
       "title": "Phrases",
       "type": "object"
+    },
+    "CVStyleObjectiveEntry": {
+      "additionalProperties": true,
+      "description": null,
+      "properties": {
+        "name": {
+          "examples": [
+            "Some Project",
+            "Some Event",
+            "Some Award"
+          ],
+          "title": "Name",
+          "type": "string"
+        },
+        "date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ArbitraryDate"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The date of this event in YYYY-MM-DD, YYYY-MM, or YYYY format, or any custom text like 'Fall 2023'. Use this for single-day or imprecise dates. For date ranges, use `start_date` and `end_date` instead.",
+          "examples": [
+            "2020-09-24",
+            "2020-09",
+            "2020",
+            "Fall 2023",
+            "Summer 2020"
+          ]
+        },
+        "start_date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ExactDate"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The start date in YYYY-MM-DD, YYYY-MM, or YYYY format.",
+          "examples": [
+            "2020-09-24",
+            "2020-09",
+            "2020"
+          ]
+        },
+        "end_date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ExactDate"
+            },
+            {
+              "const": "present",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The end date in YYYY-MM-DD, YYYY-MM, or YYYY format. Use \"present\" for ongoing events, or omit it to indicate the event is ongoing.",
+          "examples": [
+            "2024-05-20",
+            "2024-05",
+            "2024",
+            "present"
+          ],
+          "title": "End Date"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "examples": [
+            "Istanbul, Türkiye",
+            "New York, NY",
+            "Remote"
+          ],
+          "title": "Location"
+        },
+        "summary": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "examples": [
+            "Led a team of 5 engineers to develop innovative solutions.",
+            "Completed advanced coursework in machine learning and artificial intelligence."
+          ],
+          "title": "Summary"
+        },
+        "highlights": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Bullet points for key achievements, responsibilities, or contributions.",
+          "examples": [
+            [
+              "Increased system performance by 40% through optimization.",
+              "Mentored 3 junior developers and conducted code reviews.",
+              "Implemented CI/CD pipeline reducing deployment time by 60%."
+            ]
+          ],
+          "title": "Highlights"
+        },
+        "date_of_birth": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Date Of Birth"
+        },
+        "role_keywords": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Role Keywords"
+        },
+        "phone_href": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Phone Href"
+        },
+        "phone_display": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Phone Display"
+        },
+        "linkedin_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Linkedin Url"
+        },
+        "linkedin_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Linkedin Label"
+        },
+        "github_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Github Url"
+        },
+        "github_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Github Label"
+        },
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Title"
+        },
+        "kicker": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Kicker"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Note"
+        },
+        "wide": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Wide"
+        }
+      },
+      "title": "CVStyleObjectiveEntry",
+      "type": "object"
+    },
+    "CVStyleObjectiveSection": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/CVStyleObjectiveEntry"
+          },
+          "type": "array"
+        },
+        {
+          "$ref": "#/$defs/Section"
+        }
+      ],
+      "title": "CVStyleObjectiveSection"
+    },
+    "CVStyleEducationEntry": {
+      "additionalProperties": true,
+      "description": null,
+      "properties": {
+        "institution": {
+          "examples": [
+            "Boğaziçi University",
+            "MIT",
+            "Harvard University"
+          ],
+          "title": "Institution",
+          "type": "string"
+        },
+        "area": {
+          "description": "Field of study or major.",
+          "examples": [
+            "Mechanical Engineering",
+            "Computer Science",
+            "Electrical Engineering"
+          ],
+          "title": "Area",
+          "type": "string"
+        },
+        "degree": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "examples": [
+            "BS",
+            "BA",
+            "PhD",
+            "MS"
+          ],
+          "title": "Degree"
+        },
+        "date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ArbitraryDate"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The date of this event in YYYY-MM-DD, YYYY-MM, or YYYY format, or any custom text like 'Fall 2023'. Use this for single-day or imprecise dates. For date ranges, use `start_date` and `end_date` instead.",
+          "examples": [
+            "2020-09-24",
+            "2020-09",
+            "2020",
+            "Fall 2023",
+            "Summer 2020"
+          ]
+        },
+        "start_date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ExactDate"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The start date in YYYY-MM-DD, YYYY-MM, or YYYY format.",
+          "examples": [
+            "2020-09-24",
+            "2020-09",
+            "2020"
+          ]
+        },
+        "end_date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ExactDate"
+            },
+            {
+              "const": "present",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The end date in YYYY-MM-DD, YYYY-MM, or YYYY format. Use \"present\" for ongoing events, or omit it to indicate the event is ongoing.",
+          "examples": [
+            "2024-05-20",
+            "2024-05",
+            "2024",
+            "present"
+          ],
+          "title": "End Date"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "examples": [
+            "Istanbul, Türkiye",
+            "New York, NY",
+            "Remote"
+          ],
+          "title": "Location"
+        },
+        "summary": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "examples": [
+            "Led a team of 5 engineers to develop innovative solutions.",
+            "Completed advanced coursework in machine learning and artificial intelligence."
+          ],
+          "title": "Summary"
+        },
+        "highlights": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Bullet points for key achievements, responsibilities, or contributions.",
+          "examples": [
+            [
+              "Increased system performance by 40% through optimization.",
+              "Mentored 3 junior developers and conducted code reviews.",
+              "Implemented CI/CD pipeline reducing deployment time by 60%."
+            ]
+          ],
+          "title": "Highlights"
+        },
+        "badge": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Badge"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Note"
+        }
+      },
+      "title": "CVStyleEducationEntry",
+      "type": "object"
+    },
+    "CVStyleEducationSection": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/CVStyleEducationEntry"
+          },
+          "type": "array"
+        },
+        {
+          "$ref": "#/$defs/Section"
+        }
+      ],
+      "title": "CVStyleEducationSection"
+    },
+    "CVStyleSkillsEntry": {
+      "additionalProperties": true,
+      "description": null,
+      "properties": {
+        "label": {
+          "examples": [
+            "Languages",
+            "Citizenship",
+            "Security Clearance"
+          ],
+          "title": "Label",
+          "type": "string"
+        },
+        "details": {
+          "examples": [
+            "English (native), Spanish (fluent)",
+            "US Citizen",
+            "Top Secret"
+          ],
+          "title": "Details",
+          "type": "string"
+        },
+        "strong": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Strong"
+        },
+        "percent": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Percent"
+        },
+        "badge": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Badge"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Note"
+        }
+      },
+      "title": "CVStyleSkillsEntry",
+      "type": "object"
+    },
+    "CVStyleSkillsSection": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/CVStyleSkillsEntry"
+          },
+          "type": "array"
+        },
+        {
+          "$ref": "#/$defs/Section"
+        }
+      ],
+      "title": "CVStyleSkillsSection"
+    },
+    "CVStyleLanguagesEntry": {
+      "additionalProperties": true,
+      "description": null,
+      "properties": {
+        "label": {
+          "examples": [
+            "Languages",
+            "Citizenship",
+            "Security Clearance"
+          ],
+          "title": "Label",
+          "type": "string"
+        },
+        "details": {
+          "examples": [
+            "English (native), Spanish (fluent)",
+            "US Citizen",
+            "Top Secret"
+          ],
+          "title": "Details",
+          "type": "string"
+        },
+        "percent": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Percent"
+        },
+        "badge": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Badge"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Note"
+        }
+      },
+      "title": "CVStyleLanguagesEntry",
+      "type": "object"
+    },
+    "CVStyleLanguagesSection": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/CVStyleLanguagesEntry"
+          },
+          "type": "array"
+        },
+        {
+          "$ref": "#/$defs/Section"
+        }
+      ],
+      "title": "CVStyleLanguagesSection"
+    },
+    "CVStyleReferencesEntry": {
+      "additionalProperties": true,
+      "description": null,
+      "properties": {
+        "name": {
+          "examples": [
+            "Some Project",
+            "Some Event",
+            "Some Award"
+          ],
+          "title": "Name",
+          "type": "string"
+        },
+        "date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ArbitraryDate"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The date of this event in YYYY-MM-DD, YYYY-MM, or YYYY format, or any custom text like 'Fall 2023'. Use this for single-day or imprecise dates. For date ranges, use `start_date` and `end_date` instead.",
+          "examples": [
+            "2020-09-24",
+            "2020-09",
+            "2020",
+            "Fall 2023",
+            "Summer 2020"
+          ]
+        },
+        "start_date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ExactDate"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The start date in YYYY-MM-DD, YYYY-MM, or YYYY format.",
+          "examples": [
+            "2020-09-24",
+            "2020-09",
+            "2020"
+          ]
+        },
+        "end_date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ExactDate"
+            },
+            {
+              "const": "present",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The end date in YYYY-MM-DD, YYYY-MM, or YYYY format. Use \"present\" for ongoing events, or omit it to indicate the event is ongoing.",
+          "examples": [
+            "2024-05-20",
+            "2024-05",
+            "2024",
+            "present"
+          ],
+          "title": "End Date"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "examples": [
+            "Istanbul, Türkiye",
+            "New York, NY",
+            "Remote"
+          ],
+          "title": "Location"
+        },
+        "summary": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "examples": [
+            "Led a team of 5 engineers to develop innovative solutions.",
+            "Completed advanced coursework in machine learning and artificial intelligence."
+          ],
+          "title": "Summary"
+        },
+        "highlights": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Bullet points for key achievements, responsibilities, or contributions.",
+          "examples": [
+            [
+              "Increased system performance by 40% through optimization.",
+              "Mentored 3 junior developers and conducted code reviews.",
+              "Implemented CI/CD pipeline reducing deployment time by 60%."
+            ]
+          ],
+          "title": "Highlights"
+        },
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Title"
+        },
+        "kicker": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Kicker"
+        },
+        "role": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Role"
+        },
+        "phone_href": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Phone Href"
+        },
+        "phone_display": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Phone Display"
+        },
+        "email": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Email"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Url"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Note"
+        }
+      },
+      "title": "CVStyleReferencesEntry",
+      "type": "object"
+    },
+    "CVStyleReferencesSection": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/CVStyleReferencesEntry"
+          },
+          "type": "array"
+        },
+        {
+          "$ref": "#/$defs/Section"
+        }
+      ],
+      "title": "CVStyleReferencesSection"
+    },
+    "CVStyleSummaryEntry": {
+      "additionalProperties": true,
+      "description": null,
+      "properties": {
+        "name": {
+          "examples": [
+            "Some Project",
+            "Some Event",
+            "Some Award"
+          ],
+          "title": "Name",
+          "type": "string"
+        },
+        "date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ArbitraryDate"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The date of this event in YYYY-MM-DD, YYYY-MM, or YYYY format, or any custom text like 'Fall 2023'. Use this for single-day or imprecise dates. For date ranges, use `start_date` and `end_date` instead.",
+          "examples": [
+            "2020-09-24",
+            "2020-09",
+            "2020",
+            "Fall 2023",
+            "Summer 2020"
+          ]
+        },
+        "start_date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ExactDate"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The start date in YYYY-MM-DD, YYYY-MM, or YYYY format.",
+          "examples": [
+            "2020-09-24",
+            "2020-09",
+            "2020"
+          ]
+        },
+        "end_date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ExactDate"
+            },
+            {
+              "const": "present",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The end date in YYYY-MM-DD, YYYY-MM, or YYYY format. Use \"present\" for ongoing events, or omit it to indicate the event is ongoing.",
+          "examples": [
+            "2024-05-20",
+            "2024-05",
+            "2024",
+            "present"
+          ],
+          "title": "End Date"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "examples": [
+            "Istanbul, Türkiye",
+            "New York, NY",
+            "Remote"
+          ],
+          "title": "Location"
+        },
+        "summary": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "examples": [
+            "Led a team of 5 engineers to develop innovative solutions.",
+            "Completed advanced coursework in machine learning and artificial intelligence."
+          ],
+          "title": "Summary"
+        },
+        "highlights": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Bullet points for key achievements, responsibilities, or contributions.",
+          "examples": [
+            [
+              "Increased system performance by 40% through optimization.",
+              "Mentored 3 junior developers and conducted code reviews.",
+              "Implemented CI/CD pipeline reducing deployment time by 60%."
+            ]
+          ],
+          "title": "Highlights"
+        },
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Title"
+        },
+        "kicker": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Kicker"
+        },
+        "role_keywords": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Role Keywords"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Note"
+        },
+        "wide": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Wide"
+        }
+      },
+      "title": "CVStyleSummaryEntry",
+      "type": "object"
+    },
+    "CVStyleSummarySection": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/CVStyleSummaryEntry"
+          },
+          "type": "array"
+        },
+        {
+          "$ref": "#/$defs/Section"
+        }
+      ],
+      "title": "CVStyleSummarySection"
+    },
+    "CVStyleHighlightsEntry": {
+      "additionalProperties": true,
+      "description": null,
+      "properties": {
+        "name": {
+          "examples": [
+            "Some Project",
+            "Some Event",
+            "Some Award"
+          ],
+          "title": "Name",
+          "type": "string"
+        },
+        "date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ArbitraryDate"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The date of this event in YYYY-MM-DD, YYYY-MM, or YYYY format, or any custom text like 'Fall 2023'. Use this for single-day or imprecise dates. For date ranges, use `start_date` and `end_date` instead.",
+          "examples": [
+            "2020-09-24",
+            "2020-09",
+            "2020",
+            "Fall 2023",
+            "Summer 2020"
+          ]
+        },
+        "start_date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ExactDate"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The start date in YYYY-MM-DD, YYYY-MM, or YYYY format.",
+          "examples": [
+            "2020-09-24",
+            "2020-09",
+            "2020"
+          ]
+        },
+        "end_date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ExactDate"
+            },
+            {
+              "const": "present",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The end date in YYYY-MM-DD, YYYY-MM, or YYYY format. Use \"present\" for ongoing events, or omit it to indicate the event is ongoing.",
+          "examples": [
+            "2024-05-20",
+            "2024-05",
+            "2024",
+            "present"
+          ],
+          "title": "End Date"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "examples": [
+            "Istanbul, Türkiye",
+            "New York, NY",
+            "Remote"
+          ],
+          "title": "Location"
+        },
+        "summary": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "examples": [
+            "Led a team of 5 engineers to develop innovative solutions.",
+            "Completed advanced coursework in machine learning and artificial intelligence."
+          ],
+          "title": "Summary"
+        },
+        "highlights": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Bullet points for key achievements, responsibilities, or contributions.",
+          "examples": [
+            [
+              "Increased system performance by 40% through optimization.",
+              "Mentored 3 junior developers and conducted code reviews.",
+              "Implemented CI/CD pipeline reducing deployment time by 60%."
+            ]
+          ],
+          "title": "Highlights"
+        },
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Title"
+        },
+        "kicker": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Kicker"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Note"
+        },
+        "wide": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Wide"
+        }
+      },
+      "title": "CVStyleHighlightsEntry",
+      "type": "object"
+    },
+    "CVStyleHighlightsSection": {
+      "anyOf": [
+        {
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/$defs/CVStyleHighlightsEntry"
+              }
+            ]
+          },
+          "type": "array"
+        },
+        {
+          "$ref": "#/$defs/Section"
+        }
+      ],
+      "title": "CVStyleHighlightsSection"
+    },
+    "CVStyleExperienceEntry": {
+      "additionalProperties": true,
+      "description": null,
+      "properties": {
+        "company": {
+          "examples": [
+            "Microsoft",
+            "Google",
+            "Princeton Plasma Physics Laboratory"
+          ],
+          "title": "Company",
+          "type": "string"
+        },
+        "position": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Position"
+        },
+        "date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ArbitraryDate"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The date of this event in YYYY-MM-DD, YYYY-MM, or YYYY format, or any custom text like 'Fall 2023'. Use this for single-day or imprecise dates. For date ranges, use `start_date` and `end_date` instead.",
+          "examples": [
+            "2020-09-24",
+            "2020-09",
+            "2020",
+            "Fall 2023",
+            "Summer 2020"
+          ]
+        },
+        "start_date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ExactDate"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The start date in YYYY-MM-DD, YYYY-MM, or YYYY format.",
+          "examples": [
+            "2020-09-24",
+            "2020-09",
+            "2020"
+          ]
+        },
+        "end_date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ExactDate"
+            },
+            {
+              "const": "present",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The end date in YYYY-MM-DD, YYYY-MM, or YYYY format. Use \"present\" for ongoing events, or omit it to indicate the event is ongoing.",
+          "examples": [
+            "2024-05-20",
+            "2024-05",
+            "2024",
+            "present"
+          ],
+          "title": "End Date"
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "examples": [
+            "Istanbul, Türkiye",
+            "New York, NY",
+            "Remote"
+          ],
+          "title": "Location"
+        },
+        "summary": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "examples": [
+            "Led a team of 5 engineers to develop innovative solutions.",
+            "Completed advanced coursework in machine learning and artificial intelligence."
+          ],
+          "title": "Summary"
+        },
+        "highlights": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Bullet points for key achievements, responsibilities, or contributions.",
+          "examples": [
+            [
+              "Increased system performance by 40% through optimization.",
+              "Mentored 3 junior developers and conducted code reviews.",
+              "Implemented CI/CD pipeline reducing deployment time by 60%."
+            ]
+          ],
+          "title": "Highlights"
+        },
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Title"
+        },
+        "kicker": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Kicker"
+        },
+        "duration": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Duration"
+        },
+        "role": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Role"
+        },
+        "team_size": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Team Size"
+        },
+        "stack": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Stack"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Note"
+        },
+        "single_column": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Single Column"
+        }
+      },
+      "title": "CVStyleExperienceEntry",
+      "type": "object"
+    },
+    "CVStyleExperienceSection": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/CVStyleExperienceEntry"
+          },
+          "type": "array"
+        },
+        {
+          "$ref": "#/$defs/Section"
+        }
+      ],
+      "title": "CVStyleExperienceSection"
     }
   },
   "additionalProperties": false,

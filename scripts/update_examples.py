@@ -16,14 +16,19 @@ rendercv_typst_examples_directory = (
 
 examples_directory_path = pathlib.Path(__file__).parent.parent / "examples"
 
+
+def get_example_stem(theme: str) -> str:
+    if "-" in theme:
+        return f"John_Doe_{theme}Theme_CV"
+    return f"John_Doe_{theme.capitalize()}Theme_CV"
+
+
 # Check if examples directory exists. If not, create it
 if not examples_directory_path.exists():
     examples_directory_path.mkdir()
 
 for theme in available_themes:
-    yaml_file_path = (
-        examples_directory_path / f"John_Doe_{theme.capitalize()}Theme_CV.yaml"
-    )
+    yaml_file_path = examples_directory_path / f"{get_example_stem(theme)}.yaml"
     create_sample_yaml_input_file(
         file_path=yaml_file_path,
         name="John Doe",

@@ -72,9 +72,9 @@
     - `John_Doe_CV.md`: Your CV as Markdown
     - `John_Doe_CV.html`: Your CV as HTML (generated from the Markdown)
 
-    The built-in `khaitranquang` theme still generates a Typst source file, but
-    its PDF and PNG outputs are rendered from HTML with Chromium through
-    Playwright. The Docker image includes Chromium.
+    HTML-first built-in themes still generate a Typst source file, but their PDF
+    and PNG outputs are rendered from HTML with Chromium through Playwright. The
+    Docker image includes Chromium.
 
     See the [CLI Reference](cli_reference.md#rendercv-render) for the complete list of options available for the `render` command.
 

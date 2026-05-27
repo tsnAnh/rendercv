@@ -156,8 +156,8 @@ Install RenderCV (Requires Python 3.12+):
 pip install "rendercv[full]"
 ```
 
-If you use the `khaitranquang` theme outside Docker, install Chromium for
-Playwright once:
+If you use an HTML-first theme outside Docker, install Chromium for Playwright
+once:
 
 ```
 python -m playwright install chromium

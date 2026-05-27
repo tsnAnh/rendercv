@@ -4,6 +4,7 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 from rendercv.exception import RenderCVInternalError
+from rendercv.renderer.browser_pdf import browser_rendered_themes
 from rendercv.renderer.pdf_png import (
     generate_pdf,
     generate_png,
@@ -15,7 +16,7 @@ from rendercv.schema.models.design.built_in_design import available_themes
 from rendercv.schema.models.rendercv_model import RenderCVModel
 
 typst_rendered_themes = [
-    theme for theme in available_themes if theme != "khaitranquang"
+    theme for theme in available_themes if theme not in browser_rendered_themes
 ]
 
 

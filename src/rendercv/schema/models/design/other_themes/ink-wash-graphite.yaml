@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=../../../../../../schema.json
+design:
+  theme: ink-wash-graphite
+  page:
+    size: a4
+    top_margin: 0in
+    bottom_margin: 0in
+    left_margin: 0in
+    right_margin: 0in
+    show_footer: false
+    show_top_note: false

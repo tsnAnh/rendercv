@@ -1,0 +1,2511 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CV Style 13 - Kami Sidebar</title>
+  <style>
+
+    :root {
+      --page-width: 990px;
+      --bg: #eef1f5;
+      --paper: #ffffff;
+      --ink: #111827;
+      --text: #334155;
+      --muted: #64748b;
+      --rule: #d6dce5;
+      --soft: #f4f7fb;
+      --accent: #1f5d8a;
+      --accent-2: #0f766e;
+      --font-display: "Aptos Display", "Segoe UI", system-ui, sans-serif;
+      --font-body: "Aptos", "Segoe UI", system-ui, sans-serif;
+      --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: clamp(12px, 1vw, 14px);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: clamp(14px, 3vw, 42px);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    ul {
+      margin: 0;
+    }
+
+    ul {
+      padding: 0;
+    }
+
+    .resume-page {
+      width: min(100%, var(--page-width));
+      max-width: var(--page-width);
+      margin: 0 auto;
+      background: var(--paper);
+      color: var(--text);
+      overflow: visible;
+      position: relative;
+    }
+
+    .resume-header,
+    .sidebar,
+    main {
+      min-width: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    .role,
+    .project-kicker {
+      color: var(--ink);
+      font-family: var(--font-display);
+    }
+
+    .avatar {
+      overflow: hidden;
+      flex: 0 0 auto;
+      background: var(--soft);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      filter: grayscale(100%);
+      display: block;
+    }
+
+    .header-inner,
+    .resume-shell,
+    .contact-list,
+    .role-keywords,
+    .tag-row,
+    .project-header,
+    .project-meta,
+    .spoken-row,
+    .sidebar-language-header {
+      display: flex;
+    }
+
+    .header-inner,
+    .project-header {
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .contact-list,
+    .role-keywords,
+    .tag-row,
+    .project-meta {
+      flex-wrap: wrap;
+    }
+
+    .contact-list,
+    .role-keywords,
+    .tag-row {
+      list-style: none;
+    }
+
+    .contact-item,
+    .sidebar-reference a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .contact-item,
+    .sidebar-reference a,
+    .role-keywords span,
+    .tag,
+    .project-title {
+      overflow-wrap: anywhere;
+    }
+
+    .icon,
+    .section-icon,
+    .sidebar-title svg,
+    .sidebar-reference svg {
+      flex: 0 0 auto;
+    }
+
+    .icon,
+    .section-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 0;
+      text-align: center;
+    }
+
+    .icon svg,
+    .section-icon svg,
+    .sidebar-title svg,
+    .sidebar-reference svg {
+      display: block;
+      width: 1em;
+      height: 1em;
+      max-width: 100%;
+      max-height: 100%;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .role-keywords {
+      gap: 0.35rem 0.7rem;
+    }
+
+    .role-keywords span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .role-keywords span:not(:last-child)::after {
+      content: "/";
+      color: var(--muted);
+    }
+
+    .sidebar-title,
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-weight: 800;
+    }
+
+    .sidebar-title svg,
+    .section-icon {
+      color: var(--accent);
+    }
+
+    .sidebar-section,
+    .section-card,
+    .project {
+      break-inside: avoid;
+    }
+
+    .sidebar-section + .sidebar-section,
+    .section-card + .section-card {
+      margin-top: var(--section-gap, 1.6rem);
+    }
+
+    .sidebar-skill-block + .sidebar-skill-block,
+    .education-item + .education-item,
+    .project + .project {
+      margin-top: var(--item-gap, 1.1rem);
+    }
+
+    .education-date,
+    .project-time,
+    .project-duration,
+    .project-meta,
+    .tag {
+      color: var(--muted);
+    }
+
+    .education-date,
+    .project-time,
+    .project-duration,
+    .project-meta,
+    .tag {
+      font-size: 0.82rem;
+    }
+
+    .sidebar-title,
+    .section-title {
+      font-size: 0.95rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .project-title {
+      font-size: clamp(1rem, 1.6vw, 1.22rem);
+      line-height: 1.25;
+    }
+
+    .project-kicker {
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.18rem;
+    }
+
+    .project-time-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.2rem;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .project-meta {
+      gap: 0.35rem 0.9rem;
+      margin-top: 0.45rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .meta-line {
+      display: inline-flex;
+      gap: 0.22rem;
+    }
+
+    .meta-line span:first-child {
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .meta-line span:first-child::after {
+      content: ":";
+    }
+
+    .project-body p + .bullet-list,
+    .project-body p + p,
+    .highlight-note p + p,
+    .copy-block p + p {
+      margin-top: 0.55rem;
+    }
+
+    .bullet-list {
+      list-style: disc;
+      padding-left: 1.2rem;
+    }
+
+    .bullet-list li + li {
+      margin-top: 0.18rem;
+    }
+
+    .tag-row {
+      gap: 0.36rem;
+      margin-top: 0.65rem;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--rule);
+      background: var(--soft);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 0.18rem 0.5rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .spoken-row {
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
+
+    .spoken-row + .spoken-row {
+      margin-top: 0.45rem;
+    }
+
+    .language-note {
+      margin: 0.65rem 0 0;
+      color: var(--text);
+      font-size: 0.86rem;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .sidebar-reference {
+      display: grid;
+      gap: 0.28rem;
+    }
+
+    .sidebar-reference strong,
+    .education-item h2,
+    .sidebar-skill-block h3,
+    .highlight-note h3 {
+      color: var(--ink);
+    }
+
+    .education-item h2,
+    .sidebar-skill-block h3 {
+      font-size: 0.95rem;
+      line-height: 1.3;
+      margin-bottom: 0.25rem;
+    }
+
+    .highlight-note {
+      background: var(--soft);
+      border: 1px solid var(--rule);
+    }
+
+    .highlight-note h3 {
+      font-size: 1rem;
+      line-height: 1.35;
+      margin-bottom: 0.5rem;
+    }
+
+    .btn-print {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 20;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 0;
+      border-radius: 999px;
+      padding: 0.76rem 1rem;
+      background: #111827;
+      color: #fff;
+      font: 700 0.9rem/1 var(--font-body);
+      box-shadow: 0 18px 45px rgb(15 23 42 / 0.18);
+      cursor: pointer;
+    }
+
+    .btn-print svg {
+      width: 1.1em;
+      height: 1.1em;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 0;
+      }
+
+      .resume-page {
+        width: 100%;
+        max-width: none;
+        box-shadow: none;
+        border-radius: 0;
+      }
+
+      .resume-shell,
+      .header-inner,
+      .project-header {
+        flex-direction: column;
+      }
+
+      .project-time-container {
+        align-items: flex-start;
+        text-align: left;
+        margin-top: 0.5rem;
+      }
+
+      .contact-list {
+        gap: 0.55rem 0.8rem;
+      }
+
+      .btn-print span {
+        display: none;
+      }
+
+      .btn-print {
+        padding: 0.85rem;
+      }
+    }
+
+    @media print {
+      html,
+      body {
+        background: #fff !important;
+      }
+
+      body {
+        padding: 0;
+      }
+
+      .resume-page {
+        width: 100%;
+        max-width: none;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+      }
+
+      .btn-print {
+        display: none !important;
+      }
+
+      * {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+    }
+
+
+    :root {
+      --bg: #e9edf2;
+      --paper: #ffffff;
+      --ink: #12161d;
+      --text: #303844;
+      --muted: #687382;
+      --rule: #d7dee8;
+      --soft: #f5f8fb;
+      --accent: #243b63;
+      --accent-2: #667085;
+      --font-display: "Aptos Display", "Segoe UI", system-ui, sans-serif;
+      --font-body: "Aptos", "Segoe UI", system-ui, sans-serif;
+      --section-gap: 1.5rem;
+      --item-gap: 1.06rem;
+    }
+    body {
+      position: relative;
+      background:
+        radial-gradient(ellipse at 7% 6%, rgb(36 59 99 / 0.16) 0 7%, transparent 27%),
+        radial-gradient(ellipse at 91% 13%, rgb(18 22 29 / 0.12) 0 5%, transparent 23%),
+        linear-gradient(135deg, #f6f8fa, #e1e7ef 55%, #f3f6f8);
+    }
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: auto auto 7% -96px;
+      width: 360px;
+      height: 300px;
+      border-radius: 48% 52% 45% 55%;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 54% 46%, rgb(36 59 99 / 0.18), transparent 48%),
+        radial-gradient(circle at 38% 63%, rgb(18 22 29 / 0.08), transparent 38%);
+      filter: blur(20px);
+      opacity: 0.6;
+    }
+    body::after {
+      inset: 11% -112px auto auto;
+      width: 300px;
+      height: 330px;
+      border-radius: 44% 56% 59% 41%;
+      background: radial-gradient(circle at 47% 45%, rgb(18 22 29 / 0.13), transparent 49%);
+      opacity: 0.38;
+    }
+    .resume-page {
+      border-radius: 6px;
+      box-shadow: 0 28px 90px rgb(18 22 29 / 0.14);
+      padding: 20px;
+      background: linear-gradient(180deg, #ffffff, #fbfcfd);
+      border: 1px solid rgb(18 22 29 / 0.08);
+      isolation: isolate;
+    }
+    .resume-header {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      border-radius: 4px;
+      padding: clamp(28px, 4vw, 44px);
+      background:
+        radial-gradient(ellipse at 94% 8%, rgb(36 59 99 / 0.13), transparent 34%),
+        linear-gradient(135deg, #ffffff, #f4f7fb);
+      border: 1px solid var(--rule);
+    }
+    .resume-header::after {
+      content: "";
+      position: absolute;
+      top: 30px;
+      left: 28px;
+      width: 168px;
+      height: 140px;
+      border-radius: 42% 58% 50% 50%;
+      background:
+        radial-gradient(circle at 54% 45%, rgb(36 59 99 / 0.16), transparent 53%),
+        radial-gradient(circle at 39% 66%, rgb(18 22 29 / 0.07), transparent 44%);
+      filter: blur(0.4px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .header-inner {
+      position: relative;
+      z-index: 1;
+      gap: 30px;
+    }
+    .avatar {
+      position: relative;
+      width: 116px;
+      height: 116px;
+      border-radius: 6px;
+      border: 1px solid rgb(18 22 29 / 0.14);
+      box-shadow: 7px 7px 0 rgb(36 59 99 / 0.1);
+      overflow: visible;
+      z-index: 1;
+    }
+    .avatar::before {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      inset: -18px -24px -14px -20px;
+      border-radius: 43% 57% 54% 46%;
+      background:
+        radial-gradient(circle at 52% 44%, rgb(36 59 99 / 0.18), transparent 52%),
+        radial-gradient(circle at 36% 67%, rgb(18 22 29 / 0.08), transparent 44%);
+      filter: blur(1px);
+      pointer-events: none;
+    }
+    .avatar img {
+      position: relative;
+      z-index: 1;
+      border-radius: inherit;
+    }
+    h1 {
+      font-size: clamp(2.5rem, 5.2vw, 4.85rem);
+      letter-spacing: -0.055em;
+      line-height: 0.92;
+      font-weight: 900;
+    }
+    .role {
+      margin-top: 0.55rem;
+      color: var(--accent);
+      font-size: 1.04rem;
+      font-weight: 900;
+    }
+    .role-keywords {
+      margin-top: 0.85rem;
+      color: var(--text);
+      font-size: 0.81rem;
+      font-weight: 760;
+    }
+    .contact-list {
+      margin-top: 1.08rem;
+      gap: 0.55rem 0.82rem;
+      font-size: 0.82rem;
+    }
+    .icon {
+      width: 25px;
+      height: 25px;
+      justify-content: center;
+      border-radius: 4px;
+      background: #edf2f7;
+      color: var(--accent);
+    }
+    .resume-shell {
+      gap: 18px;
+      padding-top: 18px;
+    }
+    .sidebar {
+      width: 285px;
+      flex: 0 0 285px;
+      padding: 24px;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      background:
+        linear-gradient(180deg, rgb(36 59 99 / 0.045), transparent 120px),
+        #ffffff;
+    }
+    main {
+      flex: 1;
+      padding: 24px 20px 28px;
+    }
+    .sidebar-title,
+    .section-title {
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 0.55rem;
+      margin-bottom: 0.9rem;
+    }
+    .section-icon {
+      width: 23px;
+      height: 23px;
+      border-radius: 4px;
+      background: #edf2f7;
+    }
+    .highlight-note {
+      padding: 1.05rem;
+      border-radius: 4px;
+      background:
+        linear-gradient(90deg, rgb(36 59 99 / 0.08), transparent 58%),
+        #f7f9fc;
+      border-color: #d9e0ea;
+    }
+    .project {
+      padding: 1rem;
+      border: 1px solid transparent;
+      border-bottom-color: var(--rule);
+      border-radius: 4px;
+    }
+    .project:hover {
+      border-color: var(--rule);
+      background: #f8fafc;
+    }
+    .project-time {
+      color: var(--accent);
+      font-weight: 900;
+    }
+    .tag {
+      border-color: #dbe2eb;
+      background: #f8fafc;
+      color: #303844;
+      border-radius: 4px;
+    }
+    @media (max-width: 760px) {
+      .resume-page {
+        padding: 0;
+        border-radius: 0;
+      }
+      .resume-header,
+      .sidebar {
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+      }
+      .sidebar,
+      main {
+        width: 100%;
+      }
+    }
+
+    /* Compact section rules: keep icons, labels, and dividers on one line. */
+    .sidebar-title,
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      border-bottom: 0 !important;
+      padding-bottom: 0 !important;
+      margin-bottom: 0.85rem;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    .sidebar-title::after,
+    .section-title::after {
+      content: "";
+      flex: 1 1 auto;
+      min-width: 24px;
+      height: 1px;
+      background: var(--rule);
+      transform: translateY(0.02em);
+    }
+
+    .sidebar-title svg,
+    .section-icon {
+      flex: 0 0 auto;
+      align-self: center;
+    }
+    /* Style 13: Kami Sidebar, paper-and-ink two-column resume. */
+    :root {
+      --bg: #eef0ed;
+      --paper: #fffefa;
+      --ink: #171717;
+      --text: #3f3f3a;
+      --muted: #74746b;
+      --rule: #ddd8ca;
+      --soft: #f7f4eb;
+      --accent: #9f3326;
+      --accent-2: #3e6b5d;
+      --font-display: "Iowan Old Style", "Charter", Georgia, serif;
+      --font-body: "Aptos", "Segoe UI", system-ui, sans-serif;
+      --section-gap: 1.35rem;
+      --item-gap: 1rem;
+    }
+
+    html {
+      font-size: clamp(12px, 0.92vw, 13.4px);
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 19% 12%, rgb(159 51 38 / 0.08), transparent 17%),
+        radial-gradient(circle at 83% 4%, rgb(62 107 93 / 0.09), transparent 18%),
+        linear-gradient(180deg, #f6f5f0, #e8ebe5);
+    }
+
+    body::before,
+    body::after,
+    .resume-header::after,
+    .avatar::before {
+      display: none !important;
+    }
+
+    .resume-page {
+      padding: clamp(28px, 4.6vw, 50px);
+      border: 1px solid #d9d2c1;
+      border-radius: 2px;
+      background:
+        linear-gradient(90deg, rgb(23 23 23 / 0.018) 1px, transparent 1px) 0 0 / 9px 9px,
+        linear-gradient(180deg, #fffefa, #fbf8ef);
+      box-shadow: 0 26px 78px rgb(41 37 31 / 0.12);
+    }
+
+    .resume-header {
+      position: relative;
+      padding: 0 0 30px;
+      border: 0;
+      border-bottom: 1px solid #cfc7b7;
+      border-radius: 0;
+      background: transparent;
+      overflow: visible;
+    }
+
+    .resume-header::before {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 6px;
+      width: 46px;
+      height: 46px;
+      border: 2px solid rgb(159 51 38 / 0.68);
+      background:
+        linear-gradient(45deg, transparent 47%, rgb(159 51 38 / 0.18) 48% 52%, transparent 53%),
+        rgb(159 51 38 / 0.06);
+      opacity: 0.88;
+      pointer-events: none;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 26px;
+    }
+
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 1px solid #c8bda8;
+      box-shadow: 0 0 0 8px rgb(255 254 250 / 0.88), 0 0 0 9px #d8d0bd;
+      overflow: hidden;
+    }
+
+    .avatar img {
+      filter: grayscale(100%) contrast(1.04);
+    }
+
+    h1 {
+      font-size: clamp(3rem, 5.8vw, 5.25rem);
+      line-height: 0.92;
+      letter-spacing: -0.055em;
+      font-weight: 700;
+    }
+
+    .role {
+      margin-top: 0.75rem;
+      color: var(--accent);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 850;
+      letter-spacing: 0.01em;
+    }
+
+    .role-keywords {
+      margin-top: 0.8rem;
+      color: #504d45;
+      font-size: 0.82rem;
+    }
+
+    .contact-list {
+      margin-top: 1.1rem;
+      gap: 0.46rem 0.68rem;
+      font-size: 0.82rem;
+    }
+
+    .icon,
+    .section-icon {
+      width: 22px;
+      height: 22px;
+      border: 1px solid #d3c9b7;
+      border-radius: 999px;
+      background: #fffdf7;
+      color: var(--accent);
+    }
+
+    .resume-shell {
+      display: flex !important;
+      flex-direction: column;
+      gap: var(--section-gap);
+      padding-top: 26px;
+    }
+
+    .sidebar,
+    main {
+      display: contents !important;
+      width: auto !important;
+      flex: none !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+
+    .section-card,
+    .sidebar-section {
+      width: 100%;
+      margin: 0 !important;
+      padding: 0 0 1.18rem;
+      border: 0;
+      border-bottom: 1px solid var(--rule);
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    #summary { order: 1; }
+    .sidebar-objective { order: 2; }
+    #highlights { order: 3; }
+    #experience { order: 4; }
+    .sidebar-skills { order: 5; }
+    .sidebar-education { order: 6; }
+    .sidebar-section[aria-label="Languages"] { order: 7; }
+    .sidebar-section[aria-label="References"] { order: 8; }
+
+    .sidebar-title,
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-bottom: 0.76rem;
+      padding: 0 !important;
+      border: 0 !important;
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      white-space: nowrap;
+    }
+
+    .sidebar-title::after,
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, #c9c0ae, transparent);
+    }
+
+    .highlight-note {
+      padding: 1rem 1.08rem;
+      border-radius: 2px;
+      border: 1px solid #d8cebb;
+      background: rgb(255 254 250 / 0.7);
+    }
+
+    .project {
+      padding: 1.02rem 0;
+      border: 0;
+      border-bottom: 1px solid #e1dacb;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .project:hover {
+      background: rgb(247 244 235 / 0.65);
+      border-color: #d6ccb8;
+    }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.15rem, 1.9vw, 1.42rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+
+    .project-kicker,
+    .project-time {
+      color: var(--accent);
+    }
+
+    .tag {
+      border-radius: 999px;
+      border-color: #d8cebb;
+      background: #fffdf7;
+      color: #4d4940;
+    }
+
+    @media (max-width: 760px) {
+      .resume-page {
+        padding: 22px;
+      }
+      .header-inner {
+        display: block;
+      }
+      .avatar {
+        margin-bottom: 18px;
+      }
+      .resume-header::before {
+        width: 34px;
+        height: 34px;
+      }
+    }
+
+    /* Refinement: manuscript column with controlled measure and calmer spacing. */
+    .resume-page {
+      padding-inline: clamp(30px, 7vw, 92px);
+    }
+
+    .resume-header {
+      max-width: 724px;
+      margin: 0 auto;
+      padding-bottom: 26px;
+    }
+
+    .resume-header::before {
+      right: 2px;
+      top: 2px;
+      width: 34px;
+      height: 34px;
+      opacity: 0.62;
+    }
+
+    .header-inner {
+      align-items: center;
+      gap: 22px;
+    }
+
+    .header-copy {
+      max-width: 560px;
+    }
+
+    .avatar {
+      width: 92px;
+      height: 92px;
+      box-shadow: 0 0 0 6px rgb(255 254 250 / 0.9), 0 0 0 7px #d8d0bd;
+    }
+
+    h1 {
+      font-size: clamp(2.65rem, 4.7vw, 4.35rem);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+    }
+
+    .role,
+    .role-keywords,
+    .contact-list {
+      max-width: 560px;
+    }
+
+    .resume-shell {
+      max-width: 704px;
+      margin: 0 auto;
+      padding-top: 28px;
+      gap: 1.15rem;
+    }
+
+    .section-card,
+    .sidebar-section {
+      padding: 0 0 1.16rem;
+      border-bottom-color: #e3dccd;
+    }
+
+    .sidebar-title,
+    .section-title {
+      margin-bottom: 0.64rem;
+      letter-spacing: 0.14em;
+    }
+
+    .copy-block,
+    .project-body,
+    .highlight-note p,
+    .sidebar-section p {
+      max-width: 62ch;
+    }
+
+    .highlight-note {
+      max-width: 650px;
+      padding: 0.95rem 1rem;
+      background: rgb(255 254 250 / 0.82);
+    }
+
+    .project {
+      padding: 1rem 0 1.1rem;
+    }
+
+    .project-header {
+      display: block;
+    }
+
+    .project-time-container {
+      align-items: flex-start;
+      text-align: left;
+      margin-top: 0.42rem;
+      flex-direction: row;
+      gap: 0.55rem;
+      color: var(--muted);
+    }
+
+    .project-duration::before {
+      content: "/";
+      margin-right: 0.55rem;
+      color: #b5aa97;
+    }
+
+    .project-meta {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.26rem;
+      max-width: 610px;
+      margin-top: 0.58rem;
+    }
+
+    .meta-line {
+      display: grid;
+      grid-template-columns: 5.5rem minmax(0, 1fr);
+      gap: 0.55rem;
+    }
+
+    .meta-line span:first-child::after {
+      content: "";
+    }
+
+    .sidebar-skill-block {
+      max-width: 650px;
+    }
+
+    @media (max-width: 760px) {
+      .resume-page {
+        padding: 22px;
+      }
+      .header-inner {
+        display: block;
+      }
+      .project-time-container {
+        flex-wrap: wrap;
+      }
+      .meta-line {
+        display: block;
+      }
+      .meta-line span:first-child {
+        display: inline;
+        margin-right: 0.35rem;
+      }
+      .meta-line span:first-child::after {
+        content: ":";
+      }
+    }
+
+    /* UI fix: balanced manuscript layout with usable width and calm modules. */
+    .resume-page {
+      padding: clamp(30px, 5vw, 64px);
+      border-color: #d8d0be;
+      background:
+        linear-gradient(90deg, rgb(23 23 23 / 0.012) 1px, transparent 1px) 0 0 / 11px 11px,
+        linear-gradient(180deg, #fffefa, #fcf9f1);
+    }
+
+    .resume-header {
+      max-width: none;
+      margin: 0;
+      padding-bottom: 24px;
+    }
+
+    .resume-header::before {
+      right: 0;
+      top: 0;
+      width: 32px;
+      height: 32px;
+      opacity: 0.5;
+    }
+
+    .header-inner {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 22px;
+      align-items: center;
+    }
+
+    .header-copy,
+    .role,
+    .role-keywords,
+    .contact-list {
+      max-width: none;
+    }
+
+    h1 {
+      max-width: 13ch;
+      font-size: clamp(2.65rem, 4.8vw, 4.35rem);
+      line-height: 0.96;
+      letter-spacing: -0.035em;
+    }
+
+    .resume-shell {
+      max-width: none;
+      display: flex !important;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 0;
+      padding-top: 24px;
+    }
+
+    .section-card,
+    .sidebar-section {
+      padding: 0 0 1rem;
+      border-bottom-color: #e1d8c8;
+    }
+
+    .copy-block,
+    .project-body,
+    .highlight-note p,
+    .sidebar-section p {
+      max-width: 74ch;
+    }
+
+    .highlight-note {
+      max-width: none;
+      border-color: #d8cebb;
+      background: rgb(255 254 250 / 0.84);
+    }
+
+    .sidebar-skills {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem 1rem;
+    }
+
+    .sidebar-skills .sidebar-title {
+      grid-column: 1 / -1;
+      margin-bottom: 0;
+    }
+
+    .sidebar-skill-block {
+      max-width: none;
+      padding: 0.82rem 0.9rem;
+      border: 1px solid #ded5c4;
+      background: rgb(255 253 247 / 0.74);
+    }
+
+    .project {
+      padding: 1rem 0 1.08rem;
+    }
+
+    .project-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 150px;
+      gap: 1.1rem;
+      align-items: start;
+    }
+
+    .project-time-container {
+      margin-top: 0;
+      flex-direction: column;
+      gap: 0.16rem;
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .project-duration::before {
+      content: "";
+      margin: 0;
+    }
+
+    .project-meta {
+      max-width: none;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.52rem;
+    }
+
+    .meta-line {
+      display: block;
+      padding: 0.58rem 0.68rem;
+      border: 1px solid #e3dbcc;
+      background: rgb(255 254 250 / 0.62);
+    }
+
+    .meta-line span:first-child {
+      display: block;
+      margin-bottom: 0.18rem;
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    @media (max-width: 820px) {
+      .resume-page {
+        padding: 22px;
+      }
+      .header-inner,
+      .project-header,
+      .project-meta,
+      .sidebar-skills {
+        grid-template-columns: 1fr;
+      }
+      .project-time-container {
+        align-items: flex-start;
+        text-align: left;
+      }
+      .resume-header::before {
+        display: none;
+      }
+    }
+
+    /* Polish: keep skills and experience as clean text flow, not boxed UI cards. */
+    .sidebar-skill-block {
+      padding: 0 !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    .sidebar-skill-block h3 {
+      margin-bottom: 0.28rem;
+    }
+
+    .project {
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    .project:hover {
+      border: 0 !important;
+      background: transparent !important;
+    }
+
+    .project + .project {
+      margin-top: 1.12rem;
+      padding-top: 1.18rem;
+      background-image: linear-gradient(90deg, #e1d8c8, transparent 90%);
+      background-repeat: no-repeat;
+      background-size: 100% 1px;
+      background-position: left top;
+    }
+
+    .project-meta {
+      display: flex !important;
+      flex-wrap: wrap;
+      grid-template-columns: none !important;
+      gap: 0.32rem 1rem;
+      margin-top: 0.7rem;
+    }
+
+    .meta-line {
+      display: inline-flex !important;
+      min-height: 0 !important;
+      gap: 0.28rem;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+
+    .meta-line span:first-child {
+      display: inline !important;
+      margin: 0 !important;
+      color: var(--muted);
+      font-weight: 850;
+    }
+
+    .meta-line span:first-child::after {
+      content: ":";
+    }
+
+    /* Requested flow polish: objective first, paired intro, tight languages, top-aligned skills. */
+    .resume-shell {
+      display: grid !important;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 1.18rem clamp(28px, 4vw, 46px);
+      align-items: start;
+    }
+
+    .sidebar,
+    main {
+      display: contents !important;
+    }
+
+    .sidebar-objective {
+      order: 1 !important;
+      grid-column: 1 / -1;
+    }
+
+    #summary {
+      order: 2 !important;
+      grid-column: 1;
+      padding-right: clamp(18px, 2.6vw, 30px) !important;
+      border-right: 1px solid var(--rule) !important;
+      border-bottom: 0 !important;
+    }
+
+    #highlights {
+      order: 3 !important;
+      grid-column: 2;
+      border-bottom: 0 !important;
+    }
+
+    #experience {
+      order: 4 !important;
+      grid-column: 1 / -1;
+    }
+
+    .sidebar-education {
+      order: 5 !important;
+      grid-column: 1 / -1;
+    }
+
+    .sidebar-skills {
+      order: 6 !important;
+      grid-column: 1 / -1;
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.78rem 1.4rem;
+      align-items: start !important;
+    }
+
+    .sidebar-skills .sidebar-title {
+      grid-column: 1 / -1;
+      margin-bottom: 0.08rem;
+    }
+
+    .sidebar-skill-block {
+      align-self: start !important;
+      min-height: 0 !important;
+    }
+
+    .sidebar-section[aria-label="Languages"] {
+      order: 7 !important;
+      grid-column: 1 / -1;
+    }
+
+    .sidebar-section[aria-label="References"] {
+      order: 8 !important;
+      grid-column: 1 / -1;
+    }
+
+    .highlight-note {
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    .spoken-row {
+      display: flex !important;
+      justify-content: flex-start !important;
+      align-items: baseline !important;
+      gap: 0.55rem !important;
+      width: auto !important;
+      max-width: none !important;
+    }
+
+    .spoken-row + .spoken-row {
+      margin-top: 0.16rem !important;
+    }
+
+    @media (max-width: 820px) {
+      .resume-shell {
+        grid-template-columns: 1fr;
+      }
+
+      #summary,
+      #highlights {
+        grid-column: 1 / -1;
+        padding-right: 0 !important;
+        border-right: 0 !important;
+        border-bottom: 1px solid var(--rule) !important;
+      }
+
+      .sidebar-skills {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Compact divider + measure polish requested for single-column variants. */
+    .copy-block,
+    .project-body,
+    .highlight-note p,
+    .sidebar-objective p,
+    .sidebar-section[aria-label="References"] p {
+      max-width: 84ch !important;
+    }
+
+    .sidebar-objective,
+    .sidebar-skills,
+    .sidebar-section[aria-label="Languages"] {
+      border-top: 0 !important;
+      border-bottom: 0 !important;
+    }
+
+    .sidebar-objective::before,
+    .sidebar-skills::before,
+    .sidebar-section[aria-label="Languages"]::before {
+      display: none !important;
+    }
+
+    .sidebar-skills,
+    .sidebar-section[aria-label="Languages"] {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    /* Latest polish: single-row intro flow and no extra dividers above Education/Skills. */
+    .resume-shell {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 1.04rem !important;
+      align-items: stretch !important;
+    }
+
+    #summary {
+      order: 1 !important;
+      grid-column: auto !important;
+      padding-right: 0 !important;
+      border-right: 0 !important;
+      border-bottom: 0 !important;
+    }
+
+    .sidebar-objective {
+      order: 2 !important;
+      grid-column: auto !important;
+      border-top: 0 !important;
+      border-bottom: 0 !important;
+    }
+
+    #highlights {
+      order: 3 !important;
+      grid-column: auto !important;
+      border-bottom: 0 !important;
+    }
+
+    #experience {
+      order: 4 !important;
+      grid-column: auto !important;
+      border-bottom: 0 !important;
+    }
+
+    .sidebar-education {
+      order: 5 !important;
+      grid-column: auto !important;
+      border-top: 0 !important;
+      border-bottom: 0 !important;
+    }
+
+    .sidebar-skills {
+      order: 6 !important;
+      grid-column: auto !important;
+      border-top: 0 !important;
+      border-bottom: 0 !important;
+    }
+
+    /* Final readability polish: wider paragraphs, larger type, tighter experience rhythm. */
+    .resume-page {
+      font-size: 15px !important;
+    }
+
+    .copy-block,
+    .copy-block p,
+    .project-body,
+    .project-body p,
+    .highlight-note p,
+    .sidebar-objective p,
+    .sidebar-section p,
+    .section-card p {
+      max-width: 100% !important;
+    }
+
+    .project-list {
+      gap: 0 !important;
+    }
+
+    .project {
+      padding: 0 0 1.05rem !important;
+      margin: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .project + .project {
+      border-top: 1px dashed color-mix(in oklch, var(--rule) 82%, transparent) !important;
+      padding-top: 1.05rem !important;
+      margin-top: 0.15rem !important;
+    }
+
+    .project-meta {
+      margin: 0.52rem 0 0.62rem !important;
+      padding: 0 !important;
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+      gap: 0.45rem 0.95rem !important;
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .meta-line {
+      display: flex !important;
+      align-items: baseline !important;
+      gap: 0.42rem !important;
+      min-width: 0 !important;
+      padding: 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+    }
+
+    .meta-line span:first-child {
+      flex: 0 0 auto !important;
+      color: var(--muted) !important;
+      font-size: 0.73rem !important;
+      font-weight: 750 !important;
+      letter-spacing: 0.08em !important;
+      text-transform: uppercase !important;
+    }
+
+    .meta-line span:last-child {
+      color: var(--ink) !important;
+      font-size: 0.9rem !important;
+      font-weight: 650 !important;
+      line-height: 1.35 !important;
+    }
+
+    @media (max-width: 760px) {
+      .resume-page {
+        font-size: 14.5px !important;
+      }
+
+      .project-meta {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    /* Meta readability: keep role, team size, and stack as compact vertical lines. */
+    .project-meta {
+      display: block !important;
+      max-width: 100% !important;
+      margin: 0.48rem 0 0.7rem !important;
+    }
+
+    .meta-line {
+      display: flex !important;
+      align-items: baseline !important;
+      justify-content: flex-start !important;
+      gap: 0.5rem !important;
+      max-width: 100% !important;
+      margin: 0.12rem 0 !important;
+      line-height: 1.38 !important;
+    }
+
+    .meta-line span:first-child {
+      width: 5.7rem !important;
+      flex: 0 0 5.7rem !important;
+      text-align: left !important;
+    }
+
+    .meta-line span:last-child {
+      flex: 1 1 auto !important;
+      min-width: 0 !important;
+    }
+
+    /* Skills alignment polish: keep the two columns level at the top. */
+    .sidebar-skills {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      align-items: start !important;
+      align-content: start !important;
+      gap: 0.9rem 1.15rem !important;
+    }
+
+    .sidebar-skills .sidebar-title {
+      grid-column: 1 / -1 !important;
+      margin-bottom: 0 !important;
+      align-self: start !important;
+    }
+
+    .sidebar-skills .sidebar-skill-block,
+    .sidebar-skills .sidebar-skill-block + .sidebar-skill-block {
+      margin: 0 !important;
+      min-height: 0 !important;
+      height: auto !important;
+      align-self: start !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      gap: 0.42rem !important;
+    }
+
+    .sidebar-skills .sidebar-skill-block h3 {
+      margin: 0 !important;
+      line-height: 1.1 !important;
+    }
+
+    @media (max-width: 760px) {
+      .sidebar-skills {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    /* Title scale polish: match the larger body copy without adding visual weight. */
+    .sidebar-title,
+    .section-title {
+      font-size: 1.08rem !important;
+      line-height: 1.14 !important;
+      letter-spacing: 0.075em !important;
+      font-weight: 800 !important;
+      margin-bottom: 0.72rem !important;
+    }
+
+    .sidebar-title svg,
+    .section-title svg {
+      width: 1.05rem !important;
+      height: 1.05rem !important;
+    }
+
+    .project-title {
+      font-size: clamp(1.2rem, 1.55vw, 1.42rem) !important;
+      line-height: 1.22 !important;
+      font-weight: 760 !important;
+      letter-spacing: -0.01em !important;
+    }
+
+    .sidebar-skill-block h3 {
+      font-size: 1.02rem !important;
+      line-height: 1.16 !important;
+      font-weight: 760 !important;
+    }
+
+    @media (max-width: 760px) {
+      .sidebar-title,
+      .section-title {
+        font-size: 1.02rem !important;
+      }
+
+      .project-title {
+        font-size: 1.18rem !important;
+      }
+    }
+
+    /* Typography consistency pass: keep utility sections secondary to their titles. */
+    .section-content p,
+    .summary-text,
+    .objective-text,
+    .highlight-note {
+      font-size: 1rem !important;
+      line-height: 1.62 !important;
+    }
+
+    .sidebar-section[aria-label="Languages"],
+    .sidebar-section[aria-label="References"] {
+      font-size: 0.9rem !important;
+      line-height: 1.45 !important;
+    }
+
+    .spoken-row {
+      font-size: 0.9rem !important;
+      line-height: 1.28 !important;
+      gap: 0.42rem !important;
+    }
+
+    .spoken-row strong,
+    .spoken-row span {
+      font-size: inherit !important;
+      line-height: inherit !important;
+    }
+
+    .language-note,
+    .sidebar-reference span,
+    .sidebar-reference a {
+      font-size: 0.86rem !important;
+      line-height: 1.48 !important;
+    }
+
+    .sidebar-reference strong {
+      font-size: 0.94rem !important;
+      line-height: 1.25 !important;
+      font-weight: 760 !important;
+    }
+
+    /* Style 13: Kami Sidebar, a calm paper-and-ink counterpart to style 10. */
+    :root {
+      --bg: #ece9e2;
+      --paper: #fffef9;
+      --ink: #1f2426;
+      --text: #3e4445;
+      --muted: #707574;
+      --rule: #ddd7cb;
+      --soft: #f7f3ea;
+      --accent: #9a3f2f;
+      --accent-2: #2f6863;
+      --font-display: "Iowan Old Style", "Charter", Georgia, serif;
+      --font-body: "Aptos", "Segoe UI", system-ui, sans-serif;
+    }
+
+    html {
+      font-size: clamp(12.6px, 1vw, 14.1px) !important;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 12% 9%, rgb(154 63 47 / 0.08), transparent 24%),
+        linear-gradient(180deg, #f6f3ed, #e7e1d7) !important;
+    }
+
+    .resume-page {
+      padding: 24px !important;
+      border: 1px solid rgb(31 36 38 / 0.12) !important;
+      border-radius: 3px !important;
+      box-shadow: 0 24px 70px rgb(31 36 38 / 0.12) !important;
+      background:
+        linear-gradient(90deg, rgb(31 36 38 / 0.025) 0 1px, transparent 1px 38px),
+        var(--paper) !important;
+    }
+
+    .resume-header {
+      margin: 0 !important;
+      padding: 34px 34px 30px !important;
+      border: 0 !important;
+      border-bottom: 1px solid var(--rule) !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+    }
+
+    .resume-header::after {
+      left: 26px !important;
+      top: 24px !important;
+      opacity: 0.36 !important;
+    }
+
+    h1 {
+      letter-spacing: -0.045em !important;
+    }
+
+    .resume-shell {
+      display: grid !important;
+      grid-template-columns: minmax(238px, 286px) minmax(0, 1fr) !important;
+      gap: 30px !important;
+      align-items: start !important;
+      padding: 28px 0 0 !important;
+      width: 100% !important;
+      max-width: none !important;
+    }
+
+    .resume-shell::before,
+    .sidebar-section::before,
+    .section-card::before,
+    .section-card::after {
+      display: none !important;
+    }
+
+    .sidebar {
+      display: block !important;
+      width: auto !important;
+      max-width: none !important;
+      flex: initial !important;
+      padding: 0 26px 0 0 !important;
+      border: 0 !important;
+      border-right: 1px solid var(--rule) !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+    }
+
+    main {
+      display: block !important;
+      width: auto !important;
+      max-width: none !important;
+      padding: 0 !important;
+    }
+
+    .sidebar-section,
+    .section-card,
+    .project {
+      display: block !important;
+      width: auto !important;
+      max-width: none !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    .section-card + .section-card {
+      margin-top: 1.72rem !important;
+    }
+
+    .sidebar-section + .sidebar-section {
+      margin-top: 1.14rem !important;
+      padding-top: 1.08rem !important;
+      border-top: 1px solid var(--rule) !important;
+    }
+
+    .sidebar-title,
+    .section-title {
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.58rem !important;
+      margin-bottom: 0.78rem !important;
+      color: var(--ink) !important;
+      font-family: var(--font-body) !important;
+      font-size: 0.98rem !important;
+      letter-spacing: 0.12em !important;
+      text-transform: uppercase !important;
+    }
+
+    .sidebar-title::after,
+    .section-title::after {
+      content: "" !important;
+      display: block !important;
+      height: 1px !important;
+      flex: 1 1 auto !important;
+      background: var(--rule) !important;
+    }
+
+    .highlight-note {
+      padding: 0 0 0 1rem !important;
+      border: 0 !important;
+      border-left: 2px solid var(--accent) !important;
+      background: transparent !important;
+    }
+
+    .sidebar-skills {
+      display: block !important;
+      grid-template-columns: none !important;
+    }
+
+    .sidebar-skill-block,
+    .sidebar-skill-block + .sidebar-skill-block {
+      display: block !important;
+      margin: 0.88rem 0 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+
+    .tag {
+      border: 1px solid rgb(31 36 38 / 0.08) !important;
+      border-radius: 2px !important;
+      background: rgb(247 243 234 / 0.7) !important;
+      padding: 0.19rem 0.44rem !important;
+    }
+
+    .spoken-row {
+      justify-content: flex-start !important;
+      gap: 0.45rem !important;
+    }
+
+    .project + .project {
+      margin-top: 1.18rem !important;
+      padding-top: 1.18rem !important;
+      border-top: 1px dashed color-mix(in srgb, var(--rule) 80%, var(--ink)) !important;
+    }
+
+    .project-meta {
+      display: block !important;
+      margin: 0.5rem 0 0.68rem !important;
+      color: var(--muted) !important;
+    }
+
+    .meta-line {
+      display: flex !important;
+      gap: 0.35rem !important;
+      margin-top: 0.12rem !important;
+    }
+
+    /* Sidebar skills padding fix: tighten sub-section rhythm without boxes. */
+    .sidebar-skills {
+      row-gap: 0 !important;
+      padding-block: 0 !important;
+    }
+
+    .sidebar-skills .sidebar-title {
+      margin-bottom: 0.66rem !important;
+    }
+
+    .sidebar-skills .sidebar-skill-block,
+    .sidebar-skills .sidebar-skill-block + .sidebar-skill-block {
+      margin: 0 0 0.72rem !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+
+    .sidebar-skills .sidebar-skill-block:last-child {
+      margin-bottom: 0 !important;
+    }
+
+    .sidebar-skills .sidebar-skill-block h3 {
+      margin: 0 0 0.32rem !important;
+      line-height: 1.15 !important;
+    }
+
+    .sidebar-skills .tag-row {
+      margin: 0 !important;
+      align-items: flex-start !important;
+      row-gap: 0.28rem !important;
+    }
+
+    @media (max-width: 820px) {
+      .resume-page {
+        padding: 18px !important;
+      }
+
+      .resume-shell {
+        grid-template-columns: 1fr !important;
+      }
+
+      .sidebar {
+        padding: 0 !important;
+        border-right: 0 !important;
+      }
+    }
+
+    /* Smart sticky sidebar: matched to mpnivaj4-hanh_test.html behavior. */
+    @media screen and (min-width: 769px) {
+      .resume-page,
+      .resume-shell {
+        overflow: visible !important;
+      }
+
+      .resume-shell {
+        align-items: flex-start !important;
+      }
+
+      .sidebar {
+        position: sticky !important;
+        top: 2rem;
+        align-self: flex-start !important;
+        height: max-content;
+        z-index: 10;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .sidebar {
+        position: static !important;
+        top: auto !important;
+      }
+    }
+
+    /* Sidebar section polish: larger titles, no extra top rules on sidebar sections. */
+    .sidebar-title,
+    .section-title {
+      font-size: 1.05rem !important;
+      line-height: 1.12 !important;
+    }
+
+    .sidebar-section.sidebar-education,
+    .sidebar-section.sidebar-skills,
+    .sidebar-section[aria-label="Languages"],
+    .sidebar-section[aria-label="References"] {
+      border-top: 0 !important;
+      padding-top: 0 !important;
+    }
+    /* Avatar aura cleanup: remove doubled borders/rings; keep soft depth only. */
+    .avatar {
+      border: 0 !important;
+      outline: 0 !important;
+      box-shadow: 0 18px 52px rgb(15 23 42 / 0.16) !important;
+    }
+
+    .avatar::before,
+    .avatar::after {
+      border: 0 !important;
+      outline: 0 !important;
+    }
+
+    .avatar img {
+      border: 0 !important;
+      outline: 0 !important;
+      box-shadow: none !important;
+    }
+
+    /* Kami seal polish: keep the mark organic, not a boxed UI artifact. */
+    .resume-header {
+      position: relative !important;
+    }
+
+    .resume-header::before {
+      content: "" !important;
+      position: absolute !important;
+      right: clamp(24px, 3.4vw, 36px) !important;
+      top: clamp(22px, 3vw, 32px) !important;
+      width: 38px !important;
+      height: 38px !important;
+      border: 0 !important;
+      border-radius: 43% 57% 51% 49% / 48% 42% 58% 52% !important;
+      background:
+        radial-gradient(circle at 34% 30%, rgb(159 51 38 / 0.2), transparent 34%),
+        radial-gradient(circle at 68% 64%, rgb(159 51 38 / 0.13), transparent 42%),
+        rgb(159 51 38 / 0.07) !important;
+      box-shadow: 0 8px 18px rgb(159 51 38 / 0.08) !important;
+      opacity: 0.42 !important;
+      transform: rotate(-9deg) !important;
+      pointer-events: none !important;
+    }
+
+  </style>
+</head>
+<body>
+<div class="resume-page">
+    <header class="resume-header" aria-labelledby="candidate-name">
+      <div class="header-inner">
+        <div class="avatar" aria-hidden="true">
+          <img src="mpmmge6e-IMG_3238-_1_.jpg" alt="Hanh Tran" onerror="this.src='https://ui-avatars.com/api/?name=Hanh+Tran&background=334155&color=fff&size=120'">
+        </div>
+        <div class="header-copy">
+          <h1 id="candidate-name">Hanh Tran</h1>
+          <p class="role">AI-Driven Full-Stack Developer / AI Engineer</p>
+          <div class="role-keywords" aria-label="Recruiter focus areas">
+            <span>Full-stack Engineering</span>
+            <span>AI Product Integration</span>
+            <span>Backend APIs</span>
+            <span>React / Next.js</span>
+            <span>Python / FastAPI</span>
+            <span>Product &amp; Delivery</span>
+          </div>
+          <nav aria-label="Contact and profile links">
+            <ul class="contact-list">
+              <li>
+                <span class="contact-item">
+                  <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  </span>
+                  <span>July 4, 1995</span>
+                </span>
+              </li>
+              <li>
+                <span class="contact-item">
+                  <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  </span>
+                  <span>Da Nang, Vietnam</span>
+                </span>
+              </li>
+              <li>
+                <a class="contact-item" href="tel:+84">
+                  <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                  </span>
+                  <span>+(84) ...</span>
+                </a>
+              </li>
+              <li>
+                <a class="contact-item" href="mailto:tnnganhanh@gmail.com">
+                  <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                  </span>
+                  <span>tnnganhanh@gmail.com</span>
+                </a>
+              </li>
+              <li>
+                <a class="contact-item" href="https://linkedin.com/in/hanhtran47" target="_blank" rel="noreferrer">
+                  <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                  </span>
+                  <span>linkedin.com/in/hanhtran47</span>
+                </a>
+              </li>
+              <li>
+                <a class="contact-item" href="https://github.com/hanh-trannguyen" target="_blank" rel="noreferrer">
+                  <span class="icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  </span>
+                  <span>github.com/hanh-trannguyen</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <div class="resume-shell">
+      <aside class="sidebar" aria-label="Fixed resume sidebar">
+        
+        <section class="sidebar-section sidebar-objective" aria-label="Objective">
+          <h2 class="sidebar-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+            Objective
+          </h2>
+          <p>Looking for a role where I can combine full-stack engineering, AI integration, and product thinking to build practical, scalable, and user-focused digital products.</p>
+        </section>
+
+        <section class="sidebar-section sidebar-education" aria-label="Education timeline">
+          <h2 class="sidebar-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+            Education
+          </h2>
+          
+          <article class="education-item">
+            <span class="education-date">07/2021</span>
+            <h2>Master of Professional Studies, Analytics</h2>
+            <p>Northeastern University · Boston, MA</p>
+            <p>GPA: 3.915/4.0</p>
+          </article>
+          
+          <article class="education-item">
+            <span class="education-date">2013 - 2017</span>
+            <h2>Bachelor, International Business</h2>
+            <p>University of Economics - Danang</p>
+            <p>Graduated with Good standing</p>
+          </article>
+        </section>
+
+        <section class="sidebar-section sidebar-skills" aria-label="Skills">
+          <h2 class="sidebar-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            Skills
+          </h2>
+          
+          <div class="sidebar-skill-block">
+            <h3>Frontend</h3>
+            <div class="tag-row">
+              <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Tailwind CSS</span><span class="tag">MUI</span><span class="tag">Ant Design</span>
+            </div>
+          </div>
+          
+          <div class="sidebar-skill-block">
+            <h3>Backend</h3>
+            <div class="tag-row">
+              <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Django</span><span class="tag">Node.js</span><span class="tag">NestJS</span><span class="tag">REST/GraphQL</span>
+            </div>
+          </div>
+          
+          <div class="sidebar-skill-block">
+            <h3>AI Engineering</h3>
+            <div class="tag-row">
+              <span class="tag">OpenAI API</span><span class="tag">LangChain</span><span class="tag">RAG</span><span class="tag">Vector Search</span><span class="tag">AI Agents</span>
+            </div>
+          </div>
+          
+          <div class="sidebar-skill-block">
+            <h3>Data / DevOps</h3>
+            <div class="tag-row">
+              <span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">Redis</span><span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">CI/CD</span>
+            </div>
+          </div>
+          
+          <div class="sidebar-skill-block">
+            <h3>Product</h3>
+            <div class="tag-row">
+              <span class="tag">Requirement Analysis</span><span class="tag">PRD</span><span class="tag">Agile/Scrum</span><span class="tag">MVP Scoping</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="sidebar-section" aria-label="Languages">
+          <h2 class="sidebar-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            Languages
+          </h2>
+          <div class="spoken-row"><strong>Vietnamese</strong><span>Native</span></div>
+          <div class="spoken-row"><strong>English</strong><span>Professional</span></div>
+          <p class="language-note">Fluent in written and verbal communication for professional work environments.</p>
+        </section>
+
+        <section class="sidebar-section" aria-label="References">
+          <h2 class="sidebar-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            References
+          </h2>
+          <div class="sidebar-reference">
+            <strong>Le Thanh Cong</strong>
+            <span>CTO · NAPA Global</span>
+            <a href="tel:+84905222622">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              +84 905222622
+            </a>
+          </div>
+        </section>
+
+      </aside>
+
+      <main id="mainContent">
+        
+        <section class="section-card" id="summary">
+          <h2 class="section-title">
+            <span class="section-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </span>
+            Summary
+          </h2>
+          
+          <div class="copy-block">
+            <p>Builds production web, backend, mobile, and cloud-based applications across AI, fintech, healthcare, insurance, education, analytics, and commerce products.</p>
+            <p>Recent work focuses on AI-powered products, LLM integration, prompt workflows, LangChain pipelines, OpenAI-based automation, and practical AI-assisted product delivery.</p>
+            <p>Strong in Python, FastAPI, Django, React, Next.js, TypeScript, databases, cloud services, and end-to-end product delivery from requirements to testing and deployment.</p>
+          </div>
+        </section>
+
+        <section class="section-card" id="highlights">
+          <h2 class="section-title">
+            <span class="section-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </span>
+            Highlights
+          </h2>
+          
+          <article class="highlight-note">
+            <h3>Practical AI product delivery across engineering, analytics, and product planning</h3>
+            <p>Built AI-powered marketing analytics workflows using OpenAI, LangChain, Python, and Meta/Google ads data integration; developed backend systems and APIs across AI, fintech, healthcare, insurance, education, and analytics products; and worked across requirement analysis, PRD writing, technical advisory, implementation, testing, and deployment.</p>
+          </article>
+        </section>
+
+        <section class="section-card" id="experience">
+          <h2 class="section-title">
+            <span class="section-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+            </span>
+            Experiences
+          </h2>
+          
+          <div class="project-list">
+            
+            <article class="project">
+              <div class="project-header">
+                <div>
+                  <div class="project-kicker">carrotcake AI</div>
+                  <h3 class="project-title">AI-driven marketing analytics platform</h3>
+                </div>
+                <div class="project-time-container">
+                  <div class="project-time">09/2024 - 05/2025</div>
+                  <div class="project-duration">8 months</div>
+                </div>
+              </div>
+              <div class="project-meta">
+                <div class="meta-line"><span>Role</span><span>Full-Stack Developer / Tech Lead</span></div>
+                <div class="meta-line"><span>Team size</span><span>Not specified</span></div>
+                <div class="meta-line"><span>Stack</span><span>React, Next.js, TypeScript, Python, MongoDB, LangChain, OpenAI</span></div>
+              </div>
+              <div class="project-body">
+                <p>AI-driven marketing analytics platform integrating with Meta and Google ad accounts to provide advertising insights and optimization suggestions.</p>
+                <ul class="bullet-list">
+                  <li>Implemented responsive UI components and integrated frontend features with backend APIs.</li>
+                  <li>Designed database structure and backend APIs for analytics workflows and AI-powered response generation.</li>
+                  <li>Built prompt workflows and LangChain pipelines to structure AI-generated marketing analytics responses.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-header">
+                <div>
+                  <div class="project-kicker">Educational Online Testing Platform</div>
+                  <h3 class="project-title">Custom assessment &amp; analytics platform</h3>
+                </div>
+                <div class="project-time-container">
+                  <div class="project-time">03/2023 - 09/2023</div>
+                  <div class="project-duration">6 months</div>
+                </div>
+              </div>
+              <div class="project-meta">
+                <div class="meta-line"><span>Role</span><span>Full-Stack Developer</span></div>
+                <div class="meta-line"><span>Team size</span><span>Not specified</span></div>
+                <div class="meta-line"><span>Stack</span><span>React, Chakra UI, Web3, Python, FastAPI, GraphQL, AWS</span></div>
+              </div>
+              <div class="project-body">
+                <p>Online testing platform for teachers and learners, supporting custom assessments, progress tracking, analytics, and secure test payments through Metamask.</p>
+                <ul class="bullet-list">
+                  <li>Designed and developed backend APIs using Python, FastAPI, GraphQL, and AWS.</li>
+                  <li>Built frontend components using React, Chakra UI, and Web3 integration.</li>
+                  <li>Developed smart contract functionality for test payment workflows and implemented core testing coverage.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-header">
+                <div>
+                  <div class="project-kicker">SarsiAI</div>
+                  <h3 class="project-title">OpenAI-powered prompt improvement application</h3>
+                </div>
+                <div class="project-time-container">
+                  <div class="project-time">11/2022 - 03/2023</div>
+                  <div class="project-duration">4 months</div>
+                </div>
+              </div>
+              <div class="project-meta">
+                <div class="meta-line"><span>Role</span><span>Backend / AI Integration Developer</span></div>
+                <div class="meta-line"><span>Team size</span><span>Not specified</span></div>
+                <div class="meta-line"><span>Stack</span><span>Python, FastAPI, OpenAI API, SQLite, MySQL</span></div>
+              </div>
+              <div class="project-body">
+                <ul class="bullet-list">
+                  <li>Integrated OpenAI API into backend workflows for prompt enhancement and AI-generated suggestions.</li>
+                  <li>Built secure REST APIs using Python and FastAPI.</li>
+                  <li>Analyzed requirements, implemented backend features, improved system performance, and wrote backend unit tests.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-header">
+                <div>
+                  <div class="project-kicker">OpenTelemetry APM Libraries</div>
+                  <h3 class="project-title">Python observability libraries for traces, logs, and metrics</h3>
+                </div>
+                <div class="project-time-container">
+                  <div class="project-time">02/2022 - 10/2022</div>
+                  <div class="project-duration">8 months</div>
+                </div>
+              </div>
+              <div class="project-meta">
+                <div class="meta-line"><span>Role</span><span>Backend Developer</span></div>
+                <div class="meta-line"><span>Team size</span><span>Not specified</span></div>
+                <div class="meta-line"><span>Stack</span><span>Python, Flask, PostgreSQL, AWS, Docker, Kubernetes</span></div>
+              </div>
+              <div class="project-body">
+                <ul class="bullet-list">
+                  <li>Built Python packages extending OpenTelemetry for logs, metrics, and traces collection.</li>
+                  <li>Supported instrumentation libraries including dbapi, psycopg2, sqlalchemy, boto3, and DynamoDB.</li>
+                  <li>Set up load testing and performance testing using Locust and JMeter.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-header">
+                <div>
+                  <div class="project-kicker">Manulife CSM</div>
+                  <h3 class="project-title">Customer management support environment for insurance agents</h3>
+                </div>
+                <div class="project-time-container">
+                  <div class="project-time">09/2022 - 11/2022</div>
+                  <div class="project-duration">2 months</div>
+                </div>
+              </div>
+              <div class="project-meta">
+                <div class="meta-line"><span>Role</span><span>Backend Developer / Frontend Support</span></div>
+                <div class="meta-line"><span>Team size</span><span>Not specified</span></div>
+                <div class="meta-line"><span>Stack</span><span>NestJS, React, MUI, REST APIs</span></div>
+              </div>
+              <div class="project-body">
+                <ul class="bullet-list">
+                  <li>Designed and implemented RESTful APIs while ensuring data consistency and integrity.</li>
+                  <li>Supported intuitive UI implementation for clients and agents.</li>
+                  <li>Provided post-launch system guidance and operation support.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-header">
+                <div>
+                  <div class="project-kicker">Kinspire Health - Kids &amp; Family Care App</div>
+                  <h3 class="project-title">Care team communication and therapy action planning</h3>
+                </div>
+                <div class="project-time-container">
+                  <div class="project-time">10/2021 - 03/2022</div>
+                  <div class="project-duration">5 months</div>
+                </div>
+              </div>
+              <div class="project-meta">
+                <div class="meta-line"><span>Role</span><span>Backend Developer</span></div>
+                <div class="meta-line"><span>Team size</span><span>Not specified</span></div>
+                <div class="meta-line"><span>Stack</span><span>Python, Django, SQLite, MySQL, REST APIs</span></div>
+              </div>
+              <div class="project-body">
+                <ul class="bullet-list">
+                  <li>Analyzed requirements and designed backend workflows.</li>
+                  <li>Designed and developed RESTful APIs using Python and Django.</li>
+                  <li>Wrote unit tests for backend functionality.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-header">
+                <div>
+                  <div class="project-kicker">Puma Data Analytics - Capstone Project</div>
+                  <h3 class="project-title">Return probability prediction and analytics dashboards</h3>
+                </div>
+                <div class="project-time-container">
+                  <div class="project-time">01/2021 - 07/2021</div>
+                  <div class="project-duration">6 months</div>
+                </div>
+              </div>
+              <div class="project-meta">
+                <div class="meta-line"><span>Role</span><span>Data Analytics / Machine Learning Contributor</span></div>
+                <div class="meta-line"><span>Team size</span><span>Not specified</span></div>
+                <div class="meta-line"><span>Stack</span><span>Python, Machine Learning, Tableau, Analytics</span></div>
+              </div>
+              <div class="project-body">
+                <ul class="bullet-list">
+                  <li>Cleaned, processed, and analyzed sales transaction data to identify product return patterns.</li>
+                  <li>Applied machine learning algorithms to predict product return percentages within a selected time period.</li>
+                  <li>Created analytics dashboards and visualizations using Tableau.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="project">
+              <div class="project-header">
+                <div>
+                  <div class="project-kicker">Amoda</div>
+                  <h3 class="project-title">Fashion e-commerce mobile app with virtual try-on support</h3>
+                </div>
+                <div class="project-time-container">
+                  <div class="project-time">01/2020 - 09/2020</div>
+                  <div class="project-duration">8 months</div>
+                </div>
+              </div>
+              <div class="project-meta">
+                <div class="meta-line"><span>Role</span><span>Backend Developer</span></div>
+                <div class="meta-line"><span>Team size</span><span>Not specified</span></div>
+                <div class="meta-line"><span>Stack</span><span>Python, Django, AWS, Payments</span></div>
+              </div>
+              <div class="project-body">
+                <ul class="bullet-list">
+                  <li>Implemented backend features using Python and Django.</li>
+                  <li>Supported payment integration and backend service development.</li>
+                  <li>Worked with AWS deployment-related workflows and virtual try-on product flows.</li>
+                </ul>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <button class="btn-print" id="printResume" type="button" aria-label="Print or Save as PDF">
+    <svg viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"></path></svg>
+    <span>Print / PDF</span>
+  </button>
+  <script>
+    document.querySelector('#printResume')?.addEventListener('click', () => window.print());
+  </script>
+  <script>
+    function initSmartStickySidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      if (!sidebar) return;
+
+      function updateSticky() {
+        if (window.innerWidth <= 768) {
+          sidebar.style.top = 'auto';
+          return;
+        }
+
+        const viewportHeight = window.innerHeight;
+        const sidebarHeight = sidebar.offsetHeight;
+
+        if (sidebarHeight + 64 > viewportHeight) {
+          sidebar.style.top = `${viewportHeight - sidebarHeight - 32}px`;
+        } else {
+          sidebar.style.top = '2rem';
+        }
+      }
+
+      window.addEventListener('resize', updateSticky);
+      if (typeof ResizeObserver !== 'undefined') {
+        new ResizeObserver(updateSticky).observe(sidebar);
+      }
+      updateSticky();
+    }
+
+    document.addEventListener('DOMContentLoaded', initSmartStickySidebar);
+  </script>
+</body>
+</html>

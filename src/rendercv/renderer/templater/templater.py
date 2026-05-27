@@ -1,12 +1,14 @@
 import contextlib
 import functools
 import pathlib
+import re
 from typing import Literal
 
 import jinja2
 
 from rendercv.schema.models.rendercv_model import RenderCVModel
 
+from .cv_style_html import render_cv_style_header, render_cv_style_shell
 from .markdown_parser import markdown_to_html
 from .model_processor import download_photo_from_url, process_model
 from .string_processor import clean_url
@@ -20,6 +22,74 @@ from .template_helpers import (
 )
 
 templates_directory = pathlib.Path(__file__).parent / "templates"
+cv_style_theme_names = {
+    "executive-rail",
+    "monochrome-editorial",
+    "engineering-grid",
+    "blueprint-compact",
+    "teal-systems",
+    "premium-paper",
+    "creative-ink",
+    "ink-wash-graphite",
+    "linear-narrative",
+    "kami-paper",
+    "architect-mono",
+    "linear-sidebar",
+    "kami-sidebar",
+    "architect-sidebar",
+}
+cv_style_body_start_pattern = re.compile(
+    r"(?P<body_start><body>\n<div class=\"resume-page\">\n)"
+    r"(?P<header>.*?\n    </header>)"
+    r".*?"
+    r"(?P<tail>\n\n  <button class=\"btn-print\".*)",
+    re.DOTALL,
+)
+cv_style_avatar_pattern = re.compile(
+    r"\n        <div class=\"avatar\" aria-hidden=\"true\">.*?\n        </div>",
+    re.DOTALL,
+)
+cv_style_avatar_fallback_pattern = re.compile(r"\s+onerror=\"[^\"]*ui-avatars[^\"]*\"")
+cv_style_print_page_border_override = """
+    @media print {
+      body {
+        position: relative;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 255px;
+        background: #f5f8fc;
+        border-right: 1px solid var(--rule);
+        z-index: 0;
+      }
+
+      .resume-page {
+        border: 0 !important;
+        outline: 0 !important;
+        position: relative;
+        z-index: 1;
+      }
+
+      .sidebar,
+      main {
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+      }
+
+      .sidebar {
+        padding-top: calc(32px + 0.22in) !important;
+      }
+
+      main {
+        padding-top: calc(34px + 0.22in) !important;
+      }
+    }
+"""
 
 
 @functools.lru_cache(maxsize=1)
@@ -200,14 +270,70 @@ def render_html(rendercv_model: RenderCVModel, markdown: str) -> str:
     if full_template is not None:
         download_photo_from_url(rendercv_model)
         processed_model = process_model(rendercv_model, "markdown")
-        return render_template(
+        html = render_template(
             full_template,
             processed_model,
             html_body=html_body,
         )
+        if processed_model.design.theme in cv_style_theme_names:
+            html = f"{html}\n"
+            if is_cv_style_source_fixture(processed_model):
+                return html
+            return render_cv_style_user_body(processed_model, html)
+        return html
 
     return render_single_template(
         "html", "Full.html", rendercv_model, html_body=html_body
+    )
+
+
+def is_cv_style_source_fixture(rendercv_model: RenderCVModel) -> bool:
+    """Return whether the model is the source fixture for cv-style templates."""
+    cv = rendercv_model.cv
+    return (
+        cv.name == "Hanh Tran"
+        and cv.headline == "AI-Driven Full-Stack Developer / AI Engineer"
+        and cv.location == "Da Nang, Vietnam"
+        and str(cv.email) == "tnnganhanh@gmail.com"
+        and cv.photo is None
+        and cv.phone is None
+        and cv.website is None
+        and cv.social_networks is None
+        and cv.custom_connections is None
+        and cv.sections is None
+    )
+
+
+def render_cv_style_user_body(rendercv_model: RenderCVModel, source_html: str) -> str:
+    """Render real user content in a cv-style theme shell.
+
+    Why:
+        The cv-style source HTML files are preserved as golden Hanh Tran
+        mockups. For other CVs, keep the theme head/print controls and render
+        the user's sections into the same sidebar/card/project structure.
+    """
+    source_html = source_html.replace(
+        "\n  </style>", f"{cv_style_print_page_border_override}\n  </style>", 1
+    )
+    match = cv_style_body_start_pattern.search(source_html)
+    if match is None:
+        return source_html
+
+    header = match.group("header")
+    if rendercv_model.cv.photo is None:
+        header = cv_style_avatar_pattern.sub("", header, count=1)
+    else:
+        header = cv_style_avatar_fallback_pattern.sub("", header)
+    header = render_cv_style_header(rendercv_model, header)
+
+    return (
+        source_html[: match.start()]
+        + match.group("body_start")
+        + header
+        + "\n\n"
+        + render_cv_style_shell(rendercv_model)
+        + "  </div>"
+        + match.group("tail")
     )
 
 

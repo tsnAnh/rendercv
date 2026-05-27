@@ -21,15 +21,34 @@ google_fonts_link_pattern = re.compile(
     r'\s*<link\s+href="https://fonts\.googleapis\.com/[^"]+"\s+rel="stylesheet">\n?'
 )
 
+cv_style_browser_themes = {
+    "executive-rail",
+    "monochrome-editorial",
+    "engineering-grid",
+    "blueprint-compact",
+    "teal-systems",
+    "premium-paper",
+    "creative-ink",
+    "ink-wash-graphite",
+    "linear-narrative",
+    "kami-paper",
+    "architect-mono",
+    "linear-sidebar",
+    "kami-sidebar",
+    "architect-sidebar",
+}
+
+browser_rendered_themes = {"khaitranquang", *cv_style_browser_themes}
+
 
 def is_browser_rendered_theme(rendercv_model: RenderCVModel) -> bool:
     """Return whether PDF/PNG should be rendered through Chromium.
 
     Why:
-        Only the built-in khaitranquang theme has an HTML-first design that
-        should use the browser print engine. All other themes remain on Typst.
+        HTML-first built-in themes should use the browser print engine. All
+        other themes remain on Typst.
     """
-    return rendercv_model.design.theme == "khaitranquang"
+    return rendercv_model.design.theme in browser_rendered_themes
 
 
 def create_browser_rendering_html(
@@ -44,13 +63,14 @@ def create_browser_rendering_html(
     output_dir.mkdir(parents=True, exist_ok=True)
     markdown = render_full_template(rendercv_model, "markdown")
     html = render_html(rendercv_model, markdown)
-    html = google_fonts_link_pattern.sub("\n", html)
-    html = html.replace("<style>", f"<style>\n{build_local_font_face_css()}\n", 1)
+    if rendercv_model.design.theme == "khaitranquang":
+        html = google_fonts_link_pattern.sub("\n", html)
+        html = html.replace("<style>", f"<style>\n{build_local_font_face_css()}\n", 1)
+        copy_browser_fonts(output_dir)
 
-    copy_browser_fonts(output_dir)
     copy_browser_photo(rendercv_model, output_dir)
 
-    html_path = output_dir / "khaitranquang-browser.html"
+    html_path = output_dir / f"{rendercv_model.design.theme}-browser.html"
     html_path.write_text(html, encoding="utf-8")
     return html_path
 
@@ -58,7 +78,7 @@ def create_browser_rendering_html(
 def generate_browser_pdf(
     rendercv_model: RenderCVModel, html_path: pathlib.Path
 ) -> pathlib.Path | None:
-    """Generate a khaitranquang PDF from staged HTML with Chromium."""
+    """Generate an HTML-first theme PDF from staged HTML with Chromium."""
     if (
         rendercv_model.settings.render_command.dont_generate_typst
         or rendercv_model.settings.render_command.dont_generate_pdf
@@ -85,8 +105,8 @@ def generate_browser_png(
         return None
 
     if pdf_path is None:
-        with tempfile.TemporaryDirectory(prefix="rendercv-khaitranquang-pdf-") as temp:
-            transient_pdf_path = pathlib.Path(temp) / "khaitranquang.pdf"
+        with tempfile.TemporaryDirectory(prefix="rendercv-browser-pdf-") as temp:
+            transient_pdf_path = pathlib.Path(temp) / "browser-rendered.pdf"
             render_html_to_pdf(html_path, transient_pdf_path)
             return rasterize_pdf_to_png_files(rendercv_model, transient_pdf_path)
 
@@ -125,7 +145,7 @@ def import_playwright() -> tuple[type[Exception], Callable]:
     except ImportError as e:
         raise RenderCVUserError(
             message=(
-                "The khaitranquang theme requires Playwright for PDF/PNG output. "
+                "This HTML-first theme requires Playwright for PDF/PNG output. "
                 "Install RenderCV with `rendercv[full]` and run "
                 "`python -m playwright install chromium`."
             )
@@ -143,7 +163,7 @@ def missing_chromium_message() -> str:
     if getattr(sys, "frozen", False):
         message += (
             " Standalone executables do not bundle Chromium; use the Docker image "
-            "or a Python installation with `rendercv[full]` for khaitranquang "
+            "or a Python installation with `rendercv[full]` for HTML-first theme "
             "PDF/PNG output."
         )
     return message
@@ -183,7 +203,7 @@ def import_pymupdf() -> ModuleType:
     except ImportError as e:
         raise RenderCVUserError(
             message=(
-                "The khaitranquang theme requires PyMuPDF for PNG output. "
+                "HTML-first themes require PyMuPDF for PNG output. "
                 "Install RenderCV with `rendercv[full]`."
             )
         ) from e

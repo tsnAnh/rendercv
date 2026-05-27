@@ -9,6 +9,7 @@ from playwright.sync_api import sync_playwright
 from rendercv.exception import RenderCVUserError
 from rendercv.renderer.browser_pdf import (
     create_browser_rendering_html,
+    cv_style_browser_themes,
     generate_browser_pdf,
     generate_browser_png,
     render_html_to_pdf,
@@ -44,6 +45,56 @@ def test_create_browser_rendering_html_stages_local_assets(
         tmp_path / "fonts" / "MaterialSymbols" / "MaterialSymbolsRounded-Filled.ttf"
     ).exists()
     assert isinstance(model.cv.photo, pathlib.Path)
+    assert (tmp_path / model.cv.photo.name).exists()
+
+
+def test_create_cv_style_browser_rendering_html_keeps_source_equivalent_head(
+    tmp_path: pathlib.Path,
+    minimal_rendercv_model: RenderCVModel,
+):
+    theme = sorted(cv_style_browser_themes)[0]
+    cv = Cv(
+        name="Hanh Tran",
+        headline="AI-Driven Full-Stack Developer / AI Engineer",
+        location="Da Nang, Vietnam",
+        email="tnnganhanh@gmail.com",
+    )
+    model = RenderCVModel(
+        cv=cv,
+        design={"theme": theme},
+        locale=minimal_rendercv_model.locale,
+        settings=minimal_rendercv_model.settings,
+    )
+
+    html_path = create_browser_rendering_html(model, tmp_path)
+    html = html_path.read_text(encoding="utf-8")
+
+    assert html == pathlib.Path("new_templates", f"{theme}.html").read_text(
+        encoding="utf-8"
+    )
+    assert "@font-face" not in html
+    assert not (tmp_path / "fonts").exists()
+
+
+def test_create_cv_style_browser_rendering_html_uses_user_photo(
+    tmp_path: pathlib.Path,
+    full_rendercv_model: RenderCVModel,
+):
+    theme = sorted(cv_style_browser_themes)[0]
+    model = RenderCVModel(
+        cv=full_rendercv_model.cv,
+        design={"theme": theme},
+        locale=full_rendercv_model.locale,
+        settings=full_rendercv_model.settings,
+    )
+
+    html_path = create_browser_rendering_html(model, tmp_path)
+    html = html_path.read_text(encoding="utf-8")
+
+    assert isinstance(model.cv.photo, pathlib.Path)
+    assert model.cv.photo.name in html
+    assert "mpmmge6e-IMG_3238-_1_.jpg" not in html
+    assert "ui-avatars.com" not in html
     assert (tmp_path / model.cv.photo.name).exists()
 
 
@@ -178,6 +229,39 @@ def test_generate_khaitranquang_browser_pdf_and_png_semantics(
         assert png_path.name.startswith("John_Doe_CV_")
         assert png_path.stat().st_size > 0
     document.close()
+
+
+def test_generate_cv_style_browser_pdf_contains_user_content(
+    tmp_path: pathlib.Path,
+):
+    pymupdf = pytest.importorskip("pymupdf")
+    cv = Cv(
+        name="Jane Roe",
+        sections={
+            "Experience": [
+                "Principal Engineer at Example Labs, 2024-present",
+            ]
+        },
+    )
+    model = RenderCVModel(
+        cv=cv,
+        design={"theme": "executive-rail"},
+        settings=Settings(current_date=Date(2025, 11, 30)),
+    )
+    model.settings.render_command.pdf_path = tmp_path / "Jane_Roe_CV.pdf"
+
+    html_path = create_browser_rendering_html(model, tmp_path / "browser")
+    pdf_path = generate_browser_pdf(model, html_path)
+
+    assert pdf_path is not None
+    document = pymupdf.open(pdf_path)
+    text = "\n".join(page.get_text() for page in document)
+    document.close()
+
+    assert "Jane Roe" in text
+    assert "Principal Engineer at Example Labs" in text
+    assert "Hanh Tran" not in text
+    assert "carrotcake AI" not in text
 
 
 def test_generate_khaitranquang_png_when_pdf_output_is_disabled(
